@@ -1,0 +1,146 @@
+﻿@using DV.FrenteLoja.Core.Util
+@model DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoDto
+
+@if (TempData["Erro"] != null)
+{
+  <script>
+    criaAlertaMensagem('@TempData["Erro"]')
+  </script>
+}
+
+<div class="flex full-height">
+    @Html.Partial("_Wizard", Model)
+    <div style="margin-top: 20px;">
+        <div class="col-md-12">
+            @using (Html.BeginForm("IniciarOrcamento", "Orcamento", FormMethod.Post, new { id = "equipe-vendas" }))
+            {
+                <div class="busca row">
+                    <div class="col-md-12">
+                        <h3>EQUIPE DE VENDAS</h3>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.Vendedor, new { @class = "orcamento-label" })
+                            <label style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.Vendedor)
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.AreaNegocio, new { @class = "orcamento-label" })
+                            <label style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.AreaNegocio)
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Observacao, new { @class = "orcamento-label" })
+                            @Html.TextAreaFor(model => model.Observacao, new { @class = "form-control", @rows = "1", @maxlength = "30", @onkeypress = "return /[A-Za-z0-9 ]/i.test(event.key)" })
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.InformacaoConvenio, new { @class = "orcamento-label" })
+                            @Html.TextAreaFor(model => model.InformacaoConvenio, new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.DataValidade, new { @class = "orcamento-label" })
+                            <label style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.DataValidade, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DataValidade)
+                        </div>
+                        <div class="form-group col-md-7">
+                            @Html.LabelFor(model => model.Transportadora, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.Transportadora)
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="col-md-12">
+                        <h3>Dados adicionais (NF)</h3>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.Xped, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.Xped, new { @class = "form-control", @maxlength = "20", @onkeypress = "return /[A-Za-z0-9 ]/i.test(event.key)" })
+                        </div>
+                        <div class="form-group col-md-9">
+                            @Html.LabelFor(model => model.MensagemNF, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.MensagemNF, new { @class = "form-control", @maxlength = "200", @onkeypress = "return /[A-Za-z0-9 ]/i.test(event.key)" })
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        @Html.HiddenFor(model => model.PlacaVeiculo)
+                        @Html.HiddenFor(model => model.MarcaVeiculoDescricao)
+                        @Html.HiddenFor(model => model.ModeloVeiculoDescricao)
+                        @Html.HiddenFor(model => model.VersaoVeiculoDescricao)
+                        @Html.HiddenFor(model => model.VersaoMotorDescricao)
+                        @Html.HiddenFor(model => model.AnoVeiculo)
+                        @Html.HiddenFor(model => model.AnoDescricao)
+                        @Html.HiddenFor(model => model.QuilometragemVeiculo)
+
+                        @Html.HiddenFor(model => model.IdCliente)
+                        @Html.HiddenFor(model => model.CodigoCliente)
+                        @Html.HiddenFor(model => model.CPFCNPJCliente)
+                        @Html.HiddenFor(model => model.NomeCliente)
+                        @Html.HiddenFor(model => model.ClassificacaoCliente)
+                        @Html.HiddenFor(model => model.ScoreCliente)
+                        @Html.HiddenFor(model => model.EmailCliente)
+                        @Html.HiddenFor(model => model.CelularCliente)
+                        @Html.HiddenFor(model => model.TelefoneComercialCliente)
+                        @Html.HiddenFor(model => model.TelefoneCliente)
+                        @Html.HiddenFor(model => model.InformacoesCliente)
+
+                        @Html.HiddenFor(model => model.Vendedor)
+                        @Html.HiddenFor(model => model.VendedorDescricao)
+                        @Html.HiddenFor(model => model.AreaNegocio)
+                        @Html.HiddenFor(model => model.AreaNegocioDescricao)
+                        @Html.HiddenFor(model => model.LojaDestino)
+                        @Html.HiddenFor(model => model.LojaDestinoDescricao)
+                        @Html.HiddenFor(model => model.Observacao)
+                        @Html.HiddenFor(model => model.TransportadoraDescricao)
+
+                        @Html.HiddenFor(model => model.Convenio)
+                        @Html.HiddenFor(model => model.ConvenioDescricao)
+                        @Html.HiddenFor(model => model.InformacaoConvenio)
+                        @Html.HiddenFor(model => model.TrocaPrecoConvenio)
+                        @Html.HiddenFor(model => model.TrocaCliente)
+                        @Html.HiddenFor(model => model.TrocaProduto)
+                        @Html.HiddenFor(model => model.TrocaTabelaPreco)
+                        @Html.HiddenFor(model => model.TabelaPreco)
+                        @Html.HiddenFor(model => model.TabelaPrecoDescricao)
+                        @Html.HiddenFor(model => model.IdClienteLogado)
+
+                        @Html.HiddenFor(model => model.StatusSomenteLeitura)
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.LojaCliente)
+                        @Html.HiddenFor(model => model.TipoOrcamento)
+
+                        @Html.HiddenFor(model => model.OrcamentoProdutoCount)
+                        @Html.HiddenFor(model => model.OrcamentoProduto)
+                        @Html.HiddenFor(model => model.ValorRestante)
+                    </div>
+                </div>
+                <input type="submit" formaction="@Url.Action("IniciarOrcamento", "Orcamento")" formmethod="post" value="@(Model.Id > 0 ? "Atualizar" : "Iniciar Orçamento") " class="botao btn-black" onclick="return iniciarOrcamentoSubmit()" />
+                if (Model.Id == 0)
+                {
+                    @Html.HiddenFor(model => model.Voltar)
+                    <input type="submit" formaction="@Url.Action("VeiculoCliente", "Orcamento")" formmethod="post" value="Voltar" class="botao btn-black" onclick="return botaoVoltar()" />
+                }
+            }
+        </div>
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/orcamento")
+<script>
+    initEquipeVendas();
+</script>

@@ -1,0 +1,753 @@
+﻿main {
+    display: block;
+    margin: 2rem;
+    margin-top: 1rem;
+}
+
+.modal-orcamento {
+    cursor:pointer;
+}
+
+.modal-orcamento:hover {
+    background-color: #ececec;
+}
+
+header {
+    padding: 1rem 0 2rem 0;
+    background-color: #e0e0e0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    width: 100%;
+}
+
+    .header label {
+        padding: 15px;
+        padding-left: 0;
+    }
+
+.searchBox {
+    display: inline-flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+}
+
+.containerImgSearch {
+    background-color: #c0392b;
+    height: 40px;
+    text-align: center;
+    max-width: 3em;
+    padding: 0;
+}
+
+.noPadding {
+    padding: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+div.medidas {
+    display: inline-flex;
+    justify-content: flex-end;
+    margin: .5rem;
+    align-items: baseline;
+    align-items: flex-end;
+}
+
+div.medidas-rigth {
+    justify-content: flex-start;
+}
+
+div.medidas-middle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-pneus-no-mask,
+.input-pneus {
+    height: 2rem;
+    width: 4rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+.blue {
+    background-color: #2a2d37;
+    border-color: transparent;
+    cursor: pointer;
+    color: #fff;
+    padding-left: 20px;
+}
+
+div.buttons {
+    padding-left: 0;
+}
+
+label.checkList {
+    font-family: "dellavia";
+}
+
+    label.checkMarkLegend span,
+    label.checkListLegend span,
+    label.checkMark span,
+    label.checkList span {
+        font-size: 2rem;
+    }
+
+label[selected=true] .icon-icon-check {
+    color: #27ae60;
+}
+
+label[selected=true] .icon-icon-warning {
+    color: #f1c40f;
+}
+
+label[selected=true] .icon-icon-check2 {
+    color: #2980b9;
+}
+
+.icon-icon-view {
+    color: #2980b9;
+}
+
+label[selected=true] .icon-icon-danger {
+    color: #e74c3c;
+}
+
+.icon-icon {
+    color: #bdc3c7
+}
+
+label > input {
+    /* HIDE RADIO */
+    visibility: hidden;
+    position: absolute;
+}
+
+.labelPdf {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+.checkbox {
+    border-style: solid;
+    border-color: #bdc3c7;
+    border-width: .1rem;
+    border-bottom-style: none;
+    padding: 15px 10px 8px 10px;
+}
+
+    .checkbox.checkboxReport.last,
+    .checkbox.checkboxReportPdf.last,
+    .checkbox.last {
+        border-bottom-style: solid;
+        margin-bottom: 1rem;
+    }
+
+.divCarStructure {
+    font-size: 20rem;
+    height: 220px
+}
+
+.checkMarkLegend,
+.checkListLegend .checkMark,
+.checkList {
+    margin: 0;
+}
+
+.radioButtonGroup {
+    padding: 10px 0 10px 0;
+}
+
+.iconRadioCheck,
+.iconRadio {
+    padding: 0px 10px 0 10px;
+}
+
+.icon-icon-angle-left {
+    visibility: hidden;
+}
+
+.icon-icon-check2.iconRadioCheck.red {
+    color: #e74c3c;
+}
+
+.checkListLegend label,
+.checkMarkLegend label {
+    vertical-align: text-bottom;
+}
+
+#searchType {
+    height: 40px;
+}
+
+#imgSearch {
+    height: 40px;
+    width: 40px;
+}
+
+#fakeImg {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+#fakeImg:disabled {
+    opacity:0.6;
+}
+
+.icon-icon-car-structure {
+    margin-left: 45px;
+}
+
+.separator {
+    height: 5rem;
+    border-bottom-width: 0.12rem;
+    border-bottom-style: solid;
+    border-bottom-color: #7f8c8d;
+}
+
+    .separator.blank {
+        border-bottom-width: 0;
+    }
+
+#textObservacao {
+    height: 100%;
+    width: 100%;
+}
+
+header.report {
+    margin-bottom: 10px;
+}
+
+.spanLabel,
+.checkboxReportPdf label,
+.checkboxReport label {
+    color: #60646D
+}
+
+.spanLabel {
+    color: #000;
+}
+
+.checkboxReport {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 68px;
+}
+
+.checkboxReportPdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 68px;
+}
+
+.legendGrid {
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.checkbox.checkboxReportPdf .col-md-9,
+.checkbox.checkboxReport .col-md-9 {
+    padding: 0;
+}
+
+.textObs {
+    color: #60646D;
+    font-weight: 200;
+    padding-left: 15px;
+    height: 100%;
+    width: 100%;
+    margin: 15px;
+    margin-top: 0;
+    padding-bottom: 3rem;
+}
+
+.checkbox.checkboxReportPdf[destacar=true] label,
+.checkbox.checkboxReportPdf[destacar=true],
+.checkbox.checkboxReport[destacar=true] label,
+.checkbox.checkboxReport[destacar=true] {
+    color: #e74c3c;
+}
+
+    .checkbox.checkboxReportPdf[destacar=true],
+    .checkbox.checkboxReport[destacar=true] {
+        background-color: rgba(219, 10, 91, 0.2);
+        border-color: #db0a5b33;
+    }
+
+.assinatura {
+    border: 0;
+    border-style: solid;
+    border-top-width: 2px;
+}
+
+.icon-icon-calendar {
+    font-size: 2rem;
+    padding-top: 10px;
+}
+
+.tableOrc {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contentTable {
+    max-height: 300px;
+    overflow: auto;
+}
+
+td {
+    color: #60646D;
+    font-size: smaller;
+}
+
+th {
+    font-size: smaller;
+}
+
+.icon-grid {
+    font-size: 1.7rem;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.icon-icon-settings.icon-grid {
+    color: #3498db;
+}
+
+.icon-icon-edit.icon-grid {
+    color: #2ecc71
+}
+
+.icon-icon-delete.icon-grid {
+    color: #e74c3c;
+}
+
+#gridBusca {
+    padding-top: 2rem;
+}
+
+.span-label-pdf {
+    color: #60646D;
+    float: right;
+    padding-right: 15px;
+}
+
+.container-lado-lado-pdf {
+    width: 49%;
+    float: left;
+}
+
+.container-pdf {
+    width: 100%;
+}
+
+.legenda-pdf {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.assinatura-pdf {
+    border-right: 0px;
+    border-bottom: 0px;
+    border-left: 0px;
+}
+
+.button-novo {
+    float: left;
+}
+
+.button-novo-car {
+    padding-right: 20px;
+}
+
+.button-novo-span {
+    margin-top: -4px;
+}
+
+.obs-pdf-truck {
+    padding-top: 610px;
+}
+
+.obs-pdf-car {
+    padding-top: 1900px;
+}
+
+.texto-assinatura-pdf {
+    width: 96%;
+    text-align: justify;
+}
+
+.container-data-pdf {
+    margin-top: 150px;
+    position: absolute;
+}
+
+.titulo-pdf {
+    margin-top: 21px;
+}
+
+.main-pdf {
+    padding: 0px;
+}
+
+.container-tecnico-vendedor-pdf {
+    padding-top: 30px;
+}
+
+.pdf-expression-helper {
+    margin-top: 9px;
+    float: left;
+    width: 335px;
+}
+
+.pdf-troca-helper {
+    margin-top: 9px;
+    float: left;
+    width: 200px;
+}
+
+.pdf-realizado-helper {
+    float: initial;
+    text-align: right;
+}
+
+main.blur {
+    color: #FFF;
+    font-family: 'Quicksand', sans-serif;
+    background: url('/Content/img/webDashboardBg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    width: 20em;
+    border-radius: 0;
+    box-shadow: 0px 0px 11px 1px #888888;
+    flex-wrap: wrap;
+    min-height: 200px;
+    min-width: 300px
+}
+
+.containerCards {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card header {
+    background: #bdc3c7;
+    text-align: start;
+    color: #60646D;
+    padding: .5em;
+    flex: 1 1 auto;
+    font-size: 10px;
+}
+
+.card.red header {
+    color: #ecf0f1;
+    background: #c0392b;
+}
+
+.card main {
+    flex: 1 1 100%;
+    color: #7f8c8d;
+    font-size: 4em;
+    text-align: center;
+}
+
+.card.red main {
+    color: #ecf0f1;
+}
+
+.card.red {
+    color: #ecf0f1;
+    background: #e74c3c;
+}
+
+.card footer {
+    background: #bdc3c7;
+    display: inline-flex;
+    color: #60646D;
+    font-weight: bold;
+    height: 2.5em;
+    max-height: 2.5em;
+}
+
+.card.red footer {
+    background-color: transparent;
+}
+
+.card header label {
+    font-weight: bold;
+    display: block;
+    font-size: 15px;
+}
+
+.card footer {
+    flex: 1 0 3em;
+}
+
+.labelDetalhes {
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cardIco {
+    font-size: 2em;
+    padding-right: .6em;
+}
+
+#bttsFooter {
+    display: inline-flex;
+    width: 100%;
+    text-align: center;
+    padding: .7em;
+    justify-content: space-around;
+}
+
+.bttNovo {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: -8px;
+}
+
+.containerbttNovos .bttNovo {
+    background: #343a40 !important;
+    color: #fff;
+    justify-content: center;
+    width: 9em;
+}
+
+.separatorBtt {
+    border: #2a2d37;
+    border: 0;
+    border-right-width: 1px;
+    border-style: solid;
+}
+
+.containerbttNovos {
+    float: right;
+}
+
+.containerSteps {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    color: #2c3e50;
+}
+
+.stepBlock {
+    display: table;
+}
+
+.step {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+}
+
+div.containerSteps .stepBlock:first-child .line {
+    display: none;
+}
+
+.stepBlock.active .step,
+.stepBlock.active .line {
+    background-color: #343a40;
+    color: #FFF;
+    border-style: hidden;
+}
+
+.separator2 {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.line {
+    height: .2em;
+    width: 3em;
+    background-color: #7f8c8d;
+}
+
+.linkBtt {
+    cursor: pointer;
+}
+
+
+/* IPad's */
+
+.medidas label {
+    word-break: break-word;
+}
+
+.text-align-end {
+    text-align: right;
+}
+
+@supports(text-align: end) {
+    .text-align-end {
+        text-align: end;
+    }
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.containerHome header.msg {
+    font-size: 2rem;
+}
+
+.containerHome {
+    display: flex;
+    margin: 0;
+    background: url('/Content/img/webDashboardBg.jpg');
+    background-repeat: round;
+    height: calc(100% - 82px);
+    flex-direction: column;
+}
+
+    .containerHome main {
+        flex: 1 1 auto;
+    }
+
+.msg {
+    color: #F5F5F5;
+    background-color: transparent;
+    color: #F5F5F5;
+    text-align: center;
+}
+
+.containerbttNovos a:hover {
+    color: transparent;
+}
+
+button.botao.filtrar {
+    width: 100%;
+}
+
+.paddingCampos {
+    padding-top: 1em;
+}
+
+.float-left {
+    float: left;
+}
+
+.noMargin {
+    margin: 0;
+}
+
+
+/* Tablet */
+@media only screen and (max-width: 768px), screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+    #trocarImediato {
+        display: none;
+    }
+
+    .icon-grid {
+        font-size: 1.2em;
+        padding: 3px;
+    }
+
+    .divCarStructure {
+        padding-left: 10px;
+    }
+
+    .checkupDetailsForm,
+    .checkupDetailsForm div {
+        padding-top: 1em;
+    }
+
+        .checkupDetailsForm div.select2-container {
+            padding-top: 0;
+        }
+
+    .containerbttNovos {
+        display: inline-flex;
+    }
+
+    .col-md-6.responsive {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .form-group .row .col-md-6.row.formAggregate {
+        margin: 0;
+        padding: 0;
+    }
+
+    .divCarStructure {
+        display: none;
+    }
+
+    div.medidas {
+        justify-content: flex-start;
+    }
+
+    .medidas-middle label,
+    .medidas label {
+        order: 1;
+    }
+
+    div.medidas-middle {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: baseline;
+        margin: .5em;
+    }
+
+    .offset-md-4 {
+        margin: 0;
+    }
+
+    .card {
+        width: 15em;
+    }
+
+    .containerCards {
+        flex-direction: row;
+    }
+
+    .col-md-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+/* IPad Pro Landscape*/
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}

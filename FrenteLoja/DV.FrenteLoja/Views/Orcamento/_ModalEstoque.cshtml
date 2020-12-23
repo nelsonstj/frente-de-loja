@@ -1,0 +1,98 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.ModalEstoqueDto
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">@Model.DescricaoProduto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body modal-limite">
+        <div class="flex-center conteudo">
+            <div class="flex">
+                <div>
+                    <!--<label class="orcamento-label">Filial Dellavia</label>
+                    <input type="text" id="filial-dellavia" />-->
+                </div>
+                <div style="margin-left:50px">
+                    <label class="orcamento-label">Listar mais próximas</label>
+                    <div class="toggle-switch-container">
+                        <input id="toggleFilial" class="toggle-switch" type="checkbox" checked />
+                        <label for="toggleFilial" data-switch-on="sim" data-switch-off="não"></label>
+                    </div>
+                </div>
+                <div style="margin-left:50px">
+                    <label class="orcamento-label">&nbsp;</label>
+                    <button class="botao " onclick="buscaEstoqueFiliais()" style="margin-top: 10px">Filtrar</button>
+                </div>
+            </div>
+            <div class="row col-md-12 loja-grid-header">
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        Loja
+                    </div>
+                    <div class="col-md-3" style="text-wrap:none;">
+                        Saldo atual
+                    </div>
+                    <div class="col-md-3">
+                        <p style="text-wrap:none;">Saldo disponível</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 loja-grid" id="grid-produtos-estoque">
+                @foreach (var item in Model.ProdutoProtheus)
+                {
+                    <div class="row col-md-12">
+                        <div class="col-md-6" style="text-wrap:none;">
+                            @item.NomeFilial
+                        </div>
+                        <div class="col-md-3 loja-grid-row-center">
+                            @item.SaldoAtual
+                        </div>
+                        <div class="col-md-3 loja-grid-row-center">
+                            @item.SaldoDisponivel
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="botao btn-secondary" data-dismiss="modal">Fechar</button>
+    </div>
+</div>
+
+<script>
+  criaSelectFilialModalEstoque();
+
+  function buscaEstoqueFiliais() {
+    setVisibilidadeLoading(true);
+     $("#estoque").css('z-index', 1030);
+    var codigoProduto = '@Model.CampoCodigo'
+    var lojaDestino = $("#LojaDestino").val();
+    var listarProximas = $("#toggleFilial").is(':checked');
+    //var idFilial = $("#filial-dellavia").val();
+    $.ajax({
+      type: "POST",
+      url: '/Orcamento/ObterEstoqueFilial',
+      data: { codigoProduto: codigoProduto, lojaDestino: lojaDestino, listarProximas: listarProximas }
+    }).done(function (response) {
+      var string = '';
+      response.ProdutoProtheus.map(function (item) {
+        string += criaDivLista(item);
+      });
+      $("#grid-produtos-estoque").html(string);
+      setVisibilidadeLoading(false);
+      $("#estoque").css('z-index', "");
+    }).fail(function (err) {
+     setVisibilidadeLoading(false);
+      $("#estoque").css('z-index', "");
+    })
+  }
+
+    function criaDivLista(props) {
+        return '<div class="row col-md-12"> <div class="col-md-6">' + props.NomeFilial + '</div><div class="col-md-3 loja-grid-row-center">' + props.SaldoAtual + '</div><div class="col-md-3 loja-grid-row-center">' + props.SaldoDisponivel + '</div></div>'
+  }
+
+</script>

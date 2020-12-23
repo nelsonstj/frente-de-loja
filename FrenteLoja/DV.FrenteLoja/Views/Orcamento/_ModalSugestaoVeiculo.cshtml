@@ -1,0 +1,34 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.ClienteMarcaModeloVersaoDto
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="text-danger">Atenção!</h5>
+
+  </div>
+  <div class="modal-body">
+    <div class="flex-center texto-cinza">
+      <b>Esse Cliente possui cadastro para o veiculo abaixo:</b>
+    </div>
+    <div>
+      <div>
+        Placa:@Model.Placa
+      </div>
+      <div>
+        Marca:@Model.Marca
+      </div>
+      <div>
+        Modelo:@Model.Modelo
+      </div>
+      <div>
+        Versão:@Model.Versao
+      </div>
+    </div>
+    <div class="texto-cinza">
+      <h5>Deseja continuar?</h5>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="botao btn-black" data-dismiss="modal" onclick="consultaVeiculoPorPlaca('@Model.Placa')">Sim</button>
+    <button type="button" class="botao btn-secondary" data-dismiss="modal">Não</button>
+  </div>
+</div>

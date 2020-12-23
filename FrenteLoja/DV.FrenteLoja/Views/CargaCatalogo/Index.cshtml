@@ -1,0 +1,140 @@
+﻿@using DV.FrenteLoja.Controllers
+@model DV.FrenteLoja.Core.Contratos.DataObjects.CargaCatalogoDto
+@{
+    ViewBag.Title = "Index";
+    if (ViewBag.IsGodMode == null)
+    {
+        ViewBag.IsGodMode = false;
+    }
+}
+
+
+<link href="~/Content/app/Site.css" rel="stylesheet" />
+<script src="~/Scripts/app/carga-catalogo/index.js"></script>
+
+@using (Html.BeginForm("UploadCargaCatalogo", "CargaCatalogo", FormMethod.Post, new { id = "UploadCargaCatalogo", enctype = "multipart/form-data" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="alert alert-success alert-dismissible" style="display:none" id="msgSucesso" role="alert">
+                <i class="glyphicon glyphicon-ok">
+                </i> Arquivo do Cronograma <strong>carregado com sucesso</strong>!
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                        <h5>Selecione o arquivo(csv) de catálogo</h5>
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="file" class="form-control" accept=".csv" id="file" name="file" onchange="return fileValidation()" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" value="Importar" class="botao" onclick="(function () { setVisibilidadeLoading(true); $('#UploadCargaCatalogo').submit();})();" />
+                    </div>
+                </div>
+                <div class="row">
+                    <br />
+                    <div class="col-md-12">
+                        @if (!string.IsNullOrEmpty(Model?.LogImportacao))
+                        {
+                            <div class="col-xs-12">
+                                <h4 class="titulo_grupo_form">Resultado da importação</h4>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextAreaFor(e => e.LogImportacao, 10, 100, new { @readonly = true })
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                @if (ViewBag.IsGodMode)
+                {
+                    <form>
+                        <fieldset>
+                            <legend>Importação de Rotina de Update:</legend>
+                            <div>
+                                @Html.ActionLink("Importação Cadastros Básicos", "ImportacaoCadastrosBasicos")
+                                <br />
+                                @Html.ActionLink("Importação Produtos", "ImportarProduto")
+                                <br />
+                                @Html.ActionLink("Importação Clientes", "ImportacaoCliente")
+                                <br />
+                                @Html.ActionLink("Importação Preços", "ImportarPreco")
+                                <br />
+                                @Html.ActionLink("Importação Convênios", "ImportarConvenio")
+                                <br />
+                                @Html.ActionLink("Importação Descontos", "ImportacaoDesconto")
+                                <br />
+                                @Html.ActionLink("Importação Orçamentos", "ImportacaoOrcamentos")
+                                <br />
+                                @Html.ActionLink("Importação Veiculos", "ImportacaoVeiculos")
+                                <br />
+                                @Html.ActionLink("Importacao Catalogo Produtos Fraga", "ImportacaoProdutosFraga")
+                                <br />
+                                @Html.ActionLink("Envia Elastic Search as Catalogo Protheus", "ProcessaCargaCatalogoHistorica")
+                                <br />
+                            </div>
+                        </fieldset>
+                    </form>
+                    <br />
+                    <br />
+                    <div>
+                        <form>
+                            <fieldset>
+                                <legend>Importação de Carga Inicial:</legend>
+                                <div>
+                                    @Html.ActionLink("Importação Cadastros Básicos", 
+                                        "ImportacaoCadastrosBasicos",
+                                        new { isFirstLoad = true },null)
+                                    <br />
+                                    @Html.ActionLink("Importação Produtos",
+                                        "ImportarProduto",
+                                        new { isFirstLoad = true }, null)<br />
+                                    @Html.ActionLink("Importação Clientes",
+                                        "ImportacaoCliente",
+                                        new { isFirstLoad = true })<br />
+                                    @Html.ActionLink("Importação Preços",
+                                        "ImportarPreco",
+                                        new { isFirstLoad = true },null)<br />
+                                    @Html.ActionLink("Importação Convênios",
+                                        "ImportarConvenio",
+                                        new { isFirstLoad = true },null)<br />
+                                    @Html.ActionLink("Importação Descontos",
+                                        "ImportacaoDesconto",
+                                        new { isFirstLoad = true },null)<br />
+                                    @Html.ActionLink("Importação Orçamentos",
+                                        "ImportacaoOrcamentos",
+                                        new { isFirstLoad = true },null)<br />
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-protheus" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="text-danger">Carga de Catálogo</h5>
+            </div>
+            <div class="modal-body">
+                <h5>Por favor, selecione um arquivo .csv válido.</h5>
+            </div>
+            <div class="modal-footer" style="justify-content: flex-start;">
+                <button type="button" class="botao btn-black" onclick="(function(){ $('#modal-protheus').modal('hide');return true;})();">Ok</button>
+            </div>
+            <div class="modal-feedback">
+            </div>
+        </div>
+    </div>
+
+}

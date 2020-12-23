@@ -1,0 +1,49 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.ModalOrcamentosDto
+
+
+<div class="modal-dialog tableOrc">
+    <div class="modal-content" role="document">
+        <div class="modal-header">
+            @Html.DisplayTextFor(model => model.Orcamentos.FirstOrDefault().NomeCliente)
+        </div>
+        <br />
+        <div class="modal-body contentTable">
+            <label> SELECIONE UM ORÇAMENTO</label>
+            <br />          
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> Código </th>
+                        <th> Data </th>
+                        <th> Valor </th>
+                        <th> Vendedor </th>
+                    </tr>
+                </thead>
+
+                @foreach (var orc in Model.Orcamentos)
+                {
+                    <tr class="modal-orcamento">
+                        <td value="@orc.Id"> @orc.Id</td>
+                        <td> @orc.DataValidade.ToString("dd/MM/yyyy")</td>
+                        <td> @($"{orc.OrcamentoProduto.Total:C}") </td>
+                        <td> @orc.VendedorDescricao</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var table = document.querySelector('.tableOrc');
+    var rows = table.querySelectorAll('tr');
+    rows.forEach(function (element, index) {
+        if (index == 0)
+            return;
+        element.addEventListener('click', function (event) {
+            var id = event.currentTarget.firstElementChild.getAttribute('value');
+            var endpoint = '@(Model.Varejo ? "/Checkup/CheckupVarejo" : "/Checkup/CheckupTruck")/' + id;
+            window.location.href = endpoint;
+        });
+    });
+</script>

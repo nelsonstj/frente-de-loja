@@ -1,0 +1,48 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.LogIntegracaoDto
+<div class="container">
+    <br />
+    <h4>Log Integração</h4>
+    <br />
+    <div>
+        @using (Ajax.BeginForm("ObterLogIntegracao", new AjaxOptions() { OnSuccess = "filtraLogSuccess" }))
+        {
+            <div style="display: flex">
+                <div class="col-3">
+                    @Html.LabelFor(model => model.TipoTabelaProtheus)
+                    <br />
+                    @Html.EnumDropDownListFor(model => model.TipoTabelaProtheus, new { @class = "form-control" })
+                </div>
+
+                <div class="col-3">
+                    @Html.LabelFor(model => model.StatusIntegracao)
+                    <br />
+                    @Html.EnumDropDownListFor(model => model.StatusIntegracao, new { @class = "form-control" })
+                </div>
+                <div class="col-3">
+                    @Html.LabelFor(model => model.DataInicio)
+                    @Html.TextBoxFor(model => model.DataInicio, new { @class = "form-control" })
+                </div>
+
+                <div class="col-3">
+                    @Html.LabelFor(model => model.DataFim)
+                    @Html.TextBoxFor(model => model.DataFim, new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-default botao">Filtrar</button>
+        }
+    </div>
+    <hr />
+    <div id="grid-integracao"></div>
+</div>
+
+<div id="erro" class="modal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static"></div>
+
+<script id="log-column" type="text/kendo-templ">
+    # var obj = data #
+
+    <span class="btn btn-primary" data-toggle="modal" data-target="\\#erro" onclick="abrirModalLogErro(#= obj.Id #)">Detalhes</span>
+</script>
+
+@Scripts.Render("~/bundles/log-integracao")

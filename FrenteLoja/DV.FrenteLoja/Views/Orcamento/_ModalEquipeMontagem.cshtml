@@ -1,0 +1,64 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.EquipeMontagemDto
+
+
+@helper componenteProfissional(int index)
+{
+    <div class="col-md-5">
+      @Html.LabelFor(model => model.Equipe[index].ProfissionalNome, new { @class = "orcamento-label" })
+      <input type="text" id="@index-profissional" name="@index"/>
+      @Html.HiddenFor(model => model.Equipe[index].ProfissionalNome)
+      @Html.HiddenFor(model => model.Equipe[index].Id)
+    </div>
+
+    <div class="col-md-5">
+      @Html.LabelFor(model => model.Equipe[index].Funcao, new { @class = "orcamento-label" })
+      @Html.EnumDropDownListFor(model => model.Equipe[index].Funcao)
+    </div>
+    <div class="col-md-1">
+      <label class="orcamento-label" style="visibility:hidden">vazio</label>
+      <a class="botao-equipe-montagem  fa fa-plus" onclick="adicionaProfissional(@index)"></a>
+    </div>
+    <div class="col-md-1">
+      <label class="orcamento-label" style="visibility:hidden">vazio</label>
+      <a class="botao-equipe-montagem  fa fa-minus" onclick="removeProfissional(@index)"></a>
+    </div>
+}
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Equipe de montagem</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+      @Html.HiddenFor(model => model.IdOrcamentoItem)
+      <div class="" style="margin:15px">
+        <div id="modal-warning"></div>
+        <div>
+          <h6>@Model.DescricaoProduto</h6>
+        </div>
+        <div>
+
+          @for (int i = 0; i < Model.Equipe.Count; i++)
+          {
+              <div class="row col-md-12">
+                @componenteProfissional(i)
+              </div>
+          }
+        </div>
+        <div style="margin-top:20px">
+            <!--<input type="submit" class="botao btn-black" form="equipe-venda" value="Concluir" />-->
+            <button id="conclui-equipe" class="botao btn-black" onclick="equipeMontagemSubmit()">Concluir</button>
+            <button class="botao btn-secondary" data-dismiss="modal" type="button">Cancelar</button>
+        </div>
+        <div>
+            @Html.HiddenFor(model => model.IndexRemover)
+            @Html.HiddenFor(model => model.IdLojaOrcamento)
+            @Html.HiddenFor(model => model.DescricaoProduto)
+        </div>
+      </div>
+</div>
+
+<script>
+  loadMontagem();
+</script>

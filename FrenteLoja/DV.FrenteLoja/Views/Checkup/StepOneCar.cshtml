@@ -1,0 +1,322 @@
+﻿@using DV.FrenteLoja.Helpers;
+@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupCarDto
+
+
+<header>
+    <div>
+        <div class="col-md-4">
+            <h3> CHECK-UP </h3>
+        </div>
+        <div class="col-md-12 text-align-end">
+            @Html.StepControl(1, 8)
+        </div>
+    </div>
+</header>
+<main>
+    @using (@Html.BeginForm("StepTwoCar", "Checkup", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Cliente)
+        @Html.HiddenFor(model => model.CPFCNPJ)
+        @Html.HiddenFor(model => model.Phone)
+        @Html.HiddenFor(model => model.License)
+        @Html.HiddenFor(model => model.Car);
+        @Html.HiddenFor(model => model.Year);
+        @Html.HiddenFor(model => model.KM);
+        @Html.HiddenFor(model => model.Marca);
+        @Html.HiddenFor(model => model.Versao);
+        @Html.HiddenFor(model => model.Tecnico);
+        @Html.HiddenFor(model => model.Vendedor);
+        @Html.HiddenFor(model => model.ProdutoServico);
+        @Html.HiddenFor(model => model.IsCheckupCar);
+        @Html.HiddenFor(model => model.OrcamentoId);
+        @Html.HiddenFor(model => model.CheckupId);
+
+        @Html.HiddenFor(model => model.PneuDianteiro)
+        @Html.HiddenFor(model => model.PneuDianteiroExecutado)
+        @Html.HiddenFor(model => model.PneuTraseiro)
+        @Html.HiddenFor(model => model.PneuTraseiroExecutado)
+        @Html.HiddenFor(model => model.Estepe)
+        @Html.HiddenFor(model => model.EstepeExecutado)
+        @Html.HiddenFor(model => model.Valvula)
+        @Html.HiddenFor(model => model.Estepe)
+        @Html.HiddenFor(model => model.ValvulaExecutado)
+
+        @Html.HiddenFor(model => model.AmortecedorDianteiro)
+        @Html.HiddenFor(model => model.AmortecedorDianteiroExecutado)
+        @Html.HiddenFor(model => model.AmortecedorTraseiro)
+        @Html.HiddenFor(model => model.AmortecedorTraseiroExecutado)
+        @Html.HiddenFor(model => model.TerminaisDeDirecao)
+        @Html.HiddenFor(model => model.TerminaisDeDirecaoExecutado)
+        @Html.HiddenFor(model => model.BracosAxiais)
+        @Html.HiddenFor(model => model.BracosAxiaisExecutado)
+        @Html.HiddenFor(model => model.BarraEstabilizadora)
+        @Html.HiddenFor(model => model.BarraEstabilizadoraExecutada)
+        @Html.HiddenFor(model => model.Pivos)
+        @Html.HiddenFor(model => model.PivosExecutado)
+        @Html.HiddenFor(model => model.Bandeja)
+        @Html.HiddenFor(model => model.BandejaExecutado)
+
+        @Html.HiddenFor(model => model.Pastilhas)
+        @Html.HiddenFor(model => model.PastilhasExecutado)
+        @Html.HiddenFor(model => model.Discos)
+        @Html.HiddenFor(model => model.DiscosExecutado)
+        @Html.HiddenFor(model => model.FreioTraseiro)
+        @Html.HiddenFor(model => model.FreioTraseiroExecutado)
+        @Html.HiddenFor(model => model.FluidoFreio)
+        @Html.HiddenFor(model => model.FluidoFreioExecutado)
+
+        @Html.HiddenFor(model => model.Balanceamento)
+        @Html.HiddenFor(model => model.BalanceamentoExecutado)
+        @Html.HiddenFor(model => model.Alinhamento)
+        @Html.HiddenFor(model => model.AlinhamentoExecutado)
+        @Html.HiddenFor(model => model.ConsertoRoda)
+        @Html.HiddenFor(model => model.ConsertoRodaExecutado)
+        @Html.HiddenFor(model => model.CambagemCáster)
+        @Html.HiddenFor(model => model.CambagemCásterExecutado)
+
+        @Html.HiddenFor(model => model.Palhetas)
+        @Html.HiddenFor(model => model.PalhetasExecutado)
+        @Html.HiddenFor(model => model.Calotas)
+        @Html.HiddenFor(model => model.CalotasExecutado)
+        @Html.HiddenFor(model => model.Extintor)
+        @Html.HiddenFor(model => model.ExtintorExecutado)
+        @Html.HiddenFor(model => model.InjecaoEletronica)
+        @Html.HiddenFor(model => model.InjecaoEletronicaExecutado)
+        @Html.HiddenFor(model => model.HigienizacaoDeAr)
+        @Html.HiddenFor(model => model.HigienizacaoDeArExecutado)
+        @Html.HiddenFor(model => model.FiltroArCondicionado)
+        @Html.HiddenFor(model => model.FiltroArCondicionadoExecutado)
+
+        @Html.HiddenFor(model => model.TipoOleo)
+        @Html.HiddenFor(model => model.Especificacao)
+        @Html.HiddenFor(model => model.OleoMotor)
+        @Html.HiddenFor(model => model.FiltroOleo)
+        @Html.HiddenFor(model => model.CodigoDellaVia)
+        @Html.HiddenFor(model => model.FiltroDeAr)
+        @Html.HiddenFor(model => model.FiltroDeArExecutado)
+        @Html.HiddenFor(model => model.FiltroCombustivel)
+        @Html.HiddenFor(model => model.FiltroCombustivelExecutado)
+
+        @Html.HiddenFor(model => model.Observacoes)
+        @Html.HiddenFor(a => a.Id)
+        @Html.HiddenFor(a => a.CheckupId)
+        @Html.HiddenFor(a => a.OrcamentoId)
+
+        <form method="post">
+            <div class="col-md-12">
+
+                <!--- Medidas Iniciais -->
+                <div>
+                    <div class="header">
+                        <label> MEDIDAS INICIAIS </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <div class="col-md-4 offset-md-4 medidas-middle">
+                            @Html.LabelFor(model => model.ConvergenciaTotalInicial)
+                            @Html.TextBoxFor(model => model.ConvergenciaTotalInicial, new { @class = "input-pneus-no-mask" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.CambarEsquerdoFrontalInicial)
+                            @Html.TextBoxFor(model => model.CambarEsquerdoFrontalInicial, new { @class = "input-pneus" })
+                        </div>
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.CasterEsquerdoFrontalInicial)
+                            @Html.TextBoxFor(model => model.CasterEsquerdoFrontalInicial, new { @class = "input-pneus" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 divCarStructure">
+                        <span class="icon-icon-car-structure"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.CambarDireitoFrontalInicial, new { @class = "input-pneus" })
+                            @Html.LabelFor(model => model.CambarDireitoFrontalInicial)
+                        </div>
+
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.CasterDireitoFrontalInicial, new { @class = "input-pneus" })
+                            @Html.LabelFor(model => model.CasterDireitoFrontalInicial)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.CambarEsquerdoTraseiroInicial)
+                            @Html.TextBoxFor(model => model.CambarEsquerdoTraseiroInicial, new { @class = "input-pneus" })
+                        </div>
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.ConvergenciaEsquerdaTraseiroInicial)
+                            @Html.TextBoxFor(model => model.ConvergenciaEsquerdaTraseiroInicial, new { @class = "input-pneus-no-mask" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 divCarStructure">
+                        <span>
+
+                        </span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.CambarDireitoTraseiroInicial, new { @class = "input-pneus" })
+                            @Html.LabelFor(model => model.CambarDireitoTraseiroInicial)
+                        </div>
+
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.ConvergenciaDireitoTraseiroInicial, new { @class = "input-pneus-no-mask" })
+                            @Html.LabelFor(model => model.ConvergenciaDireitoTraseiroInicial)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row separator">
+
+                </div>
+                <!--- Medidas Finais -->
+                <div class="row">
+                    <div class="header">
+                        <label> MEDIDAS FINAIS </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <div class="col-md-4 offset-md-4 medidas-middle">
+                            @Html.LabelFor(model => model.ConvergenciaTotalFinal)
+                            @Html.TextBoxFor(model => model.ConvergenciaTotalFinal, new { @class = "input-pneus-no-mask" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.CambarEsquerdoFrontalFinal)
+                            @Html.TextBoxFor(model => model.CambarEsquerdoFrontalFinal, new { @class = "input-pneus" })
+                        </div>
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.CasterEsquerdoFrontalFinal)
+                            @Html.TextBoxFor(model => model.CasterEsquerdoFrontalFinal, new { @class = "input-pneus" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 divCarStructure">
+                        <span class="icon-icon-car-structure"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.CambarDireitoFrontalFinal, new { @class = "input-pneus" })
+                            @Html.LabelFor(model => model.CambarDireitoFrontalFinal)
+                        </div>
+
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.CasterDireitoFrontalFinal, new { @class = "input-pneus" })
+                            @Html.LabelFor(model => model.CasterDireitoFrontalFinal)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.CambarEsquerdoTraseiroFinal)
+                            @Html.TextBoxFor(model => model.CambarEsquerdoTraseiroFinal, new { @class = "input-pneus" })
+                        </div>
+
+                        <div class="col-md-12 medidas">
+                            @Html.LabelFor(model => model.ConvergenciaEsquerdaTraseiroFinal)
+                            @Html.TextBoxFor(model => model.ConvergenciaEsquerdaTraseiroFinal, new { @class = "input-pneus-no-mask" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 divCarStructure">
+                        <span>
+
+                        </span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.CambarDireitoTraseiroFinal, new { @class = "input-pneus" })
+                            @Html.LabelFor(model => model.CambarDireitoFrontalFinal)
+                        </div>
+
+                        <div class="col-md-12 medidas medidas-rigth">
+                            @Html.TextBoxFor(model => model.ConvergenciaDireitoTraseiroFinal, new { @class = "input-pneus-no-mask" })
+                            @Html.LabelFor(model => model.ConvergenciaDireitoTraseiroFinal)
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12 noPadding paddingCampos noMargin">
+                            <button type="reset" class="btn btn-outline-secondary  btn-block" onclick="window.history.back()">Voltar</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-12 noPadding paddingCampos noMargin">
+                            <input type="submit" value="Prosseguir" class="btn btn-block blue" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+    }
+
+
+
+</main>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            var inputs = document.querySelectorAll('.input-pneus');
+            inputs.forEach((element) => {
+                $(element).inputmask('mask', { 'mask': '[-]9°99' })
+            });
+        });
+
+        $('#ConvergenciaTotalInicial').inputmask('mask', { 'mask': '9[9],99' });
+        $('#ConvergenciaEsquerdaTraseiroInicial').inputmask('mask', { 'mask': '9[9],99' });
+        $('#ConvergenciaDireitoTraseiroInicial').inputmask('mask', { 'mask': '9[9],99' });
+
+        $('#ConvergenciaTotalFinal').inputmask('mask', { 'mask': '9[9],99' });
+        $('#ConvergenciaEsquerdaTraseiroFinal').inputmask('mask', { 'mask': '9[9],99' });
+        $('#ConvergenciaDireitoTraseiroFinal').inputmask('mask', { 'mask': '9[9],99' });
+
+        document.querySelector('.input-pneus-no-mask').focus();
+    </script>
+
+}
+
+@Scripts.Render("~/bundles/checkup")

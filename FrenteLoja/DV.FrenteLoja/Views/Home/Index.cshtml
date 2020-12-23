@@ -1,0 +1,81 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.HomeDto
+@using DV.FrenteLoja.Core.Infra.Security
+@using DV.FrenteLoja.Core.Util
+@functions {
+    string GetPerfil()
+    {
+        return this.User.Identity.GetPerfilAcessoUsuario().ToString();
+    }
+}
+<div class="containerHome">
+    <header class="msg">
+        <h2> @Model.PeriodoAtual, @Model.NomeUsuario! </h2>
+    </header>
+    <main class="containerCards">
+        @if (!GetPerfil().Equals("Administrativo"))
+        {
+            <div class="card">
+                <header>
+                    <label>CHECKUP</label>
+                    Realizados hoje
+                    <span class="labelDetalhes">
+                        <a onclick="location.href='@Url.Action("Index", "Checkup")'">DETALHES</a>
+                    </span>
+                </header>
+                <main>
+                    @Model.QuantidadeCheckups
+                </main>
+                <footer>
+                    <div id="bttsFooter">
+                        @if (!FiltroHelper.IsTMK())
+                        {
+                            <a onclick="location.href='@Url.Action("Consultar", "Checkup", new { tipo = "car" })'">
+                                <div class="bttNovo"><span class="icon-icon-car cardIco"></span> NOVO</div>
+                            </a>
+                            <div class="separatorBtt"></div>
+                            <a onclick="location.href='@Url.Action("Consultar", "Checkup")'">
+                                <div class="bttNovo"><span class="icon-icon-truck cardIco"></span>NOVO</div>
+                            </a>
+                        }
+                    </div>
+                </footer>
+            </div>
+            <div class="card">
+                <header>
+                    <label>ORÇAMENTOS</label>
+                    Realizados hoje
+                    <span class="labelDetalhes">
+                        <a onclick="location.href='@Url.Action("Index", "Orcamento")'">DETALHES</a>
+                    </span>
+                </header>
+                <main>
+                    @Model.QuantidadeOrcamentosPorUsuario
+                </main>
+                <footer>
+                    <a class="linkBtt" onclick="location.href='@Url.Action("VeiculoCliente", "Orcamento")'" style="width:100%;">
+                        <div id="bttsFooter">NOVO</div>
+                    </a>
+                </footer>
+            </div>
+            <div class="card red">
+                <header>
+                    <label>ORÇAMENTOS</label>
+                    Vencendo hoje
+                    <span class="labelDetalhes">
+                        <a onclick="location.href='@Url.Action("Index", "Orcamento", new { vencidos = "vencidos" })'">DETALHES</a>
+                    </span>
+                </header>
+                <main>
+                    @Model.QuantidadeOrcamentosVencendo
+                </main>
+                <footer></footer>
+            </div>
+        }
+    </main>
+    <footer class="msg">
+        <h6> @DateTime.Now.ToLongDateString().</h6>
+    </footer>
+</div>
+
+@Styles.Render("~/bundles/home")
+

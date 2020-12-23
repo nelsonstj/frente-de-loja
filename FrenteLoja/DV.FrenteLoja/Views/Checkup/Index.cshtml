@@ -1,0 +1,141 @@
+﻿@using DV.FrenteLoja.Core.Util
+@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupDto
+
+@if (TempData["Erro"] != null)
+{
+    <script>
+    criaAlertaMensagem('@TempData["Erro"]')
+    </script>
+}
+
+<main>
+    <div class="row col-md-12">
+
+        <div class="col-md-6 responsive">
+            <h3> CHECK-UP </h3>
+        </div>
+
+        @if (!FiltroHelper.IsTMK())
+        {
+            <div class="col-md-6 responsive">
+                <div class="containerbttNovos">
+                    <div class="button-novo button-novo-car">
+                        <a href="@Url.Action("Consultar", "Checkup", new { tipo = "car" })">
+                            <div class="bttNovo">
+                                <div class="icon-icon-car cardIco"></div>
+                                <span class="button-novo-span">NOVO</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="button-novo">
+                        <a href="@Url.Action("Consultar", "Checkup", new { tipo = "truck" })">
+                            <div class="bttNovo">
+                                <span class="icon-icon-truck cardIco"></span>
+                                <span class="button-novo-span">NOVO</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row col-md-12 checkupDetailsForm">
+        <label class="col-md-12"> O QUE VOCÊ PROCURA? </label>
+        <div class="col-md-5">
+            @Html.TextBox("pesquisa", null, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-4">
+            <select id="typeCheckup">
+                <option value="">Selecione</option>
+                <option value="nomecliente">Nome do Cliente</option>
+                <option value="cpf">CPF</option>
+                <option value="cnpj">CNPJ</option>
+                <option value="placa">Placa</option>
+                <option value="veiculo">Veículo</option>
+                <option value="truck">Check-up Truck</option>
+                <option value="car">Check-up Veículo</option>
+                <option value="idcheckup">ID Check-up</option>
+                <option value="idorcamento">ID Orçamento</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <button class="botao filtrar" onclick="filtrarCheckup();">Filtrar</button>
+        </div>
+
+    </div>
+
+
+    <div id="containerGridBusca" class="row col-md-12">
+        <div class="col-md-12">
+            <div id="gridBusca">
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<script id="template-tipo-car" type="text/x-kendo-template">
+    <span class="icon-icon-car icon-grid"></span>
+</script>
+
+<script id="template-tipo-truck" type="text/x-kendo-template">
+    <span class="icon-icon-truck icon-grid"></span>
+</script>
+
+<script id="template-detalhes" type="text/x-kendo-template">
+    <div class="flex">
+        <form action="/Checkup/Report" method="get">
+            <input type="hidden" name="id" value="#:Id#" />
+            <span class="icon-icon-view icon-grid" onclick="submitForm(event);"></span>
+        </form>
+        @if (!FiltroHelper.IsTMK())
+        {
+            <form action="/Checkup/Consultar" method="get" style="margin-left:3px">
+                <input type="hidden" name="id" value="#:Id#" />
+                <span class="icon-icon-edit icon-grid" onclick="submitForm(event);"></span>
+            </form>
+
+            <div>
+                <input type="hidden" name="id" value="#:Id#" />
+                <span class="icon-icon-delete icon-grid" onclick="excluirCheckupModal(event);"></span>
+            </div>
+        }
+    </div>
+</script>
+
+<script id="template-cpf-cnpj" type="text/x-kendo-template">
+    <span>#=formataCpfCnpj(data.CPFCNPJ)#</span>
+</script>
+
+@using (@Html.BeginForm("Delete", "Checkup", FormMethod.Post))
+{
+    <div id="exluirCheckupModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Deseja excluir o Checkup? </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="#:Id#" />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary">Sim</button>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@Scripts.Render("~/bundles/checkup")
+<script>
+    gridConsultasCheckup();
+    init();
+</script>

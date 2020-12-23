@@ -1,0 +1,79 @@
+﻿@using DV.FrenteLoja.Core.Contratos.Enums
+@using DV.FrenteLoja.Core.Util
+@model DV.FrenteLoja.Core.Contratos.DataObjects.AplicarDescontoDto
+
+@{
+    var visibilidadeModeloVenda = Model.IdDescontoModeloVenda == null ? "block" : "none";
+    var perfilTelemarketing = FiltroHelper.IsTMK().ToString().ToLowerInvariant();
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Aplicar Desconto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @using (Ajax.BeginForm("AplicarDesconto", "Orcamento", new AjaxOptions() { OnFailure = "aplicarDescontoFail", OnSuccess = "aplicarDescontoSuccess", OnBegin = "aplicarDescontoSubmit" }, new { id = "aplica-desconto", @class = "flex-coluna" }))
+    {
+        <div class="" style="margin:15px">
+            <div id="modal-warning"></div>
+            <div>
+                <h6><span id="qtdeModeloVenda">@Model.QuantidadeProduto.ToString("N0")</span> @Model.DescricaoProduto</h6>
+            </div>
+            <div class="flex" style="max-width:700px; margin-left: -13px">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.ValorOriginal, new { @class = "orcamento-label" })
+                    <input type="text" name="ValorOriginal" id="ValorOriginal" class="form-control" disabled value="@string.Format("{0:C}",Model.ValorOriginal)" />
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.PercentualDesconto, new { @class = "orcamento-label" })
+                    <input type="text" name="PercentualDesconto" id="PercentualDesconto" class="form-control" value="@Model.PercentualDesconto" data-target="desconto" onfocus="this.select()" />
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.ValorDesconto, new { @class = "orcamento-label" })
+                    <input type="text" name="ValorDesconto" id="ValorDesconto" class="form-control" value="@string.Format("{0:C}", Model.ValorDesconto)" data-target="valor" onfocus="this.select()" />
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.ValorTotalComDesconto, new { @class = "orcamento-label" })
+                    <input type="text" name="ValorTotalComDesconto" id="ValorTotalComDesconto" class="form-control" disabled value="@string.Format("{0:C}",Model.ValorTotalComDesconto)" />
+                </div>
+            </div>
+            <div id="div-alcada" style="display:none; margin-top:25px;">
+                <div style="font-size:12px">
+                    <p style="margin-bottom:5px">Será necessário realizar solicitação de desconto por alçada, preencha os campos abaixo</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.ObservacaoGeral, new { @class = "orcamento-label" })
+                        @Html.TextBoxFor(model => model.ObservacaoGeral, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.ObservacaoItem, new { @class = "orcamento-label" })
+                        @Html.TextBoxFor(model => model.ObservacaoItem, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:20px">
+                <button type="submit" class="botao btn-black" id="botao-aplica" form="aplica-desconto">Salvar desconto</button>
+                <button type="button" class="botao btn-secondary" data-dismiss="modal">Cancelar</button>
+                <!--<button type="button" class="botao btn-black" onclick="calcularDesconto()" style="margin-left:200px">Calcular desconto</button>-->
+            </div>
+
+            <div>
+                <input type="hidden" id="perfil-telemarketing" value="@perfilTelemarketing" />
+                @Html.HiddenFor(model => model.IdDescontoModeloVenda)
+                @Html.HiddenFor(model => model.IdOrcamentoItem)
+                @Html.HiddenFor(model => model.PercentualLimiteDesconto)
+                @Html.HiddenFor(model => model.PercentualDescontoAlcadaGerente)
+                @Html.HiddenFor(model => model.ValorOriginal)
+                @Html.HiddenFor(model => model.PercentualDesconto)
+                @Html.HiddenFor(model => model.ValorDesconto)
+                @Html.HiddenFor(model => model.ValorTotalComDesconto)
+                @Html.Hidden("QuantidadeProduto", Model.QuantidadeProduto.ToString("N0"))
+                @Html.Hidden("ValorSalvo", $"{Model.ValorOriginal:C}")
+                @Html.Hidden("ControleDesconto")
+            </div>
+        </div>
+    }
+</div>

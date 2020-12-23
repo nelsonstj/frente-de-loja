@@ -1,0 +1,23 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.ClienteDto
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="text-danger">Atenção!</h5>
+    
+  </div>
+  <div class="modal-body">
+    <div class="flex-center texto-cinza">
+      <b>Esse veículo possui vínculo com o cliente abaixo:</b>    
+    </div>
+    <div class="flex-center">
+      @Model.Nome
+    </div>
+    <div class="texto-cinza">
+      <h5>Deseja continuar?</h5>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="botao btn-black" data-dismiss="modal" onclick="consultaClientePorTipo('id','@Model.IdCliente')">Sim</button>
+    <button type="button" class="botao btn-secondary" data-dismiss="modal">Não</button>
+  </div>
+</div>

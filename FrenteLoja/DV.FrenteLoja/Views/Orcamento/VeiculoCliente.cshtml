@@ -1,0 +1,237 @@
+﻿@using DV.FrenteLoja.Core.Contratos.Enums
+@using DV.FrenteLoja.Core.Util
+@model DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoDto
+
+@if (TempData["Erro"] != null)
+{
+    <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            @TempData["Erro"]
+        </div>
+    </div>
+    <script>
+        $('#alert-placeholder').fadeTo(2000, 500).slideUp(500, function () {
+            $("#success-alert").alert('close');
+        });
+    </script>
+}
+
+<div class="flex full-height" style="overflow-y: auto">
+    @Html.Partial("_Wizard", Model)
+    <div style="margin-top: 20px;">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("EquipeVendas", "Orcamento", FormMethod.Post, new { id = "veiculo-cliente" }))
+            {
+                <div class="busca row">
+                    <div class="row col-md-12">
+                        <div id="divSpaceLojaDestino2" class="col-md-2" style="justify-content: center; display:none">
+                            <h3>&nbsp;</h3>
+                        </div>
+                        <div id="divSpaceLojaDestino5" class="col-md-5" style="justify-content: center; display:none">
+                            <h3>&nbsp;</h3>
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.TipoOrcamento, new { @class = "orcamento-label" })
+                            @{
+                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                if (FiltroHelper.IsTMK())
+                                {
+                                    listItems.Add(new SelectListItem()
+                                    {
+                                        Text = TipoOrcamento.Telemarketing.GetDescription(),
+                                        Value = "1"
+                                    });
+                                }
+                                else
+                                {
+                                    listItems.Add(new SelectListItem()
+                                    {
+                                        Text = TipoOrcamento.Loja.GetDescription(),
+                                        Value = "0"
+                                    });
+                                    listItems.Add(new SelectListItem()
+                                    {
+                                        Text = TipoOrcamento.Retira.GetDescription(),
+                                        Value = "2"
+                                    });
+                                }
+                            }
+                            @Html.DropDownListFor(model => model.TipoOrcamento, listItems, new { @class = "form-control" })
+                        </div>
+                        <div id="divLojaDestino" class="form-group col-md-3" style="display:none;">
+                            @Html.LabelFor(model => model.LojaDestino, new { @class = "orcamento-label" })
+                            <label style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.LojaDestino, (!string.IsNullOrEmpty(Model.CampoCodigo) ? new { disabled = "disabled" } : null))
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.Convenio, new { @class = "orcamento-label" })
+                            <label style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.Convenio)
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.TabelaPreco, new { @class = "orcamento-label" })
+                            <label style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.TabelaPreco)
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="col-md-12">
+                        <h3>SELECIONAR VEÍCULO</h3>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.PlacaVeiculo, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.PlacaVeiculo, new { @class = "form-control" })
+                            <label type="text" id="DadosVeiculoOrigem" class="orcamento-label-info" style="display:none" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.MarcaVeiculo, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.MarcaVeiculo) <br />
+                            <label type="text" id="SinespMarcaVeiculo" class="orcamento-label-info" style="display:none" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.ModeloVeiculo, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.ModeloVeiculo)
+                            <label type="text" id="SinespModeloVeiculo" class="orcamento-label-info" style="display:none" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.VersaoVeiculo, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.VersaoVeiculo)
+                            <label type="text" id="SinespVersaoVeiculo" class="orcamento-label-info" style="display:none" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.VersaoMotor, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.VersaoMotor)
+                            <label type="text" id="SinespMotorVeiculo" class="orcamento-label-info" style="display:none" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.AnoVeiculo, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.AnoVeiculo, new { @type = "number", @min = "0" })
+                            <label type="text" id="SinespAnoModeloVeiculo" class="orcamento-label-info" style="display:none" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.QuilometragemVeiculo, new { @class = "orcamento-label" })
+                            <label name="RequiredCar" style="color:red">*</label>
+                            @Html.TextBoxFor(model => model.QuilometragemVeiculo, new { @class = "form-control", @min = "1", @maxlength = "10", @onkeypress="return /[0-9]/i.test(event.key)" })
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="col-md-12">
+                        <h3>SELECIONAR CLIENTE</h3>
+                    </div>
+                    @Html.HiddenFor(model => model.IdCliente, new { data_val_required = "O campo Cliente é obrigatório." })
+                    <div class="row col-md-12 ">
+                        <div class="form-group col-md-2">
+                            <label class="orcamento-label">Tipo de Consulta</label>
+                            <select id="tipo-consulta-cliente">
+                                <option value="cpf">CPF</option>
+                                <option value="nome">Nome</option>
+                                <option value="cnpj">CNPJ</option>
+                                <option value="codigo">Código Dellavia</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2" id="CodigoConsulta">
+                            <label class="orcamento-label">Digite para pesquisar</label>
+                            <label style="color:red">*</label>
+                            <input type="text" id="codigo-consulta" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-2" id="SelectNome" style="display:none">
+                            <label class="orcamento-label">Digite para pesquisar</label>
+                            <label style="color:red">*</label>
+                            <input type="text" id="consulta-nome" />
+                        </div>
+                        <div class="form-group col-md-2" id="CpfCnpj" style="display:none">
+                            @Html.LabelFor(model => model.CPFCNPJCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.CPFCNPJCliente, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group col-md-2" id="codigo">
+                            @Html.LabelFor(model => model.CodigoCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.CodigoCliente, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group col-md-5" id="nome">
+                            @Html.LabelFor(model => model.NomeCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.NomeCliente, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.EmailCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.EmailCliente, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.CelularCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.CelularCliente, new { @class = "form-control", @readonly = "readonly"  })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.TelefoneComercialCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.TelefoneComercialCliente, new { @class = "form-control", @readonly = "readonly"  })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.TelefoneCliente, new { @class = "orcamento-label" })
+                            @Html.TextBoxFor(model => model.TelefoneCliente, new { @class = "form-control", @readonly = "readonly"  })
+                        </div>
+                    </div>
+                </div>
+                <div class="busca row">
+                    <div class="row col-md-12">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.InformacoesCliente, new { @class = "orcamento-label" })
+                            @Html.TextAreaFor(model => model.InformacoesCliente, new { @class = "form-control", @rows = "1", @maxlength = "200", @onkeypress="return /[A-Za-z0-9 ]/i.test(event.key)" })
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:15px">
+                    <input type="submit" value="@(Model?.Id > 0 ? "Atualizar" : "Continuar") " class="botao btn-black" onclick="return validaVeiculoCliente()" />
+                </div>
+                <div>
+                    @Html.HiddenFor(model => model.MarcaVeiculoDescricao)
+                    @Html.HiddenFor(model => model.ModeloVeiculoDescricao)
+                    @Html.HiddenFor(model => model.VersaoVeiculoDescricao)
+                    @Html.HiddenFor(model => model.VersaoMotorDescricao)
+                    @Html.HiddenFor(model => model.AnoDescricao)
+                    @Html.HiddenFor(model => model.LojaCliente)
+                    @Html.HiddenFor(model => model.LojaDestino)
+                    @Html.HiddenFor(model => model.LojaDestinoDescricao)
+
+                    @Html.HiddenFor(model => model.Convenio)
+                    @Html.HiddenFor(model => model.ConvenioDescricao)
+                    @Html.HiddenFor(model => model.InformacaoConvenio)
+                    @Html.HiddenFor(model => model.TrocaPrecoConvenio)
+                    @Html.HiddenFor(model => model.TrocaCliente)
+                    @Html.HiddenFor(model => model.TrocaProduto)
+                    @Html.HiddenFor(model => model.TrocaTabelaPreco)
+                    @Html.HiddenFor(model => model.TabelaPreco)
+                    @Html.HiddenFor(model => model.TabelaPrecoDescricao)
+                    @Html.HiddenFor(model => model.IdClienteLogado)
+
+                    @Html.HiddenFor(model => model.AreaNegocio)
+                    @Html.HiddenFor(model => model.AreaNegocioDescricao)
+                    @Html.HiddenFor(model => model.Vendedor)
+                    @Html.HiddenFor(model => model.VendedorDescricao)
+                    @Html.HiddenFor(model => model.Observacao)
+                    @Html.HiddenFor(model => model.OrcamentoProdutoCount)
+                    @Html.HiddenFor(model => model.DataValidade)
+                    @Html.HiddenFor(model => model.ValorRestante)
+                    <input type="hidden" id="Id" name="Id" value="@(Model?.Id)" />
+                </div>
+            }
+
+            <div>
+                @Html.HiddenFor(model => model.StatusSomenteLeitura)
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static"></div>
+</div>
+@Scripts.Render("~/bundles/orcamento")
+<script>
+    initOrcamento();
+</script>

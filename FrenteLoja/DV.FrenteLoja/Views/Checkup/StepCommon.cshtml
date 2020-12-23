@@ -1,0 +1,182 @@
+﻿@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupDto
+@{
+  var searchTypes = new[]
+  {
+    "Código Orçamento",
+    "Código do Cliente",
+    "CPF",
+    "CNPJ"
+  };
+
+  var searchTypesList = new SelectList(searchTypes, "Código Orçamento");
+}
+@if (TempData["Erro"] != null)
+{
+  <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      @TempData["Erro"]
+    </div>
+  </div>
+  <script>
+    $('#alert-placeholder').fadeTo(2000, 500).slideUp(500, function () {
+      $("#success-alert").alert('close');
+    });
+  </script>
+}
+
+<main>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3> CHECK-UP @(Model.IsCheckupCar ? "VAREJO" : "TRUCK")</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="header">
+        <label> DADOS DO CLIENTE </label>
+
+        <form class="searchBox" id="formSearch" action="/Checkup/Checkup@(Model.IsCheckupCar ? "Varejo": "Truck")" method="post">
+        @Html.HiddenFor(model => model.IsCheckupCar)
+        @Html.HiddenFor(model => model.CheckupId)
+        <div class="col-md-2 noPadding">
+          <input type="text" id="id" name="id" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+          <select id="searchType" name="type">
+            <option value="codigo-orcamento">Código Orçamento</option>
+            <option value="codigo-cliente">Código do Cliente</option>
+            <option value="cpf">CPF</option>
+            <option value="cnpj">CNPJ</option>
+          </select>
+        </div>
+
+        <div class="containerImgSearch">
+          <button id="fakeImg" type="submit" onclick="return abrirModalOrcamentos()"><img id="imgSearch" src="~/Content/img/ic_search.png" /></button>
+        </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+  @using (Html.BeginForm("StepOne", "Checkup", FormMethod.Post))
+  {
+    @Html.HiddenFor(model => model.IsCheckupCar);
+    @Html.HiddenFor(model => model.OrcamentoId);
+    @Html.HiddenFor(model => model.CheckupId);
+    <div class="row">
+
+      <div class="col-md-6 paddingCampos">
+        @Html.LabelFor(model => model.Cliente)
+        @Html.TextBoxFor(model => model.Cliente, new { @class = "form-control", @readonly = true })
+      </div>
+
+      <div class="col-md-6 paddingCampos">
+        @Html.LabelFor(model => model.CPFCNPJ)
+        @Html.TextBoxFor(model => model.CPFCNPJ, new { @class = "form-control", @readonly = true })
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-3 paddingCampos">
+        @Html.LabelFor(model => model.Phone)
+        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @readonly = true, @id = "phone" })
+      </div>
+
+      <div class="col-md-2 paddingCampos">
+        @Html.LabelFor(model => model.License)
+        @Html.TextBoxFor(model => model.License, new { @class = "form-control", @readonly = true, @id = "placa" })
+      </div>
+
+      <div class="col-md-2 paddingCampos">
+        @Html.LabelFor(model => model.Marca)
+        @Html.TextBoxFor(model => model.Marca, new { @class = "form-control", @readonly = true })
+      </div>
+
+      <div class="col-md-3 paddingCampos">
+        @Html.LabelFor(model => model.Car)
+        @Html.TextBoxFor(model => model.Car, new { @class = "form-control", @readonly = true })
+      </div>
+
+      <div class="col-md-2 paddingCampos">
+        @Html.LabelFor(model => model.Versao)
+        @Html.TextBoxFor(model => model.Versao, new { @class = "form-control", @readonly = true })
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 noPadding">
+
+        <div class="col-md-6 paddingCampos float-left">
+          @Html.LabelFor(model => model.Year)
+          @Html.TextBoxFor(model => model.Year, new { @class = "form-control", @readonly = true })
+        </div>
+
+        <div class="col-md-6 paddingCampos float-left">
+          @Html.LabelFor(model => model.KM)
+          @Html.TextBoxFor(model => model.KM, new { @class = "form-control", @readonly = true })
+        </div>
+
+        <div class="col-md-12 paddingCampos float-left">
+          @Html.LabelFor(model => model.Tecnico)
+          @Html.HiddenFor(model => model.TecnicoNome, new { @id = "tecnicoName" })
+          @Html.TextAreaFor(model => model.Tecnico, new { @id = "tecnico", @type = "hidden" })
+        </div>
+
+
+        <div class="col-md-12 paddingCampos float-left">
+          @Html.LabelFor(model => model.Vendedor)
+          @Html.HiddenFor(model => model.VendedorNome, new { @id = "vendedorName" })
+          @Html.TextBoxFor(model => model.Vendedor, new { @id = "vendedor", @type = "hidden" })
+        </div>
+
+      </div>
+
+      <div class="col-md-6 noPadding">
+        <div class="col-md-12 paddingCampos">
+          @Html.LabelFor(model => model.ProdutoServico)
+          @Html.TextAreaFor(model => model.ProdutoServico, new { @class = "form-control", @readonly = true, @rows = "6" })
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-12 noPadding paddingCampos noMargin"><button onclick="location.href='@Url.Action("Index", "Checkup")'" type="button" class="btn btn-outline-secondary btn-block">Cancelar</button></div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="col-md-12 noPadding paddingCampos noMargin"><input type="submit" value="Prosseguir" class="btn btn-block blue" /></div>
+      </div>
+    </div>
+  }
+
+
+
+</main>
+
+<div id="modalOrcamentos" class="modal" role="dialog">
+
+</div>
+
+@Scripts.Render("~/bundles/checkup")
+
+@section Scripts
+{
+  <script>
+    $(document).ready(function () {
+      $('#phone').inputmask("(99) 99999-9999");
+      $('#placa').inputmask("aaa-9999");
+     initConsulta();
+    });
+  </script>
+
+}

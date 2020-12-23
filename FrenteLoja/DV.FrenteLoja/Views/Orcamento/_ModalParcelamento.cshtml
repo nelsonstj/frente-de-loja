@@ -1,0 +1,49 @@
+﻿@using DV.FrenteLoja.Core.Contratos.DataObjects
+@model DV.FrenteLoja.Core.Contratos.DataObjects.ParcelamentoDto
+
+@helper divParcela(ParcelaDto parcela, int index)
+{
+    <div class="flex">
+      <div class="col-md-3">
+        @((++index).ToString().PadLeft(2,'0'))
+      </div>
+      <div class="col-md-5 ">
+        @parcela.DataPagamento.ToShortDateString()
+      </div>
+      <div class="col-md-4">
+        @string.Format("{0:C}",parcela.Valor) 
+      </div>
+    </div>
+}
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">@Model.NomeCondicaoPagamento</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-limite">
+    <div class="flex-column">
+      <div class="flex">
+        <div class="col-md-3">
+          <a>PARCELA</a>
+        </div>
+        <div class="col-md-5">
+          <a>DATA PAGAMENTO</a>
+        </div>
+        <div class="col-md-4">
+          <a>VALOR</a>
+        </div>
+      </div>
+      <div class="flex-column loja-grid">
+       @for (int i = 0; i < Model.Parcelas.Count; i++)       
+       {
+         @divParcela(Model.Parcelas[i], i)
+       }
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+  </div>
+</div>

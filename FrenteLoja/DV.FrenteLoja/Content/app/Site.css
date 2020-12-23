@@ -1,0 +1,445 @@
+﻿
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+    height:1px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+/* Fontes */
+
+@font-face {
+    font-family: GothamMedium;
+    src: url('/Content/libs/fonts/GOTHAM-MEDIUM.TTF');
+}
+
+/*h1, h2, h3, h4, h5, h6 {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}*/
+
+h3 {
+    font-size: 1.5rem;
+}
+
+html {
+    min-height: 100%; /* make sure it is at least as tall as the viewport */
+    position: relative;
+}
+
+body {
+    line-height: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: GothamMedium;
+}
+
+.full-height {
+    min-height: calc(100% - 82px);
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/*Sobrecarga Bootstrap*/
+
+.navbar-inverse {
+    background: #000;
+    display: flex;
+    text-align: center
+}
+
+
+
+
+.select2-container {
+    width: 100%;
+}
+
+.modal-content-ie {
+    position: fixed;
+    left: 10%;
+    top: 20%;
+}
+
+.modal-content {
+    width:auto;
+}
+/*Tela log integração*/
+.modal-erro {
+    word-wrap: break-word;
+    overflow-y: scroll;
+    max-height: 250px;
+}
+
+.logo {
+    height: 50px;
+    width: 200px;
+}
+
+.menu {
+    padding: 0;
+}
+
+    .menu ul {
+        vertical-align: middle;
+    }
+
+    .menu .active {
+        border-bottom: 3px solid red;
+    }
+
+    .menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        height: 100%;
+    }
+
+.botao {
+    background-color: #C71927;
+    color: white;
+    padding: 12px 20px;
+    margin: 0;
+    display: inline-block;
+    border: 0;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.botao:disabled {
+    opacity:0.8
+}
+
+@keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@keyframes loading-text-opacity {
+    0% {
+        opacity: 0
+    }
+
+    20% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@-moz-keyframes loading-text-opacity {
+    0% {
+        opacity: 0
+    }
+
+    20% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes loading-text-opacity {
+    0% {
+        opacity: 0
+    }
+
+    20% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@-o-keyframes loading-text-opacity {
+    0% {
+        opacity: 0
+    }
+
+    20% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+.loading-container,
+.loading {
+    height: 100px;
+    position: relative;
+    width: 100px;
+    border-radius: 100%;
+}
+
+
+.loading-container {
+    margin: 40px auto
+}
+
+.loading {
+    border: 2px solid transparent;
+    border-color: transparent #000000 transparent #000000;
+    -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
+    -moz-transform-origin: 50% 50%;
+    -o-animation: rotate-loading 1.5s linear 0s infinite normal;
+    -o-transform-origin: 50% 50%;
+    -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+    -webkit-transform-origin: 50% 50%;
+    animation: rotate-loading 1.5s linear 0s infinite normal;
+    transform-origin: 50% 50%;
+}
+
+.loading-container:hover .loading {
+    border-color: transparent #C9131D transparent #C9131D;
+}
+
+.loading-container:hover .loading,
+.loading-container .loading {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#loading-text {
+    -moz-animation: loading-text-opacity 2s linear 0s infinite normal;
+    -o-animation: loading-text-opacity 2s linear 0s infinite normal;
+    -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
+    animation: loading-text-opacity 2s linear 0s infinite normal;
+    color: #ffffff;
+    font-family: "Helvetica Neue, "Helvetica", ""arial";
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 45px;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 0;
+    width: 100px;
+}
+
+.btn-black {
+    background-color: #343a40;
+    color: white;
+}
+
+.label-estoque {
+    margin: 0;
+}
+
+.k-grid {
+    border: 0;
+    font-size:12px;
+}
+
+.k-header, .k-alt {
+    background-color: white;
+}
+
+.k-grid tr:hover {
+    background-color: white;
+}
+
+.k-grid td {
+    border-width: 0px 0px 1px 1px;
+}
+
+.k-grid-header:first-child th.k-header:first-child {
+    border-radius:0;
+}
+
+.k-grid-header-wrap {
+    border-width: 2px 1px 0 0;
+}

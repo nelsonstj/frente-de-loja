@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DV.FrenteLoja.Core.Contratos.DataObjects.CatalogoDto>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    
+    
+    </table>
+    <div class="col-md-3">
+        <a>
+            <input id="catalogo" type="text" value="" class="select2-container">
+        </a>
+        <a id="valor"></a>
+    </div>
+    <style>
+        .select2-container {
+            width: 100%;
+        }
+    </style>
+
+</div>

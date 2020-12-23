@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DV.FrenteLoja.Core.Dominios.Entidades.LojaConfig>
+
+<style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div style="margin-top:20px">
+    <div class="col-md-12">
+        <h4>Lojas Config</h4>
+    </div>
+    <div class="col-md-12 row">
+        <p>
+            @Html.ActionLink("+ Novo", "Create")
+        </p>
+        <table border="1" class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.idLoja)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ConvenioPadrao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescontoMax)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idLoja)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConvenioPadrao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescontoMax)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idLoja }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.idLoja }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.idLoja })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@Styles.Render("~/bundles/home")

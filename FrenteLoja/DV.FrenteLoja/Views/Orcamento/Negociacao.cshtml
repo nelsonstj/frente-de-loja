@@ -1,0 +1,73 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoDto
+
+@helper imposto(decimal imposto)
+{
+    if (imposto > 0)
+    {
+        <small>+@string.Format("{0:C}", Model.ValorImpostos) Imp.</small>
+    }
+}
+
+<div class="flex full-height">
+    @Html.Partial("_Wizard", Model)
+    <div class="col-md-11" style="margin-top:30px">
+        <div class="flex">
+            <h3>ITENS DO ORÇAMENTO #@Model.Id </h3>  <h4 style="margin-left:25px">CONV. #@Model.ConvenioDescricao</h4>
+        </div>
+        <div class="negociacao">
+            <div id="partial-itens">
+                @Html.Partial("_TabelaOrcamentoProduto", Model, new ViewDataDictionary(this.ViewData) { { "readonly", Model.StatusSomenteLeitura } })
+            </div>
+            <div class="flex table-body last">
+                <div class="flex-size-0-4">&nbsp;</div>
+                <div class="flex-size-0-4">&nbsp;</div>
+                <div class="flex-size-2">&nbsp;</div>
+                <div class="flex-size-0-4">&nbsp;</div>
+                <div class="flex-size-0-4">&nbsp;</div>
+                <div class="flex-size-0-5">&nbsp;</div>
+                <div class="flex-size-0-5 alinha-direita flex-coluna" id="subtotal-negociacao" style="text-align:right;">
+                    <b>@string.Format("{0:C}", Model.OrcamentoProduto.Total)</b>
+                    @imposto(Model.ValorImpostos)
+                </div>
+                <div class="flex-size-1"><b>Subtotal</b></div>
+                <div class="flex-size-0-2 "></div>
+            </div>
+            <div id="partial-pagamento">
+                @Html.Partial("_FormaPagamento", Model.FormaPagamento)
+            </div>
+            <div class="flex" style="justify-content:flex-end">
+                <div class="flex">
+                    @using (Html.BeginForm("AtualizaOrcamento", "Orcamento", FormMethod.Post, new { id = "negociacao" }))
+                    {
+
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.ReservaEstoque)
+                        @Html.HiddenFor(model => model.AreaNegocio)
+                        <button class="botao btn-black" type="submit" style="line-height:2" onclick="return finalizacaoSubmit()">Ir para finalização</button>
+                    }
+                    <div class="toggle-switch-container" style="margin-left: 40px;">
+                        <label class="label-estoque">Reservar estoque</label>
+                        <input id="reserva" name="reserva" class="toggle-switch" type="checkbox" />
+                        <label for="reserva" data-switch-on="sim" data-switch-off="não"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.HiddenFor(model => model.AreaNegocio)
+@Html.HiddenFor(model => model.Vendedor)
+@Html.HiddenFor(model => model.DataValidade)
+@Html.HiddenFor(model => model.OrcamentoProdutoCount)
+@Html.HiddenFor(model => model.StatusSomenteLeitura)
+<input type="hidden" id="orcamento-id" value="@Model.Id" />
+<div class="modal" id="modal-desconto" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div class="modal" id="modal-parcelamento" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div class="modal" id="modal-equipe-montagem" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+@Scripts.Render("~/bundles/orcamento")
+@Scripts.Render("~/bundles/react")
+<script>
+    initNegociacao();
+</script>

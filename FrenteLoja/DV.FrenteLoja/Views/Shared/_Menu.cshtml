@@ -1,0 +1,83 @@
+﻿@using DV.FrenteLoja.Core.Contratos.Enums
+@using DV.FrenteLoja.Core.Infra.Security
+@functions {
+    string MenuAtivado(string nomeController)
+    {
+        if (Request.RequestContext.RouteData.Values["controller"].ToString() == nomeController)
+            return "active";
+        else
+            return string.Empty;
+    }
+
+
+    string GetPerfil()
+    {
+        return this.User.Identity.GetPerfilAcessoUsuario().ToString();
+    }
+
+}
+
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div>
+        <a class="nav-link" href="/Home"><img class="logo" src="~/Content/img/logo.svg" /></a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+        <ul class="navbar-nav mr-auto">
+            @if (GetPerfil().Equals("TMK") || GetPerfil().Equals("FrenteLoja"))
+            {
+                <li class="nav-item dropdown @MenuAtivado("Orcamento")">
+                    @Html.ActionLink("Orçamento", "Index", "Orcamento", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item dropdown @MenuAtivado("Checkup")">
+                    @Html.ActionLink("Checkup", "Index", "Checkup", null, new { @class = "nav-link" })
+                </li>
+            }
+
+            @if (GetPerfil().Equals("Administrativo"))
+            {
+                <li class="nav-item dropdown @MenuAtivado("CargaCatalogo")">
+                    @Html.ActionLink("Catálogo", "Index", "CargaCatalogo", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item dropdown @MenuAtivado("LogIntegracao")">
+                    @Html.ActionLink("Integrações ", "Index", "LogIntegracao", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item dropdown @MenuAtivado("GrupoProduto")">
+                    @Html.ActionLink("Grupo ", "Index", "GrupoProduto", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item dropdown @MenuAtivado("LojaConfig")">
+                    @Html.ActionLink("Loja Config ", "Index", "LojaConfig", null, new { @class = "nav-link" })
+                </li>
+            }
+
+        </ul>
+        <div>
+
+            @using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm", @classList = "form-inline my-2 my-lg-0" }))
+            {
+                <div id="dropSair" class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @User.Identity.GetName()
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" onclick="logoff();">Sair</a>
+                    </div>
+                </div>
+
+                @Html.AntiForgeryToken()
+            }
+            <div class="second">
+                <label style="color: #a9acb7; font-size: 12px; font-style: italic; padding-left: 8px">
+                    @User.Identity.GetPerfilAcessoUsuario().GetDescription()
+                </label>
+            </div>
+        </div>
+
+    </div>
+</nav>
+

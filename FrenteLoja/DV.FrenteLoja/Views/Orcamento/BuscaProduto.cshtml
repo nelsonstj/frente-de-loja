@@ -1,0 +1,58 @@
+﻿@using DV.FrenteLoja.Core.Contratos.DataObjects
+@using DV.FrenteLoja.Core.Util
+@model OrcamentoDto
+
+@{
+    string ieClass = "";
+    if (Request.Browser.Browser == "InternetExplorer")
+    {
+      ieClass = "ie-display-block";
+    }
+}
+<div id="alert-placeholder"></div>
+<div class="flex full-height">
+
+    @Html.Partial("_Wizard", Model)
+    <div class=" app main @ieClass" style="margin-top: 20px;">
+        <div class="col-md-8 flex">
+            <div class=" col-md-12 flex conteudo">
+                @using (Ajax.BeginForm("", "", null, new { id = "busca-produto" }))
+                {
+                    <div class="busca row">
+                        @Html.Partial("_Busca", Model)
+                    </div>
+                }
+                <div id="grid-produtos" class="grid-produtos row flex">
+                    @Html.Partial("_GridProdutos")
+                </div>
+            </div>
+        </div>
+        <div class="sacola col-md-4">
+            <div class="row cabecalho-carrinho">
+                <div class="col-md-12">
+                    <h5>ORÇAMENTO #@Model.Id @Html.HiddenFor(model => model.Id)</h5>
+                </div>
+            </div>
+            <div id="sacola-compra" style="height:100%">
+                @Html.Partial("_Carrinho", Model.OrcamentoProduto)
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.TabelaPreco)
+    @Html.HiddenFor(model => model.TabelaPrecoDescricao)
+    @Html.HiddenFor(model => model.AreaNegocio)
+    @Html.HiddenFor(model => model.Vendedor)
+    @Html.HiddenFor(model => model.LojaDestino)
+    @Html.HiddenFor(model => model.LojaDestinoDescricao)
+    @Html.HiddenFor(model => model.DataValidade)
+    @Html.HiddenFor(model => model.OrcamentoProdutoCount)
+    @Html.HiddenFor(model => model.ValorRestante)
+</div>
+<div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static"></div>
+@Scripts.Render("~/bundles/orcamento")
+@Scripts.Render("~/bundles/react")
+<script>
+  var elasticSearchUrl = '@FiltroHelper.UrlElasticSearch()'
+  var dellaviaUrl = '@FiltroHelper.UrlImagemDellaVia()'
+  initBuscaProdutos();
+</script>

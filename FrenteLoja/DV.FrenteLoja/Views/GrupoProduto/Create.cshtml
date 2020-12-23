@@ -1,0 +1,63 @@
+﻿@model DV.FrenteLoja.Core.Dominios.Entidades.GrupoProduto
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <h4>Grupo Produto - Novo</h4>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        //@Html.AntiForgeryToken()
+
+        <div class="flex full-height">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row col-md-12">
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.IdGrupoProduto, new { @class = "orcamento-label" })
+                    <br />
+                    @Html.EditorFor(model => model.IdGrupoProduto)
+                    @Html.ValidationMessageFor(model => model.IdGrupoProduto, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.IdGrupoSubGrupo, new { @class = "orcamento-label" })
+                    <br />
+                    @Html.EditorFor(model => model.IdGrupoSubGrupo)
+                    @Html.ValidationMessageFor(model => model.IdGrupoSubGrupo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "orcamento-label" })
+                    <br />
+                    @Html.EditorFor(model => model.Descricao)
+                    @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.RegistroInativo, htmlAttributes: new { @class = "orcamento-label" })
+                    <br />
+                    @Html.EditorFor(model => model.RegistroInativo)
+                    @Html.ValidationMessageFor(model => model.RegistroInativo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.CampoCodigo, htmlAttributes: new { @class = "orcamento-label" })
+                    <br />
+                    @Html.EditorFor(model => model.CampoCodigo)
+                    @Html.ValidationMessageFor(model => model.CampoCodigo, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Criar" class="botao btn-black" />
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <div>
+        @Html.ActionLink("Voltar pra lista", "Index")
+    </div>
+</body>
+</html>

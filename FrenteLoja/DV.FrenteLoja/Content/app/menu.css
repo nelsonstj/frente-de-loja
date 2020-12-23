@@ -1,0 +1,20 @@
+﻿ul>li.active {
+    border-bottom: 3px solid #f01914;
+    margin-bottom: -18px
+}
+
+.navbar-dark .navbar-nav .active>.nav-link {
+    color: #f01914;
+}
+
+@media screen and (max-width: 600px) {
+    ul>li.active {
+        border-bottom: 0px;
+        margin-bottom: 0
+    }
+}
+
+#dropdownMenuButton {
+    border: 0;
+    background-color: transparent;
+}

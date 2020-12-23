@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Content/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>Dellavia</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/inputmask")
+</head>
+  <body>
+    <div class="modal" id="loading-modal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+      <div>
+        <div class="loading-container">
+          <div class="loading"></div>
+          <div id="loading-text">carregando</div>
+        </div>
+      </div>
+    </div>
+    @{Html.RenderPartial("~/Views/Shared/_Menu.cshtml");}
+    <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;"></div>
+    @RenderBody()
+
+    
+    @RenderSection("scripts", required: false)
+    <script type="text/babel" src="~/Scripts/app/React/modal.js">
+    </script>
+  </body>
+</html>

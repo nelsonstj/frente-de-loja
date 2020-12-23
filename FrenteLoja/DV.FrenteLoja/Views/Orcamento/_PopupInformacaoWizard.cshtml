@@ -1,0 +1,12 @@
+﻿@model IEnumerable<DV.FrenteLoja.Core.Contratos.DataObjects.WizardDto>
+
+  @foreach (var item in Model)
+  {
+      <div class="flex-coluna">
+        <a style="color:red">@item.Titulo</a>
+        @foreach (var info in item.informacoes)
+        {
+            <a style="color:white">@info</a>
+        }
+      </div>
+  }

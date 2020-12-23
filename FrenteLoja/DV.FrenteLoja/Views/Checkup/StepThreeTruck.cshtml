@@ -1,0 +1,100 @@
+﻿@using DV.FrenteLoja.Helpers;
+@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupTruckDto
+
+
+<header>
+    <div>
+        <div class="col-md-4">
+            <h3> CHECK-UP </h3>
+        </div>
+        <div class="col-md-12 text-align-end">
+            @Html.StepControl(3, 3)
+        </div>
+    </div>
+</header>
+
+<main>
+    @using (@Html.BeginForm("SaveCheckupTruck", "Checkup", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Cliente)
+        @Html.HiddenFor(model => model.CPFCNPJ)
+        @Html.HiddenFor(model => model.Phone)
+        @Html.HiddenFor(model => model.License)
+        @Html.HiddenFor(model => model.Car);
+        @Html.HiddenFor(model => model.Year);
+        @Html.HiddenFor(model => model.KM);
+        @Html.HiddenFor(model => model.Marca);
+        @Html.HiddenFor(model => model.Versao);
+        @Html.HiddenFor(model => model.Tecnico);
+        @Html.HiddenFor(model => model.Vendedor);
+        @Html.HiddenFor(model => model.ProdutoServico);
+        @Html.HiddenFor(model => model.IsCheckupCar);
+        @Html.HiddenFor(model => model.OrcamentoId);
+        @Html.HiddenFor(model => model.CheckupId);
+        @Html.HiddenFor(model => model.EmailCliente);
+
+        @Html.HiddenFor(model => model.Embuchamento);
+        @Html.HiddenFor(model => model.EmbuchamentoExecutado);
+        @Html.HiddenFor(model => model.TerminalBarraLonga);
+        @Html.HiddenFor(model => model.TerminalBarraLongaExecutado);
+        @Html.HiddenFor(model => model.BarraCurtaDireção);
+        @Html.HiddenFor(model => model.BarraCurtaDireçãoExecutado);
+        @Html.HiddenFor(model => model.LonaPastilhaFreioDianteiro);
+        @Html.HiddenFor(model => model.LonaPastilhaFreioDianteiroExecutado);
+        @Html.HiddenFor(model => model.Amortecedor);
+        @Html.HiddenFor(model => model.AmortecedorExecutado);
+        @Html.HiddenFor(model => model.BarraEstabilozadora);
+        @Html.HiddenFor(model => model.BarraEstabilozadoraExecutado);
+        @Html.HiddenFor(model => model.TamborDiscoFreio);
+        @Html.HiddenFor(model => model.TamborDiscoFreioExecutado);
+        @Html.HiddenFor(model => model.MolejoCompleto);
+        @Html.HiddenFor(model => model.MolejoCompletoExecutado);
+
+        @Html.HiddenFor(model => model.BracoTensor);
+        @Html.HiddenFor(model => model.BracoTensorExecutado);
+        @Html.HiddenFor(model => model.BalancaPino);
+        @Html.HiddenFor(model => model.BalancaPinoExecutado);
+        @Html.HiddenFor(model => model.LonaPastilhaFreioTraseiro);
+        @Html.HiddenFor(model => model.LonaPastilhaFreioTraseiroExecutado);
+        @Html.HiddenFor(model => model.CatracaFlexivel);
+        @Html.HiddenFor(model => model.CatracaFlexivelExecutado);
+        @Html.HiddenFor(model => model.MolejoSuporte);
+        @Html.HiddenFor(model => model.MolejoSuporteExecutado);
+        @Html.HiddenFor(model => model.SuspensorTruck);
+        @Html.HiddenFor(model => model.SuspensorTruckExecutado);
+        @Html.HiddenFor(model => model.TamborDiscoFreioTraseiro);
+        @Html.HiddenFor(model => model.TamborDiscoFreioTraseiroTruckExecutado);
+        @Html.HiddenFor(model => model.AmortecedorTraseiro);
+        @Html.HiddenFor(model => model.AmortecedorTraseiroExecutado);
+
+        <div>
+            <div class="header">
+                <label> OBSERVAÇÕES GERAIS </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.Observacoes, new { @rows = 6, id = "textObservacao" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-12 noPadding paddingCampos noMargin">
+                    <button type="reset" class="btn btn-outline-secondary  btn-block" onclick="window.history.back()">Voltar</button>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-12 noPadding paddingCampos noMargin">
+                    <input type="submit" value="Prosseguir" class="btn btn-block blue" />
+                </div>
+            </div>
+        </div>
+
+    }
+</main>
+
+@Scripts.Render("~/bundles/checkup")

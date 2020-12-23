@@ -1,0 +1,75 @@
+﻿@model  DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoProdutoBuscaDto
+@if (Model.Produtos.Count > 0)
+{
+  <div class="sacola-lista">
+    @for (int i = 0; i < Model.Produtos.Count(); i++)
+    {
+      var produto = Model.Produtos[i];
+        <div class="sacola-item" id="sacola-item-@i" onclick="editaOrcamentoItem(@Model.IdOrcamento, @produto.IdOrcamentoItem)">
+          <div class="sacola-item-cabecalho row">
+            <div style="flex: 1; display:flex">
+              <div class="col-6">
+                <span><b>@produto.Descricao</b> (@produto.CampoCodigoProduto)</span>
+              </div>
+              <div class="col-4 row preco-total">
+                <div style="display:flex; flex-direction:column; flex: 1;">
+                  <span class="preco-total"><b>@string.Format("{0:C}", produto.ValorTotal)</b></span>
+                  <span class="preco-unitario">@produto.Quantidade x @string.Format("{0:C}", produto.Valor)</span>
+                </div>
+              </div>
+              <div class="botao-excluir">
+                <button type="button" class="close" data-target="produto-@i" onclick="removeItem(event, @Model.IdOrcamento, @produto.IdOrcamentoItem, '1')" title="Excluir">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            @for (int j = 0; j < Model.Produtos[i].Servicos.Count; j++)
+            {
+              var servico = produto.Servicos[j];
+                <div style="flex: 0 0 100%">
+                  <div class="sacola-item-relacionado" id="servico-@j">
+                    <div class="col-6">
+                        <span class="preco-unitario"><b>+ @servico.Descricao</b> (@servico.CampoCodigoProduto)</span>
+                    </div>
+                    <div class="col-4 row preco-total">
+                      <div style="display:flex; flex-direction:column; flex: 1;">
+                        <span class="preco-total"><b>@string.Format("{0:C}", servico.ValorTotal)</b></span>
+                        <span class="preco-unitario">@servico.Quantidade x @string.Format("{0:C}", servico.Valor)</span>
+                      </div>
+
+                    </div>
+                    <div class="botao-excluir">
+                      <button type="button" class="close" data-target="produto-@i" onclick="removeItem(event, @Model.IdOrcamento, @servico.IdOrcamentoItem, '2')" title="Excluir">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            }
+          </div>
+        </div>
+    }
+  </div>
+  <div class="sacola-total">
+    <div>
+      <a style="color:gray">Total: </a><b>@string.Format("{0:C}", Model.Total)</b>
+    </div>
+    <div>
+      @using (Html.BeginForm("Negociacao", "Orcamento", FormMethod.Post))
+      {
+          <input type="hidden" id="id" name="id" value="@Model.IdOrcamento" />
+          <button class="botao btn-black" type="submit" style="line-height:2">Ir para negociação</button>
+      }       
+    </div>
+  </div>  
+}
+else
+{
+    <div class="flex flex-coluna carrinho-vazio">
+      <img class="img-carrinho-vazio" src="~/Content/img/icon-carrinho-vazio.png" />
+      <div class="flex flex-column">
+        <b>O carrinho está vazio.</b>
+        <h6>Utilize o campo à esquerda para pesquisar produtos.</h6>
+      </div>
+    </div>
+}

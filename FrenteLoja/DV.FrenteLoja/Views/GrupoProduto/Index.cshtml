@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DV.FrenteLoja.Core.Dominios.Entidades.GrupoProduto>
+
+<style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div style="margin-top:20px">
+    <div class="col-md-12">
+        <h4>Grupo de produtos</h4>
+    </div>
+    <div class="col-md-12 row">
+        <p>
+            @Html.ActionLink("+ Novo", "Create")
+        </p>
+        <table border="1" class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdGrupoProduto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdGrupoSubGrupo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistroInativo)
+                </th>
+                <th>
+                    Código Dellavia
+                    <!--@Html.DisplayNameFor(model => model.CampoCodigo)-->
+                </th>
+                <!--<th>
+                    @Html.DisplayNameFor(model => model.DataAtualizacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsuarioAtualizacao)
+                </th>-->
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdGrupoProduto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdGrupoSubGrupo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistroInativo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CampoCodigo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@Styles.Render("~/bundles/home")

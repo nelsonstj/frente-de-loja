@@ -1,0 +1,11 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.RelatorioDto
+
+<div class="container">
+    @using (Html.BeginForm("ObterRelatorio", "Relatorio", FormMethod.Post))
+    {
+        <h2>Orçamento </h2>
+        @Html.TextBoxFor(x => x.IdOrcamento)
+        <input type="submit" value="Consultar" />
+    }
+</div>
+

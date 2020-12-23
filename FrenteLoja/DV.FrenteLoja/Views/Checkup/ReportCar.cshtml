@@ -1,0 +1,356 @@
+﻿@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupCarDto
+@{
+
+}
+
+@if (TempData["sucesso"] != null)
+{
+    <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert" style="margin: 0;margin-top:90px;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            @TempData["sucesso"]
+        </div>
+    </div>
+    <script>
+        $('#alert-placeholder').fadeTo(3000, 500).slideUp(500, function () {
+            $("#success-alert").alert('close');
+        });
+    </script>
+}
+@if (TempData["erro"] != null)
+{
+    <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0;margin-top:90px;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            @TempData["erro"]
+        </div>
+    </div>
+    <script>
+        $('#alert-placeholder').fadeTo(3000, 500).slideUp(500, function () {
+            $("#success-alert").alert('close');
+        });
+    </script>
+}
+
+<header class="report">
+    <div class="col-md-12">
+        <h3> CHECK-UP - RELATÓRIO </h3>
+    </div>
+</header>
+
+<main class="row col-md-12">
+    <div class="col-md-4 text-align-center">
+        <label> CLIENTE: </label>
+        @Html.DisplayTextFor(model => model.Cliente)
+    </div>
+    <div class="col-md-4 text-align-center">
+        <label> VEÍCULO: </label>
+        @Html.DisplayTextFor(model => model.Car)
+    </div>
+    <div class="col-md-4 text-align-center">
+        <label> ID: </label>
+        @Html.DisplayTextFor(model => model.CheckupId)
+    </div>
+    <div class="col-md-12 text-align-center">
+        @Html.Partial("_Legenda")
+    </div>
+    <div class="col-md-6">
+        <label> MEDIDAS INICIAIS </label>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarEsquerdoFrontalInicial, new { @classList = "col-md-5" })
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarEsquerdoFrontalInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CasterEsquerdoFrontalInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CasterEsquerdoFrontalInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarEsquerdoTraseiroInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarEsquerdoTraseiroInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.ConvergenciaEsquerdaTraseiroInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.ConvergenciaEsquerdaTraseiroInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarDireitoFrontalInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarDireitoFrontalInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CasterDireitoFrontalInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CasterDireitoFrontalInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarDireitoTraseiroInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarDireitoTraseiroInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.ConvergenciaDireitoTraseiroInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.ConvergenciaDireitoTraseiroInicial)</span>
+        </div>
+        <div class="checkbox checkboxReport last">
+            @Html.LabelFor(model => model.ConvergenciaTotalInicial)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.ConvergenciaTotalInicial)</span>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label> MEDIDAS FINAIS </label>
+
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarEsquerdoFrontalFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarEsquerdoFrontalFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CasterEsquerdoFrontalFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CasterEsquerdoFrontalFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarEsquerdoTraseiroFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarEsquerdoTraseiroFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.ConvergenciaEsquerdaTraseiroFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.ConvergenciaEsquerdaTraseiroFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarDireitoFrontalFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarDireitoFrontalFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CasterDireitoFrontalFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CasterDireitoFrontalFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.CambarDireitoTraseiroFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.CambarDireitoTraseiroFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport">
+            @Html.LabelFor(model => model.ConvergenciaDireitoTraseiroFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.ConvergenciaDireitoTraseiroFinal)</span>
+        </div>
+        <div class="checkbox checkboxReport last">
+            @Html.LabelFor(model => model.ConvergenciaTotalFinal)
+            <span class="spanLabel">@Html.DisplayTextFor(model => model.ConvergenciaTotalFinal)</span>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label> SISTEMA DE RODAGEM </label>
+        @Html.CheckBoxSimple(model => model.PneuDianteiro, model => model.PneuDianteiroExecutado)
+        @Html.CheckBoxSimple(model => model.PneuTraseiro, model => model.PneuTraseiroExecutado)
+        @Html.CheckBoxSimple(model => model.Estepe, model => model.EstepeExecutado)
+        @Html.CheckBoxSimple(model => model.Valvula, model => model.ValvulaExecutado, true)
+    </div>
+
+    <div class="col-md-6">
+        <label> SERVIÇOS </label>
+        @Html.CheckBoxSimple(model => model.Balanceamento, model => model.BalanceamentoExecutado)
+        @Html.CheckBoxSimple(model => model.Alinhamento, model => model.AlinhamentoExecutado)
+        @Html.CheckBoxSimple(model => model.ConsertoRoda, model => model.ConsertoRodaExecutado)
+        @Html.CheckBoxSimple(model => model.CambagemCáster, model => model.CambagemCásterExecutado, true)
+    </div>
+
+    <div class="col-md-6">
+        <label> SUSPENSÃO </label>
+        @Html.CheckBoxSimple(model => model.AmortecedorDianteiro, model => model.AmortecedorDianteiroExecutado)
+        @Html.CheckBoxSimple(model => model.AmortecedorTraseiro, model => model.AmortecedorTraseiroExecutado)
+        @Html.CheckBoxSimple(model => model.TerminaisDeDirecao, model => model.TerminaisDeDirecaoExecutado)
+        @Html.CheckBoxSimple(model => model.BracosAxiais, model => model.BracosAxiaisExecutado)
+        @Html.CheckBoxSimple(model => model.Pivos, model => model.PivosExecutado, true)
+    </div>
+
+    <div class="col-md-6">
+        <label> ACESSÓRIOS </label>
+        @Html.CheckBoxSimple(model => model.Palhetas, model => model.PalhetasExecutado)
+        @Html.CheckBoxSimple(model => model.Calotas, model => model.CalotasExecutado)
+        @Html.CheckBoxSimple(model => model.Extintor, model => model.ExtintorExecutado)
+        @Html.CheckBoxSimple(model => model.InjecaoEletronica, model => model.InjecaoEletronicaExecutado)
+        @Html.CheckBoxSimple(model => model.HigienizacaoDeAr, model => model.HigienizacaoDeArExecutado)
+        @Html.CheckBoxSimple(model => model.FiltroArCondicionado, model => model.FiltroArCondicionadoExecutado, true)
+    </div>
+
+    <div class="col-md-6">
+        <label> SISTEMA DE FREIO </label>
+        @Html.CheckBoxSimple(model => model.Pastilhas, model => model.PastilhasExecutado)
+        @Html.CheckBoxSimple(model => model.Discos, model => model.DiscosExecutado)
+        @Html.CheckBoxSimple(model => model.FluidoFreio, model => model.FluidoFreioExecutado)
+        @Html.CheckBoxSimple(model => model.FreioTraseiro, model => model.FreioTraseiroExecutado, true)
+    </div>
+
+    <div class="col-md-6">
+        <label> ÓLEO </label>
+
+        <div class="checkbox checkboxReport">
+            <div class="col-md-7">
+                @Html.LabelFor(model => model.OleoMotor)
+            </div>
+            <div class="col-md-5 text-align-end">
+                @{
+                    if (Model.OleoMotor.HasValue)
+                    {
+                        @Model.OleoMotor.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        Html.Encode(@Model.OleoMotor.GetValueOrDefault());
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="checkbox checkboxReport">
+            <div class="col-md-7">
+                @Html.LabelFor(model => model.FiltroOleo)
+            </div>
+            <div class="col-md-5 text-align-end">
+                @{
+                    if (Model.FiltroOleo.HasValue)
+                    {
+                        @Model.FiltroOleo.Value.ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+                        Html.Encode(@Model.FiltroOleo.GetValueOrDefault());
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="checkbox checkboxReport">
+            <div class="col-md-7">
+                @Html.LabelFor(model => model.TipoOleo)
+            </div>
+            <div class="col-md-5 text-align-end">
+                @Html.DisplayTextFor(model => model.TipoOleo)
+            </div>
+        </div>
+
+        <div class="checkbox checkboxReport">
+            <div class="col-md-7">
+                @Html.LabelFor(model => model.Especificacao)
+            </div>
+            <div class="col-md-5 text-align-end">
+                @Html.DisplayTextFor(model => model.Especificacao)
+            </div>
+        </div>
+
+        @Html.CheckBoxSimple(model => model.FiltroDeAr, model => model.FiltroDeArExecutado)
+        @Html.CheckBoxSimple(model => model.FiltroCombustivel, model => model.FiltroCombustivelExecutado, true)
+        <div class="row">
+            <div class="col-md-7">
+                @Html.LabelFor(model => model.CodigoDellaVia)
+            </div>
+            <div class="col-md-5 text-align-end">
+                @Html.DisplayTextFor(model => model.CodigoDellaVia)
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-12">@Html.LabelFor(model => model.Observacoes)</div>
+        <p class="textObs">@Html.DisplayTextFor(model => model.Observacoes)</p>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            @Html.LabelFor(model => model.Tecnico)
+        </div>
+        <div class="col-md-12">
+            <p class="textObs"> @Html.DisplayTextFor(model => model.TecnicoNome) </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            @Html.LabelFor(model => model.Vendedor)
+        </div>
+        <div class="col-md-12">
+            <p class="textObs"> @Html.DisplayTextFor(model => model.VendedorNome) </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            @Html.Label("Data")
+        </div>
+        <div class="col-md-3">
+            <p class="textObs"> __/__/__ </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            <label class="assinatura"> ASSINATURA DO CLIENTE </label>
+        </div>
+        <div class="col-md-12">
+            <p class="textObs">
+                Declaro estar ciente das indicações relacionadas neste Check-up, a título de orientação,
+                bem como me responsabilizo pela recusa das trocas ou serviços recomendados para a manutenção preventiva ou corretiva do veiculo avaliado
+            </p>
+        </div>
+    </div>
+
+</main>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-12 noPadding paddingCampos noMargin">
+                <button type="reset" class="btn btn-outline-secondary  btn-block" onclick="window.history.back()">Voltar</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-12 noPadding paddingCampos noMargin">
+                <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#emailModal" data-whatever="mdo">Enviar por E-mail</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-12 noPadding paddingCampos noMargin">
+                @using (@Html.BeginForm("Imprimir", "Checkup", FormMethod.Post))
+                {
+                    @Html.HiddenFor(model => model.Id)
+                    <input type="submit" value="Imprimir" class="btn btn-primary btn-block blue" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@using (@Html.BeginForm("EnviarPorEmail", "Checkup", FormMethod.Post, new { id = "EnviarPorEmail" }))
+{
+    <div id="emailModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmação de e-mail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row col-md-12">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.LabelFor(model => model.EmailCliente):
+                        @Html.TextBoxFor(model => model.EmailCliente, new { @class = "input-lg" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="EnviarEmail()" class="btn btn-secondary">Enviar</button>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+    <script>
+
+    </script>
+}
+@Scripts.Render("~/bundles/checkup")

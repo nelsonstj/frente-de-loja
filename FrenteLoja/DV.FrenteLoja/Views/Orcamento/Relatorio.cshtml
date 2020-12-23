@@ -1,0 +1,227 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoDto
+
+
+@if (TempData["Erro"] != null)
+{
+    <script>
+    criaAlertaMensagem('@TempData["Erro"]')
+    </script>
+}
+
+<div class="col-md-12 flex-center" style="margin:40px 0">
+    <button class="botao" onclick="location.href='@Url.Action("Index", "Orcamento")'">Voltar</button>
+    <button class="botao" style="margin-left:5px" data-toggle="modal" data-target="#emailModal" data-whatever="mdo">Enviar por e-mail</button>
+    <button class="botao" onclick="generatePdf('imprimir', '')" style="margin-left:5px">Imprimir</button>
+</div>
+
+<div class="flex-center relatoriopdf">
+    <div class="col-md-8 relatorio" id="relatorio">
+        <div id="part1">
+            <div class="flex bloco-texto-finalizacao" style="height: 99px;">
+                <div class="col-md-3" id="logo">
+                    <img src="/Content/img/logo.png">
+                </div>
+                <div class="col-md-3">
+                    @if (Model.Id > 0)
+                    {
+                        <h5>ORÇAMENTO #@Model.Id </h5>
+                    }
+                    else
+                    {
+                        <h5>ORÇAMENTO #@Model.CampoCodigo </h5>
+                    }
+                </div>
+                <div class="flex col-md-6 letra-miuda-relatorio" style="padding:0px;">
+                    <div class="col-md-4">
+                        <div style="padding-bottom:9px;">
+                            <label>Data emissão</label>
+                            <span>@Model.DataCriacao.ToString("dd'/'MM'/'yyyy HH:mm")</span>
+                        </div>
+                        <div>
+                            <label>Data impressão</label>
+                            <span>@DateTime.Now.ToString("dd'/'MM'/'yyyy HH:mm")</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 flex-coluna" style="padding:0px;">
+                        <span>Loja: @Model.LojaDestinoDescricao</span>
+                        <span>@Model.LogradouroLoja</span>
+                        <span>@Model.BairroLoja - @Model.CidadeLoja - @Model.EstadoLoja</span>
+                        <span>CEP: @Model.CepLoja</span>
+                    </div>
+                    <div class="col-md-4 flex-coluna" style="padding:3px;">
+                        <span style="padding-bottom: 5px;">CNPJ: @Model.CnpjLoja</span>
+                        <span style="padding-bottom: 5px;">I.E. @Model.InscricaoEstadualLoja</span>
+                        <span>Televendas: @Model.TelefoneLoja</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bloco-texto-finalizacao">
+                <div class="titulo-texto-finalizacao">
+                    <span style="font-size:20px">VEÍCULO</span>
+                    <span style="padding-left:12px;">@Model.ModeloVeiculoDescricao @Model.VersaoVeiculoDescricao</span>
+                </div>
+
+                <div class="flex">
+                    <div class="flex flex-column col-md-2">
+                        <label>Marca</label>
+                        <a>@Model.MarcaVeiculoDescricao</a>
+                    </div>
+                    <div class="flex flex-column col-md-2">
+                        <label>Ano</label>
+                        <span>@Model.AnoVeiculo</span>
+                    </div>
+                    <div class="flex flex-column col-md-2">
+                        <label>Placa</label>
+                        <span>@Model.PlacaVeiculo</span>
+                    </div>
+                    <div class="flex flex-column col-md-2">
+                        <label>Km rodado</label>
+                        <span>@Model.QuilometragemVeiculo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bloco-texto-finalizacao">
+                <div class="titulo-texto-finalizacao">
+                    <span style="font-size:20px">CLIENTE</span>
+                    <span style="padding-left:12px;">@Model.NomeCliente</span>
+                </div>
+
+                <div class="flex">
+                    <div class="flex flex-column col-md-2">
+                        <label>CPF/CNPJ</label>
+                        <a>@Model.CPFCNPJCliente</a>
+                    </div>
+                    <div class="flex flex-column col-md-2">
+                        <label>Codigo</label>
+                        <span>@Model.CodigoCliente</span>
+                    </div>
+                    <div class="flex flex-column col-md-4">
+                        <label>E-mail</label>
+                        <span>@Model.EmailCliente</span>
+                    </div>
+                    <div class="flex flex-column col-md-2">
+                        <label>Celular</label>
+                        <span>@Model.CelularCliente</span>
+                    </div>
+                    <div class="flex flex-column col-md-2">
+                        <label>Telefone</label>
+                        <span>@Model.TelefoneCliente</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bloco-texto-finalizacao" style="margin-bottom: 0px;">
+                <div class="titulo-texto-finalizacao" style="margin-bottom: 15px;">
+                    <span style="font-size:20px">ITENS DO ORÇAMENTO</span>
+                </div>
+            </div>
+
+
+            @Html.Partial("_TabelaOrcamentoProduto", Model, new ViewDataDictionary(this.ViewData) { { "readonly", true }, { "esconde-desconto", true } })
+        </div>
+        <div id="part2" style="border-top: 3px solid #E0E0E0;">
+            <div class="bloco-texto-finalizacao" style="margin-top:15px;">
+                <div class="titulo-texto-finalizacao">
+                    <span style="font-size:20px">PAGAMENTO</span>
+                </div>
+                <div class="bloco-texto-finalizacao sem-borda ">
+                    <div class="flex">
+                        @if (Model.FormaPagamento != null)
+                        {
+                            foreach (var pagamento in Model.FormaPagamento.FormasPagamentos)
+                            {
+                                <div class="flex flex-column col-md-2">
+                                    <label>@pagamento.CondicaoPagamento</label>
+                                    <span>@($"{pagamento.ValorTotal:C}")</span>
+                                </div>
+                            }
+                            <div class="flex flex-column col-md-2">
+                                <label>Total</label>
+                                <span>@($"{Model.FormaPagamento.FormasPagamentos.Sum(item => item.ValorTotal):C}")</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="bloco-texto-finalizacao">
+                <div class="titulo-texto-finalizacao">
+                    <span style="font-size:20px">OBSERVAÇÕES</span>
+                </div>
+                <div style="font-size: 12px;margin-top: 10px;margin-bottom: 13px;">
+                    <span>@Model.Complemento</span>
+                </div>
+            </div>
+
+            <div class="flex" style="font-size: 12px;">
+                <div class="col-md-5">
+
+                    @foreach (var atividade in Model.AtividadesDellaViaRelatorio)
+                    {
+                        <div class="flex" style="margin-bottom: 10px;">
+                            <div class="col-md-4">
+                                <span>@atividade.Titulo.ToUpper()</span>
+                            </div>
+                            <div class="col-md-8 flex-coluna" style="padding-left: 20px;text-align:justify;">
+                                @foreach (var info in atividade.Informacoes)
+                                {
+                                    <span>@info</span>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="col-md-7" style="padding-left:0px;border:1px solid gray;height:120px;">
+                    <div style="padding-left:5px;text-align:justify;">
+                        <span>Declaro que vistoriei e aprovei os serviços realizados em meu veículo e estou ciente das garantias que tenho direito.</span>
+                    </div>
+                    <div class="flex assinaturas">
+                        <div class="col-md-4">
+                            <span>Cliente</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Téc.Serviço</span>
+                        </div>
+                        <div class="col-md-4" style="padding-left: 0px;">
+                            <span>Gerente/Vendedor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="emailModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmação de e-mail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row col-md-12">
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.LabelFor(model => model.EmailCliente):
+                    @Html.TextBoxFor(model => model.EmailCliente, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="botao" onclick="EnviarEmail()">Enviar</button>
+                <button type="button" class="botao btn-black" data-dismiss="modal">Sair</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="resultado" style="margin-top:100px"></div>
+
+@Scripts.Render("~/bundles/orcamento")

@@ -1,0 +1,873 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D063EC15-0E07-48AC-84F4-CFA252523D35}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DV.FrenteLoja.Core</RootNamespace>
+    <AssemblyName>DV.FrenteLoja.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.BulkInsert, Version=6.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.BulkInsert-ef6-ext.6.0.3.1\lib\net45\EntityFramework.BulkInsert.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.MappingAPI, Version=6.1.0.9, Culture=neutral, PublicKeyToken=7ee2e825d201459e, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.1.0.9\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\MigraDoc.DocumentObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\MigraDoc.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering, Version=1.32.4334.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\MigraDoc.RtfRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4jClient, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Neo4jClient.2.0.0.9\lib\net45\Neo4jClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-GDI.1.32.4334.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contratos\Abstratos\Entidade.cs" />
+    <Compile Include="Contratos\DataObjects\AdministradoraFinanceiraDto.cs" />
+    <Compile Include="Contratos\DataObjects\AplicarDescontoDto.cs" />
+    <Compile Include="Contratos\DataObjects\BuscaEstoqueProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\BuscaProdutoDto.cs" />
+    <Compile Include="Contratos\DataObjects\BuscaValoresProdutoDto.cs" />
+    <Compile Include="Contratos\DataObjects\CargaCatalogoDto.cs" />
+    <Compile Include="Contratos\DataObjects\CatalogoDto.cs" />
+    <Compile Include="Contratos\DataObjects\CatalogoProdutosCorrelacionadosDto.cs" />
+    <Compile Include="Contratos\DataObjects\HomeDto.cs" />
+    <Compile Include="Contratos\DataObjects\ModalOrcamentosDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoConsultaDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoFiltroProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoProtheusHistorico.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoRetornoPostProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoRetornoProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\SolicitacaoAnaliseCreditoDto.cs" />
+    <Compile Include="Contratos\DataObjects\SolicitacaoAnaliseCreditoRetornoProtheus.cs" />
+    <Compile Include="Contratos\DataObjects\SolicitacaoDescontoVendaAlcadaDto.cs" />
+    <Compile Include="Contratos\DataObjects\ObservacaoDto.cs" />
+    <Compile Include="Contratos\DataObjects\VeiculoDTO.cs" />
+    <Compile Include="Contratos\DataObjects\VeiculoMedidasPneusDTO.cs" />
+    <Compile Include="Contratos\DataObjects\VeiculoProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\VersaoMotorDTO.cs" />
+    <Compile Include="Contratos\Enums\CheckListEnum.cs" />
+    <Compile Include="Contratos\DataObjects\CheckupCarDto.cs" />
+    <Compile Include="Contratos\DataObjects\CheckupDto.cs" />
+    <Compile Include="Contratos\DataObjects\CheckupTruckDto.cs" />
+    <Compile Include="Contratos\DataObjects\ClienteDto.cs" />
+    <Compile Include="Contratos\DataObjects\ClienteVeiculoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ConvenioDto.cs" />
+    <Compile Include="Contratos\DataObjects\DescontoVendaAlcadaProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\EquipeMontagemDto.cs" />
+    <Compile Include="Contratos\DataObjects\FormaPagamentoDto.cs" />
+    <Compile Include="Contratos\DataObjects\GrupoServicoAgregadoProdutoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ModalDetalhesProdutoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ElasticsearchItemDto.cs" />
+    <Compile Include="Contratos\DataObjects\EstoqueDto.cs" />
+    <Compile Include="Contratos\DataObjects\LogCargaCatalogoDto.cs" />
+    <Compile Include="Contratos\DataObjects\LogIntegracaoDto.cs" />
+    <Compile Include="Contratos\DataObjects\LojaDellaViaDto.cs" />
+    <Compile Include="Contratos\DataObjects\MarcaDto.cs" />
+    <Compile Include="Contratos\DataObjects\MarcaModeloDto.cs" />
+    <Compile Include="Contratos\DataObjects\ClienteMarcaModeloVersaoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ModalEstoqueDto.cs" />
+    <Compile Include="Contratos\DataObjects\NovoOrcamentoDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoFormaPagamentoProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoItemEquipeMontagemProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoItemProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoPagamentoDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoFormaPagamentoDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoItemDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoProdutoBuscaDto.cs" />
+    <Compile Include="Contratos\DataObjects\OrcamentoProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\ParcelaDto.cs" />
+    <Compile Include="Contratos\DataObjects\ParcelamentoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ProdutoComplementoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ProdutoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ProdutoProtheusDto.cs" />
+    <Compile Include="Contratos\DataObjects\ProfissionalMontagemDto.cs" />
+    <Compile Include="Contratos\DataObjects\SacolaProdutoDto.cs" />
+    <Compile Include="Contratos\DataObjects\ServicoCorrelacionadoDto.cs" />
+    <Compile Include="Contratos\DataObjects\TabelaPrecoDto.cs" />
+    <Compile Include="Contratos\DataObjects\WizardDto.cs" />
+    <Compile Include="Contratos\Enums\CheckupLegenda.cs" />
+    <Compile Include="Contratos\Enums\OrigemCarga.cs" />
+    <Compile Include="Contratos\Enums\SituacaoDescontoAlcada.cs" />
+    <Compile Include="Contratos\Enums\SituacaoAnaliseCredito.cs" />
+    <Compile Include="Contratos\Enums\StatusCreditoCliente.cs" />
+    <Compile Include="Contratos\Enums\StatusOrcamento.cs" />
+    <Compile Include="Contratos\Enums\TipoFiltroOrcamento.cs" />
+    <Compile Include="Contratos\Enums\TipoFormaPagamento.cs" />
+    <Compile Include="Contratos\DataObjects\AreaNegocioDto.cs" />
+    <Compile Include="Contratos\DataObjects\TransportadoraDto.cs" />
+    <Compile Include="Contratos\DataObjects\VendedorDto.cs" />
+    <Compile Include="Contratos\Enums\DescontoModeloVendaUtilizado.cs" />
+    <Compile Include="Contratos\Enums\EndpointProtheus.cs" />
+    <Compile Include="Contratos\Enums\EnumHelper.cs" />
+    <Compile Include="Contratos\Enums\FlagPermissaoPrograma.cs" />
+    <Compile Include="Contratos\Enums\PerfilAcessoUsuario.cs" />
+    <Compile Include="Contratos\Enums\ProfissionalMontagemFuncao.cs" />
+    <Compile Include="Contratos\Enums\StatusCliente.cs" />
+    <Compile Include="Contratos\Enums\StatusIntegracao.cs" />
+    <Compile Include="Contratos\Enums\StatusSolicitacao.cs" />
+    <Compile Include="Contratos\Enums\TipoObservacao.cs" />
+    <Compile Include="Contratos\Enums\TipoOleo.cs" />
+    <Compile Include="Contratos\Enums\TipoItemOrcamento.cs" />
+    <Compile Include="Contratos\Enums\TipoOrcamento.cs" />
+    <Compile Include="Contratos\Enums\TipoPreco.cs" />
+    <Compile Include="Contratos\Enums\TipoProdutoElasticSearch.cs" />
+    <Compile Include="Contratos\Enums\TipoRelatorio.cs" />
+    <Compile Include="Contratos\Enums\TipoTabelaProtheus.cs" />
+    <Compile Include="Contratos\Enums\TrocaPrecoConvenio.cs" />
+    <Compile Include="Contratos\Enums\VeiculoPosicaoPneuEnum.cs" />
+    <Compile Include="Contratos\Interfaces\ICalculoImpostosApi.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaClienteServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaConvenioServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaDescontosServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaOrcamentoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaPrecoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaProdutoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaVeiculoProdutosServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaVeiculoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICatalogoProtheusApi.cs" />
+    <Compile Include="Contratos\Interfaces\ICatalogoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICheckupCarServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICheckupServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICheckupTruckServico.cs" />
+    <Compile Include="Contratos\Interfaces\IClienteServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICondicaoPagamentoParcelasApi.cs" />
+    <Compile Include="Contratos\Interfaces\IConsultaPlacaWS.cs" />
+    <Compile Include="Contratos\Interfaces\IGrupoProdutoServico.cs" />
+    <Compile Include="Contratos\Interfaces\IEntidade.cs" />
+    <Compile Include="Contratos\Interfaces\IConvenioServico.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaCadastrosBasicosService.cs" />
+    <Compile Include="Contratos\Interfaces\ICargaCadastrosProtheusSyncApi.cs" />
+    <Compile Include="Contratos\Interfaces\IEstoqueProtheusApi.cs" />
+    <Compile Include="Contratos\Interfaces\IHomeServico.cs" />
+    <Compile Include="Contratos\Interfaces\ILogCargaCatalogoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ILoginProtheusApi.cs" />
+    <Compile Include="Contratos\Interfaces\ILogIntegracaoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ILojaDellaViaServico.cs" />
+    <Compile Include="Contratos\Interfaces\IImpostosServico.cs" />
+    <Compile Include="Contratos\Interfaces\IOrcamentoApi.cs" />
+    <Compile Include="Contratos\Interfaces\IOrcamentoItemServico.cs" />
+    <Compile Include="Contratos\Interfaces\IOrcamentoServico.cs" />
+    <Compile Include="Contratos\Interfaces\IParametroGeralServico.cs" />
+    <Compile Include="Contratos\Interfaces\IProdutoServico.cs" />
+    <Compile Include="Contratos\Interfaces\IRelatoriosServico.cs" />
+    <Compile Include="Contratos\Interfaces\IRepositorio.cs" />
+    <Compile Include="Contratos\Interfaces\IRepositorioEscopo.cs" />
+    <Compile Include="Contratos\Interfaces\IServico.cs" />
+    <Compile Include="Contratos\Interfaces\ISolicitacaoAnaliseCreditoApi.cs" />
+    <Compile Include="Contratos\Interfaces\ITabelaPrecoServico.cs" />
+    <Compile Include="Contratos\Interfaces\ITipoVendaServico.cs" />
+    <Compile Include="Contratos\Interfaces\ITransportadoraServico.cs" />
+    <Compile Include="Contratos\Interfaces\IVeiculoApi.cs" />
+    <Compile Include="Contratos\Interfaces\IVeiculoServico.cs" />
+    <Compile Include="Contratos\Interfaces\IVendedorServico.cs" />
+    <Compile Include="Contratos\Validator\ClienteValidator.cs" />
+    <Compile Include="Contratos\Validator\OrcamentoValidator.cs" />
+    <Compile Include="Contratos\Validator\ValidatorMessages.cs" />
+    <Compile Include="Dominios\Entidades\AdministradoraFinanceira.cs" />
+    <Compile Include="Dominios\Entidades\Banco.cs" />
+    <Compile Include="Dominios\Entidades\BancoDto.cs" />
+    <Compile Include="Dominios\Entidades\CatalogoFraga.cs" />
+    <Compile Include="Dominios\Entidades\CatalogoCargaLog.cs" />
+    <Compile Include="Dominios\Entidades\Checkup.cs" />
+    <Compile Include="Dominios\Entidades\CheckupCar.cs" />
+    <Compile Include="Dominios\Entidades\CheckupTruck.cs" />
+    <Compile Include="Dominios\Entidades\Cliente.cs" />
+    <Compile Include="Dominios\Entidades\ClienteVeiculo.cs" />
+    <Compile Include="Dominios\Entidades\DescontoLoja.cs" />
+    <Compile Include="Dominios\Entidades\LojaConfig.cs" />
+    <Compile Include="Dominios\Entidades\PDProduto.cs" />
+    <Compile Include="Dominios\Entidades\PDFormaPagamento.cs" />
+    <Compile Include="Dominios\Entidades\PDCondicaoPagamento.cs" />
+    <Compile Include="Dominios\Entidades\CondicaoPagamento.cs" />
+    <Compile Include="Dominios\Entidades\ConvenioCondicaoPagamento.cs" />
+    <Compile Include="Dominios\Entidades\ConvenioProduto.cs" />
+    <Compile Include="Dominios\Entidades\ConvenioCliente.cs" />
+    <Compile Include="Dominios\Entidades\Convenio.cs" />
+    <Compile Include="Dominios\Entidades\Catalogo.cs" />
+    <Compile Include="Dominios\Entidades\CatalogoArquivo.cs" />
+    <Compile Include="Dominios\Entidades\CatalogoProdutosCorrelacionados.cs" />
+    <Compile Include="Dominios\Entidades\DescontoModeloVenda.cs" />
+    <Compile Include="Dominios\Entidades\DescontoVendaAlcada.cs" />
+    <Compile Include="Dominios\Entidades\DescontoVendaAlcadaGrupoProduto.cs" />
+    <Compile Include="Dominios\Entidades\GrupoProduto.cs" />
+    <Compile Include="Dominios\Entidades\GrupoServicoAgregado.cs" />
+    <Compile Include="Dominios\Entidades\GrupoServicoAgregadoProduto.cs" />
+    <Compile Include="Dominios\Entidades\LogIntegracao.cs" />
+    <Compile Include="Dominios\Entidades\LojaDellaVia.cs" />
+    <Compile Include="Dominios\Entidades\LojaDellaViaProxima.cs" />
+    <Compile Include="Dominios\Entidades\Marca.cs" />
+    <Compile Include="Dominios\Entidades\MarcaModelo.cs" />
+    <Compile Include="Dominios\Entidades\MarcaModeloVersao.cs" />
+    <Compile Include="Dominios\Entidades\OperadorPD.cs" />
+    <Compile Include="Dominios\Entidades\Operador.cs" />
+    <Compile Include="Dominios\Entidades\Orcamento.cs" />
+    <Compile Include="Dominios\Entidades\OrcamentoFormaPagamento.cs" />
+    <Compile Include="Dominios\Entidades\OrcamentoItem.cs" />
+    <Compile Include="Dominios\Entidades\OrcamentoItemEquipeMontagem.cs" />
+    <Compile Include="Dominios\Entidades\OrcamentoObservacao.cs" />
+    <Compile Include="Dominios\Entidades\ParametroGeral.cs" />
+    <Compile Include="Dominios\Entidades\Produto.cs" />
+    <Compile Include="Dominios\Entidades\ProdutoComplemento.cs" />
+    <Compile Include="Dominios\Entidades\SolicitacaoAnaliseCredito.cs" />
+    <Compile Include="Dominios\Entidades\SolicitacaoDescontoVendaAlcada.cs" />
+    <Compile Include="Dominios\Entidades\GrupoSubGrupo.cs" />
+    <Compile Include="Dominios\Entidades\TabelaPreco.cs" />
+    <Compile Include="Dominios\Entidades\TabelaPrecoItem.cs" />
+    <Compile Include="Dominios\Entidades\SubGrupo.cs" />
+    <Compile Include="Dominios\Entidades\PDAreaNegocio.cs" />
+    <Compile Include="Dominios\Entidades\TipoVenda.cs" />
+    <Compile Include="Dominios\Entidades\Transportadora.cs" />
+    <Compile Include="Dominios\Entidades\Veiculo.cs" />
+    <Compile Include="Dominios\Entidades\VeiculoMedidasPneus.cs" />
+    <Compile Include="Dominios\Entidades\Vendedor.cs" />
+    <Compile Include="Dominios\Entidades\VersaoMotor.cs" />
+    <Compile Include="Dominios\Entidades\vwVeiculos.cs" />
+    <Compile Include="Dominios\Entidades\VwVeiculosProduto.cs" />
+    <Compile Include="Exceptions\NegocioException.cs" />
+    <Compile Include="Exceptions\ServicoIntegracaoException.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CheckupCarMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CheckupMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CheckupTruckMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\OrcamentoObservacaoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\SolicitacaoAnaliseCreditoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\GrupoSubGrupoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\SubGrupoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\VeiculoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\VeiculoMedidasPneusMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\VersaoMotorMap.cs" />
+    <Compile Include="Migrations\201801242034307_Version_Name.cs" />
+    <Compile Include="Migrations\201801242034307_Version_Name.Designer.cs">
+      <DependentUpon>201801242034307_Version_Name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801291132473_fixClienteVeiculo.cs" />
+    <Compile Include="Migrations\201801291132473_fixClienteVeiculo.Designer.cs">
+      <DependentUpon>201801291132473_fixClienteVeiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801311355372_RemoveUKCampoCodidoMarcaEModelo.cs" />
+    <Compile Include="Migrations\201801311355372_RemoveUKCampoCodidoMarcaEModelo.Designer.cs">
+      <DependentUpon>201801311355372_RemoveUKCampoCodidoMarcaEModelo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802011553426_FixCondicaopagamento.cs" />
+    <Compile Include="Migrations\201802011553426_FixCondicaopagamento.Designer.cs">
+      <DependentUpon>201802011553426_FixCondicaopagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907221506279_VersaoMotor.cs" />
+    <Compile Include="Migrations\201907221506279_VersaoMotor.Designer.cs">
+      <DependentUpon>201907221506279_VersaoMotor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907221711188_veiculo.cs" />
+    <Compile Include="Migrations\201907221711188_veiculo.Designer.cs">
+      <DependentUpon>201907221711188_veiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910291405106_Atualizacao.cs" />
+    <Compile Include="Migrations\201910291405106_Atualizacao.Designer.cs">
+      <DependentUpon>201910291405106_Atualizacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910301456155_OrcamentoRetiraradaFK.cs" />
+    <Compile Include="Migrations\201910301456155_OrcamentoRetiraradaFK.Designer.cs">
+      <DependentUpon>201910301456155_OrcamentoRetiraradaFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910301503024_ClienteVeiculoRetiradaFK.cs" />
+    <Compile Include="Migrations\201910301503024_ClienteVeiculoRetiradaFK.Designer.cs">
+      <DependentUpon>201910301503024_ClienteVeiculoRetiradaFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910301532566_ClienteVeiculoAlter.cs" />
+    <Compile Include="Migrations\201910301532566_ClienteVeiculoAlter.Designer.cs">
+      <DependentUpon>201910301532566_ClienteVeiculoAlter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911121754387_ajustesBD.cs" />
+    <Compile Include="Migrations\201911121754387_ajustesBD.Designer.cs">
+      <DependentUpon>201911121754387_ajustesBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131435576_ajustes_DB.cs" />
+    <Compile Include="Migrations\201911131435576_ajustes_DB.Designer.cs">
+      <DependentUpon>201911131435576_ajustes_DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131438594_ajustes_DB1.cs" />
+    <Compile Include="Migrations\201911131438594_ajustes_DB1.Designer.cs">
+      <DependentUpon>201911131438594_ajustes_DB1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131842309_ajustes_DB2.cs" />
+    <Compile Include="Migrations\201911131842309_ajustes_DB2.Designer.cs">
+      <DependentUpon>201911131842309_ajustes_DB2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131846562_ajustes_DB3.cs" />
+    <Compile Include="Migrations\201911131846562_ajustes_DB3.Designer.cs">
+      <DependentUpon>201911131846562_ajustes_DB3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131859516_ajustes_DB4.cs" />
+    <Compile Include="Migrations\201911131859516_ajustes_DB4.Designer.cs">
+      <DependentUpon>201911131859516_ajustes_DB4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131913251_ajustes_DB5.cs" />
+    <Compile Include="Migrations\201911131913251_ajustes_DB5.Designer.cs">
+      <DependentUpon>201911131913251_ajustes_DB5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911131917560_ajustes_DB6.cs" />
+    <Compile Include="Migrations\201911131917560_ajustes_DB6.Designer.cs">
+      <DependentUpon>201911131917560_ajustes_DB6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911181646118_ajustes_DB7.cs" />
+    <Compile Include="Migrations\201911181646118_ajustes_DB7.Designer.cs">
+      <DependentUpon>201911181646118_ajustes_DB7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911181735457_ajustes_DB8.cs" />
+    <Compile Include="Migrations\201911181735457_ajustes_DB8.Designer.cs">
+      <DependentUpon>201911181735457_ajustes_DB8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911191431473_ajustes_DB9.cs" />
+    <Compile Include="Migrations\201911191431473_ajustes_DB9.Designer.cs">
+      <DependentUpon>201911191431473_ajustes_DB9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911192154519_ajustes_DB10.cs" />
+    <Compile Include="Migrations\201911192154519_ajustes_DB10.Designer.cs">
+      <DependentUpon>201911192154519_ajustes_DB10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911221537422_ajustes_DB11.cs" />
+    <Compile Include="Migrations\201911221537422_ajustes_DB11.Designer.cs">
+      <DependentUpon>201911221537422_ajustes_DB11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911271357567_ajustes_DB12.cs" />
+    <Compile Include="Migrations\201911271357567_ajustes_DB12.Designer.cs">
+      <DependentUpon>201911271357567_ajustes_DB12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911271931037_ajustes_DB13.cs" />
+    <Compile Include="Migrations\201911271931037_ajustes_DB13.Designer.cs">
+      <DependentUpon>201911271931037_ajustes_DB13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911282000035_ajustes_DB14.cs" />
+    <Compile Include="Migrations\201911282000035_ajustes_DB14.Designer.cs">
+      <DependentUpon>201911282000035_ajustes_DB14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911282105509_ajustes_DB15.cs" />
+    <Compile Include="Migrations\201911282105509_ajustes_DB15.Designer.cs">
+      <DependentUpon>201911282105509_ajustes_DB15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911282332316_ajustes_DB16.cs" />
+    <Compile Include="Migrations\201911282332316_ajustes_DB16.Designer.cs">
+      <DependentUpon>201911282332316_ajustes_DB16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911291403211_ajustes_DB17.cs" />
+    <Compile Include="Migrations\201911291403211_ajustes_DB17.Designer.cs">
+      <DependentUpon>201911291403211_ajustes_DB17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911292236203_ajustes_DB18.cs" />
+    <Compile Include="Migrations\201911292236203_ajustes_DB18.Designer.cs">
+      <DependentUpon>201911292236203_ajustes_DB18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911300020356_ajustes_DB19.cs" />
+    <Compile Include="Migrations\201911300020356_ajustes_DB19.Designer.cs">
+      <DependentUpon>201911300020356_ajustes_DB19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912052052156_ajustes_DB20.cs" />
+    <Compile Include="Migrations\201912052052156_ajustes_DB20.Designer.cs">
+      <DependentUpon>201912052052156_ajustes_DB20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912052122292_ajustes_DB21.cs" />
+    <Compile Include="Migrations\201912052122292_ajustes_DB21.Designer.cs">
+      <DependentUpon>201912052122292_ajustes_DB21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912052301521_ajustes_DB22.cs" />
+    <Compile Include="Migrations\201912052301521_ajustes_DB22.Designer.cs">
+      <DependentUpon>201912052301521_ajustes_DB22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912132207187_ajustes_DB23.cs" />
+    <Compile Include="Migrations\201912132207187_ajustes_DB23.Designer.cs">
+      <DependentUpon>201912132207187_ajustes_DB23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912132308442_ajustes_DB24.cs" />
+    <Compile Include="Migrations\201912132308442_ajustes_DB24.Designer.cs">
+      <DependentUpon>201912132308442_ajustes_DB24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912132355149_ajustes_DB25.cs" />
+    <Compile Include="Migrations\201912132355149_ajustes_DB25.Designer.cs">
+      <DependentUpon>201912132355149_ajustes_DB25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912140000157_ajustes_DB26.cs" />
+    <Compile Include="Migrations\201912140000157_ajustes_DB26.Designer.cs">
+      <DependentUpon>201912140000157_ajustes_DB26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912140047538_ajustes_DB27.cs" />
+    <Compile Include="Migrations\201912140047538_ajustes_DB27.Designer.cs">
+      <DependentUpon>201912140047538_ajustes_DB27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912161958223_ajustes_DB28.cs" />
+    <Compile Include="Migrations\201912161958223_ajustes_DB28.Designer.cs">
+      <DependentUpon>201912161958223_ajustes_DB28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912162029490_ajustes_DB29.cs" />
+    <Compile Include="Migrations\201912162029490_ajustes_DB29.Designer.cs">
+      <DependentUpon>201912162029490_ajustes_DB29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912162300147_ajustes_DB30.cs" />
+    <Compile Include="Migrations\201912162300147_ajustes_DB30.Designer.cs">
+      <DependentUpon>201912162300147_ajustes_DB30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912181653181_ajustes_DB31.cs" />
+    <Compile Include="Migrations\201912181653181_ajustes_DB31.Designer.cs">
+      <DependentUpon>201912181653181_ajustes_DB31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912181704216_ajustes_DB32.cs" />
+    <Compile Include="Migrations\201912181704216_ajustes_DB32.Designer.cs">
+      <DependentUpon>201912181704216_ajustes_DB32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912262117264_ajustes_DB33.cs" />
+    <Compile Include="Migrations\201912262117264_ajustes_DB33.Designer.cs">
+      <DependentUpon>201912262117264_ajustes_DB33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001101828414_ajustes_DB34.cs" />
+    <Compile Include="Migrations\202001101828414_ajustes_DB34.Designer.cs">
+      <DependentUpon>202001101828414_ajustes_DB34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001311653393_ajustes_DB35.cs" />
+    <Compile Include="Migrations\202001311653393_ajustes_DB35.Designer.cs">
+      <DependentUpon>202001311653393_ajustes_DB35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002041508317_ajustes_DB36.cs" />
+    <Compile Include="Migrations\202002041508317_ajustes_DB36.Designer.cs">
+      <DependentUpon>202002041508317_ajustes_DB36.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052018250_ajustes_DB37.cs" />
+    <Compile Include="Migrations\202002052018250_ajustes_DB37.Designer.cs">
+      <DependentUpon>202002052018250_ajustes_DB37.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052039204_ajustes_DB38.cs" />
+    <Compile Include="Migrations\202002052039204_ajustes_DB38.Designer.cs">
+      <DependentUpon>202002052039204_ajustes_DB38.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052050060_ajustes_DB39.cs" />
+    <Compile Include="Migrations\202002052050060_ajustes_DB39.Designer.cs">
+      <DependentUpon>202002052050060_ajustes_DB39.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052056017_ajustes_DB40.cs" />
+    <Compile Include="Migrations\202002052056017_ajustes_DB40.Designer.cs">
+      <DependentUpon>202002052056017_ajustes_DB40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052109077_ajustes_DB41.cs" />
+    <Compile Include="Migrations\202002052109077_ajustes_DB41.Designer.cs">
+      <DependentUpon>202002052109077_ajustes_DB41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052113021_InitialMigration.cs" />
+    <Compile Include="Migrations\202002052113021_InitialMigration.Designer.cs">
+      <DependentUpon>202002052113021_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052134262_ajustes_DB42.cs" />
+    <Compile Include="Migrations\202002052134262_ajustes_DB42.Designer.cs">
+      <DependentUpon>202002052134262_ajustes_DB42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052144436_ajustes_DB43.cs" />
+    <Compile Include="Migrations\202002052144436_ajustes_DB43.Designer.cs">
+      <DependentUpon>202002052144436_ajustes_DB43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002052215408_ajustes_DB44.cs" />
+    <Compile Include="Migrations\202002052215408_ajustes_DB44.Designer.cs">
+      <DependentUpon>202002052215408_ajustes_DB44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003052006197_ajustes_DB45.cs" />
+    <Compile Include="Migrations\202003052006197_ajustes_DB45.Designer.cs">
+      <DependentUpon>202003052006197_ajustes_DB45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003061546011_ajustes_DB46.cs" />
+    <Compile Include="Migrations\202003061546011_ajustes_DB46.Designer.cs">
+      <DependentUpon>202003061546011_ajustes_DB46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003061614598_ajustes_DB47.cs" />
+    <Compile Include="Migrations\202003061614598_ajustes_DB47.Designer.cs">
+      <DependentUpon>202003061614598_ajustes_DB47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003061924091_ajustes_DB48.cs" />
+    <Compile Include="Migrations\202003061924091_ajustes_DB48.Designer.cs">
+      <DependentUpon>202003061924091_ajustes_DB48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003101558213_ajustes_DB49.cs" />
+    <Compile Include="Migrations\202003101558213_ajustes_DB49.Designer.cs">
+      <DependentUpon>202003101558213_ajustes_DB49.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003101908470_ajustes_DB50.cs" />
+    <Compile Include="Migrations\202003101908470_ajustes_DB50.Designer.cs">
+      <DependentUpon>202003101908470_ajustes_DB50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121438136_ajustes_DB51.cs" />
+    <Compile Include="Migrations\202003121438136_ajustes_DB51.Designer.cs">
+      <DependentUpon>202003121438136_ajustes_DB51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProtheusAPI\CalculoImpostosApi.cs" />
+    <Compile Include="ProtheusAPI\OrcamentoApi.cs" />
+    <Compile Include="ProtheusAPI\SolicitacaoAnaliseCreditoApi.cs" />
+    <Compile Include="ProtheusAPI\VeiculoApi.cs" />
+    <Compile Include="Servicos\CargaOrcamentoServico.cs" />
+    <Compile Include="Servicos\CargaVeiculoServico.cs" />
+    <Compile Include="Servicos\CargaVeiculosProdutoServico.cs" />
+    <Compile Include="Servicos\CheckupCarServico.cs" />
+    <Compile Include="Servicos\CheckupServico.cs" />
+    <Compile Include="Servicos\CheckupTruckServico.cs" />
+    <Compile Include="Servicos\Comuns\Elasticsearch.cs" />
+    <Compile Include="Servicos\ConsultaPlacaWS.cs" />
+    <Compile Include="Servicos\GrupoProdutoServico.cs" />
+    <Compile Include="Servicos\ImpostosServico.cs" />
+    <Compile Include="Util\ConsultaBase.cs" />
+    <Compile Include="Util\ConversorStatusOrcamento.cs" />
+    <Compile Include="Servicos\HomeServico.cs" />
+    <Compile Include="Util\FiltroHelper.cs" />
+    <Compile Include="Util\FormatarTelefone.cs" />
+    <Compile Include="Util\FormatEnumAsStringDescription.cs" />
+    <Compile Include="Util\FormatNumberAsTextConverter.cs" />
+    <Compile Include="Extensions\ListExtension.cs" />
+    <Compile Include="Extensions\Lists.cs" />
+    <Compile Include="Extensions\DbContextExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Grafo\ConfigGrafo.cs" />
+    <Compile Include="Grafo\Conversores\GrafoToSQL.cs" />
+    <Compile Include="Grafo\Conversores\SQLToGrafoCatalogo.cs" />
+    <Compile Include="Grafo\Enumerator\CypherCreate .cs" />
+    <Compile Include="Grafo\Enumerator\TipoConexao.cs" />
+    <Compile Include="Grafo\Enumerator\TypeNode.cs" />
+    <Compile Include="Grafo\Exception\CypherException.cs" />
+    <Compile Include="Grafo\Infra\IEntidadeRoot.cs" />
+    <Compile Include="Grafo\Infra\Migration.cs" />
+    <Compile Include="Infra\EntityFramework\DellaviaContexto.cs" />
+    <Compile Include="Infra\EntityFramework\DellaViaDBSeed.cs" />
+    <Compile Include="Infra\EntityFramework\DellaviaEscopo.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\AdministradoraFinanceiraMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\BancoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CatalogoArquivoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CatalogoCargaLogMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CatalogoProdutosCorrelacionadosMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\ClienteMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\ClienteVeiculoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CondicaoPagamentoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\CatalogoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\DescontoModeloVendaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\DescontoVendaAlcadaGrupoProdutoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\DescontoVendaAlcadaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\GrupoProdutoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\GrupoServicoAgregadoProdutoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\LogIntegracaoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\LojaDellaViaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\LojaDellaViaProximaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\MarcaModeloMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\MarcaModeloVersaoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\OperadorMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\OrcamentoFormaPagamentoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\OrcamentoItemEquipeMontagemMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\OrcamentoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\OrcamentoItemMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\ParametroGeralMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\ProdutoComplementoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\ProdutoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\SolicitacaoDescontoVendaAlcadaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\TabelaPrecoItemMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\TabelaPrecoMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\MarcaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\TipoVendaMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\TransportadoraMap.cs" />
+    <Compile Include="Infra\EntityFramework\Mapeamento\VendedorMap.cs" />
+    <Compile Include="Infra\EntityFramework\Repositorio.cs" />
+    <Compile Include="Infra\Security\IdentityExtensions.cs" />
+    <Compile Include="MapperConfig\AutoMapperConfig.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtheusAPI\CatalogoApi.cs" />
+    <Compile Include="ProtheusAPI\CondicaoPagamentoParcelasApi.cs" />
+    <Compile Include="ProtheusAPI\EstoqueApi.cs" />
+    <Compile Include="ProtheusAPI\CargaCadastrosSyncApi.cs" />
+    <Compile Include="Servicos\CargaClienteServico.cs" />
+    <Compile Include="Servicos\CargaConvenioServico.cs" />
+    <Compile Include="Servicos\CargaDescontosServico.cs" />
+    <Compile Include="Servicos\CargaPrecoServico.cs" />
+    <Compile Include="Servicos\CargaProdutoServico.cs" />
+    <Compile Include="Servicos\CatalogoServico.cs" />
+    <Compile Include="Servicos\ClienteServico.cs" />
+    <Compile Include="Servicos\ConvenioServico.cs" />
+    <Compile Include="Servicos\CargaCadastrosBasicosService.cs" />
+    <Compile Include="Servicos\LogCargaCatalogoServico.cs" />
+    <Compile Include="ProtheusAPI\LoginApi.cs" />
+    <Compile Include="Servicos\LogIntegracaoServico.cs" />
+    <Compile Include="Servicos\LojaDellaViaServico.cs" />
+    <Compile Include="Servicos\OrcamentoItemServico.cs" />
+    <Compile Include="Servicos\OrcamentoServico.cs" />
+    <Compile Include="Servicos\ParametroGeralServico.cs" />
+    <Compile Include="Servicos\ProdutoServico.cs" />
+    <Compile Include="Servicos\TabelaPrecoServico.cs" />
+    <Compile Include="Servicos\TipoVendaServico.cs" />
+    <Compile Include="Servicos\TransportadoraServico.cs" />
+    <Compile Include="Servicos\VeiculoServico.cs" />
+    <Compile Include="Servicos\VendedorServico.cs" />
+    <Compile Include="Util\Constants.cs" />
+    <Compile Include="Util\ProtheusConversions.cs" />
+    <Compile Include="Util\SeedCar.cs" />
+    <Compile Include="Util\ConversoesCheckup.cs" />
+    <Compile Include="Util\UtilIntegracao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801242034307_Version_Name.resx">
+      <DependentUpon>201801242034307_Version_Name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801291132473_fixClienteVeiculo.resx">
+      <DependentUpon>201801291132473_fixClienteVeiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801311355372_RemoveUKCampoCodidoMarcaEModelo.resx">
+      <DependentUpon>201801311355372_RemoveUKCampoCodidoMarcaEModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802011553426_FixCondicaopagamento.resx">
+      <DependentUpon>201802011553426_FixCondicaopagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221506279_VersaoMotor.resx">
+      <DependentUpon>201907221506279_VersaoMotor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221711188_veiculo.resx">
+      <DependentUpon>201907221711188_veiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910291405106_Atualizacao.resx">
+      <DependentUpon>201910291405106_Atualizacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301456155_OrcamentoRetiraradaFK.resx">
+      <DependentUpon>201910301456155_OrcamentoRetiraradaFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301503024_ClienteVeiculoRetiradaFK.resx">
+      <DependentUpon>201910301503024_ClienteVeiculoRetiradaFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301532566_ClienteVeiculoAlter.resx">
+      <DependentUpon>201910301532566_ClienteVeiculoAlter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911121754387_ajustesBD.resx">
+      <DependentUpon>201911121754387_ajustesBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131435576_ajustes_DB.resx">
+      <DependentUpon>201911131435576_ajustes_DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131438594_ajustes_DB1.resx">
+      <DependentUpon>201911131438594_ajustes_DB1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131842309_ajustes_DB2.resx">
+      <DependentUpon>201911131842309_ajustes_DB2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131846562_ajustes_DB3.resx">
+      <DependentUpon>201911131846562_ajustes_DB3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131859516_ajustes_DB4.resx">
+      <DependentUpon>201911131859516_ajustes_DB4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131913251_ajustes_DB5.resx">
+      <DependentUpon>201911131913251_ajustes_DB5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131917560_ajustes_DB6.resx">
+      <DependentUpon>201911131917560_ajustes_DB6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911181646118_ajustes_DB7.resx">
+      <DependentUpon>201911181646118_ajustes_DB7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911181735457_ajustes_DB8.resx">
+      <DependentUpon>201911181735457_ajustes_DB8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911191431473_ajustes_DB9.resx">
+      <DependentUpon>201911191431473_ajustes_DB9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911192154519_ajustes_DB10.resx">
+      <DependentUpon>201911192154519_ajustes_DB10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911221537422_ajustes_DB11.resx">
+      <DependentUpon>201911221537422_ajustes_DB11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911271357567_ajustes_DB12.resx">
+      <DependentUpon>201911271357567_ajustes_DB12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911271931037_ajustes_DB13.resx">
+      <DependentUpon>201911271931037_ajustes_DB13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911282000035_ajustes_DB14.resx">
+      <DependentUpon>201911282000035_ajustes_DB14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911282105509_ajustes_DB15.resx">
+      <DependentUpon>201911282105509_ajustes_DB15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911282332316_ajustes_DB16.resx">
+      <DependentUpon>201911282332316_ajustes_DB16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291403211_ajustes_DB17.resx">
+      <DependentUpon>201911291403211_ajustes_DB17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911292236203_ajustes_DB18.resx">
+      <DependentUpon>201911292236203_ajustes_DB18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911300020356_ajustes_DB19.resx">
+      <DependentUpon>201911300020356_ajustes_DB19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912052052156_ajustes_DB20.resx">
+      <DependentUpon>201912052052156_ajustes_DB20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912052122292_ajustes_DB21.resx">
+      <DependentUpon>201912052122292_ajustes_DB21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912052301521_ajustes_DB22.resx">
+      <DependentUpon>201912052301521_ajustes_DB22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912132207187_ajustes_DB23.resx">
+      <DependentUpon>201912132207187_ajustes_DB23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912132308442_ajustes_DB24.resx">
+      <DependentUpon>201912132308442_ajustes_DB24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912132355149_ajustes_DB25.resx">
+      <DependentUpon>201912132355149_ajustes_DB25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912140000157_ajustes_DB26.resx">
+      <DependentUpon>201912140000157_ajustes_DB26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912140047538_ajustes_DB27.resx">
+      <DependentUpon>201912140047538_ajustes_DB27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912161958223_ajustes_DB28.resx">
+      <DependentUpon>201912161958223_ajustes_DB28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912162029490_ajustes_DB29.resx">
+      <DependentUpon>201912162029490_ajustes_DB29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912162300147_ajustes_DB30.resx">
+      <DependentUpon>201912162300147_ajustes_DB30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912181653181_ajustes_DB31.resx">
+      <DependentUpon>201912181653181_ajustes_DB31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912181704216_ajustes_DB32.resx">
+      <DependentUpon>201912181704216_ajustes_DB32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912262117264_ajustes_DB33.resx">
+      <DependentUpon>201912262117264_ajustes_DB33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001101828414_ajustes_DB34.resx">
+      <DependentUpon>202001101828414_ajustes_DB34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001311653393_ajustes_DB35.resx">
+      <DependentUpon>202001311653393_ajustes_DB35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041508317_ajustes_DB36.resx">
+      <DependentUpon>202002041508317_ajustes_DB36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052018250_ajustes_DB37.resx">
+      <DependentUpon>202002052018250_ajustes_DB37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052039204_ajustes_DB38.resx">
+      <DependentUpon>202002052039204_ajustes_DB38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052050060_ajustes_DB39.resx">
+      <DependentUpon>202002052050060_ajustes_DB39.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052056017_ajustes_DB40.resx">
+      <DependentUpon>202002052056017_ajustes_DB40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052109077_ajustes_DB41.resx">
+      <DependentUpon>202002052109077_ajustes_DB41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052113021_InitialMigration.resx">
+      <DependentUpon>202002052113021_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052134262_ajustes_DB42.resx">
+      <DependentUpon>202002052134262_ajustes_DB42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052144436_ajustes_DB43.resx">
+      <DependentUpon>202002052144436_ajustes_DB43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052215408_ajustes_DB44.resx">
+      <DependentUpon>202002052215408_ajustes_DB44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003052006197_ajustes_DB45.resx">
+      <DependentUpon>202003052006197_ajustes_DB45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003061546011_ajustes_DB46.resx">
+      <DependentUpon>202003061546011_ajustes_DB46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003061614598_ajustes_DB47.resx">
+      <DependentUpon>202003061614598_ajustes_DB47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003061924091_ajustes_DB48.resx">
+      <DependentUpon>202003061924091_ajustes_DB48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003101558213_ajustes_DB49.resx">
+      <DependentUpon>202003101558213_ajustes_DB49.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003101908470_ajustes_DB50.resx">
+      <DependentUpon>202003101908470_ajustes_DB50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121438136_ajustes_DB51.resx">
+      <DependentUpon>202003121438136_ajustes_DB51.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sql_scripts\sql_script.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,311 @@
+﻿@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupCarDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Content/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>Dellavia</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/inputmask")
+</head>
+<body>
+
+    <header class="report">
+        <div class="col-md-12 titulo-pdf">
+            <h3> CHECK-UP - RELATÓRIO</h3>
+        </div>
+    </header>
+
+    <main class="col-md-12 main-pdf">
+        <div class="row" style="padding-left:25px">
+            <div class="text-align-center" style="width:40%">
+                <label> CLIENTE: </label>
+                @Html.DisplayTextFor(model => model.Cliente)
+            </div>
+            <div class="text-align-center" style="width:25%">
+                <label> VEÍCULO: </label>
+                @Html.DisplayTextFor(model => model.Car)
+            </div>
+            <div class="text-align-center" style="width:25%">
+                <label> ID: </label>
+                @Html.DisplayTextFor(model => model.CheckupId)
+            </div>
+            <div class="col-md-1 offset-11">
+                <label>  </label>
+            </div>
+        </div>
+        <div class="legenda-pdf">
+            @Html.Partial("_Legenda")
+        </div>
+        <div class="container-pdf">
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label class="labelPdf"> MEDIDAS INICIAIS </label>
+                <div class="legendGrid">
+                    <label class="labelPdf"> Item </label>
+                    <label class="labelPdf offset-10"> Valor </label>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarEsquerdoFrontalInicial, new { @classList = "col-md-5" })
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarEsquerdoFrontalInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CasterEsquerdoFrontalInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CasterEsquerdoFrontalInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarEsquerdoTraseiroInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarEsquerdoTraseiroInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.ConvergenciaEsquerdaTraseiroInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.ConvergenciaEsquerdaTraseiroInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarDireitoFrontalInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarDireitoFrontalInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CasterDireitoFrontalInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CasterDireitoFrontalInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarDireitoTraseiroInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarDireitoTraseiroInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.ConvergenciaDireitoTraseiroInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.ConvergenciaDireitoTraseiroInicial)</span>
+                </div>
+                <div class="checkbox checkboxReport last">
+                    @Html.LabelFor(model => model.ConvergenciaTotalInicial)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.ConvergenciaTotalInicial)</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label class="labelPdf"> MEDIDAS FINAIS </label>
+
+                <div class="legendGrid">
+                    <label class="labelPdf"> Item </label>
+                    <label class="labelPdf offset-10"> Valor </label>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarEsquerdoFrontalFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarEsquerdoFrontalFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CasterEsquerdoFrontalFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CasterEsquerdoFrontalFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarEsquerdoTraseiroFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarEsquerdoTraseiroFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.ConvergenciaEsquerdaTraseiroFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.ConvergenciaEsquerdaTraseiroFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarDireitoFrontalFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarDireitoFrontalFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CasterDireitoFrontalFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CasterDireitoFrontalFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.CambarDireitoTraseiroFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.CambarDireitoTraseiroFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport">
+                    @Html.LabelFor(model => model.ConvergenciaDireitoTraseiroFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.ConvergenciaDireitoTraseiroFinal)</span>
+                </div>
+                <div class="checkbox checkboxReport last">
+                    @Html.LabelFor(model => model.ConvergenciaTotalFinal)
+                    <span class="span-label-pdf">@Html.DisplayTextFor(model => model.ConvergenciaTotalFinal)</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-pdf">
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label> SISTEMA DE RODAGEM </label>
+                @Html.CheckBoxSimplePdf(model => model.PneuDianteiro, model => model.PneuDianteiroExecutado)
+                @Html.CheckBoxSimplePdf(model => model.PneuTraseiro, model => model.PneuTraseiroExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Estepe, model => model.EstepeExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Valvula, model => model.ValvulaExecutado, true)
+            </div>
+
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label> SERVIÇOS </label>
+                @Html.CheckBoxSimplePdf(model => model.Balanceamento, model => model.BalanceamentoExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Alinhamento, model => model.AlinhamentoExecutado)
+                @Html.CheckBoxSimplePdf(model => model.ConsertoRoda, model => model.ConsertoRodaExecutado)
+                @Html.CheckBoxSimplePdf(model => model.CambagemCáster, model => model.CambagemCásterExecutado, true)
+            </div>
+        </div>
+        <div class="container-pdf">
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label> SUSPENSÃO </label>
+                @Html.CheckBoxSimplePdf(model => model.AmortecedorDianteiro, model => model.AmortecedorDianteiroExecutado)
+                @Html.CheckBoxSimplePdf(model => model.AmortecedorTraseiro, model => model.AmortecedorTraseiroExecutado)
+                @Html.CheckBoxSimplePdf(model => model.TerminaisDeDirecao, model => model.TerminaisDeDirecaoExecutado)
+                @Html.CheckBoxSimplePdf(model => model.BracosAxiais, model => model.BracosAxiaisExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Pivos, model => model.PivosExecutado, true)
+            </div>
+
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label> ACESSÓRIOS </label>
+                @Html.CheckBoxSimplePdf(model => model.Palhetas, model => model.PalhetasExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Calotas, model => model.CalotasExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Extintor, model => model.ExtintorExecutado)
+                @Html.CheckBoxSimplePdf(model => model.InjecaoEletronica, model => model.InjecaoEletronicaExecutado)
+                @Html.CheckBoxSimplePdf(model => model.HigienizacaoDeAr, model => model.HigienizacaoDeArExecutado)
+                @Html.CheckBoxSimplePdf(model => model.FiltroArCondicionado, model => model.FiltroArCondicionadoExecutado, true)
+            </div>
+        </div>
+        <div class="container-pdf">
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label> SISTEMA DE FREIO </label>
+                @Html.CheckBoxSimplePdf(model => model.Pastilhas, model => model.PastilhasExecutado)
+                @Html.CheckBoxSimplePdf(model => model.Discos, model => model.DiscosExecutado)
+                @Html.CheckBoxSimplePdf(model => model.FluidoFreio, model => model.FluidoFreioExecutado)
+                @Html.CheckBoxSimplePdf(model => model.FreioTraseiro, model => model.FreioTraseiroExecutado, true)
+            </div>
+
+            <div class="col-md-6 container-lado-lado-pdf">
+                <label> ÓLEO </label>
+
+                <div class="checkbox checkboxReport">
+                    <div class="col-md-9">
+                        @Html.LabelFor(model => model.OleoMotor)
+                    </div>
+                    <div class="col-md-3">
+                        @{
+                        if (Model.OleoMotor.HasValue)
+                        {
+                            @Model.OleoMotor.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        Html.Encode(@Model.OleoMotor.GetValueOrDefault());
+                    }
+                        }
+                    </div>
+                </div>
+
+                <div class="checkbox checkboxReport">
+                    <div class="col-md-9">
+                        @Html.LabelFor(model => model.FiltroOleo)
+                    </div>
+                    <div class="col-md-3">
+                        @{
+                        if (Model.FiltroOleo.HasValue)
+                        {
+                            @Model.FiltroOleo.Value.ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+                        Html.Encode(@Model.FiltroOleo.GetValueOrDefault());
+                    }
+                        }
+                    </div>
+                </div>
+
+                <div class="checkbox checkboxReport">
+                    <div class="col-md-9">
+                        @Html.LabelFor(model => model.TipoOleo)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayTextFor(model => model.TipoOleo)
+                    </div>
+                </div>
+
+                <div class="checkbox checkboxReport">
+                    <div class="col-md-9">
+                        @Html.LabelFor(model => model.Especificacao)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DisplayTextFor(model => model.Especificacao)
+                    </div>
+                </div>
+
+                @Html.CheckBoxSimplePdf(model => model.FiltroDeAr, model => model.FiltroDeArExecutado)
+                @Html.CheckBoxSimplePdf(model => model.FiltroCombustivel, model => model.FiltroCombustivelExecutado, true)
+                <div class="row">
+                    <div class="col-md-9 container-lado-lado-pdf">
+                        @Html.LabelFor(model => model.CodigoDellaVia)
+                    </div>
+                    <div class="col-md-3 container-lado-lado-pdf">
+                        @Html.DisplayTextFor(model => model.CodigoDellaVia)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 obs-pdf-car">
+            <div class="col-md-12">@Html.LabelFor(model => model.Observacoes)</div>
+            <p class="textObs">@Html.DisplayTextFor(model => model.Observacoes)</p>
+        </div>
+
+        <div class="container-tecnico-vendedor-pdf">
+            <div class="col-md-6 container-lado-lado-pdf">
+                <div class="col-md-9">
+                    @Html.LabelFor(model => model.Tecnico)
+                </div>
+                <div class="col-md-3">
+                    <p class="textObs"> @Html.DisplayTextFor(model => model.TecnicoNome) </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 container-lado-lado-pdf">
+                <div class="col-md-9">
+                    @Html.LabelFor(model => model.Vendedor)
+                </div>
+                <div class="col-md-3">
+                    <p class="textObs"> @Html.DisplayTextFor(model => model.VendedorNome) </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-data-pdf">
+            <div class="col-md-6 container-lado-lado-pdf">
+                <div class="col-md-9">
+                    @Html.Label("Data")
+                </div>
+                <div class="col-md-3">
+                    <p class="textObs"> __/__/__ </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 container-lado-lado-pdf">
+                <div class="col-md-9">
+                    <label class="assinatura assinatura-pdf"> ASSINATURA DO CLIENTE </label>
+                </div>
+                <div class="col-md-12 texto-assinatura-pdf">
+                    <p class="textObs">
+                        Declaro estar ciente das indicações relacionadas neste Check-up, a título de orientação,
+                        bem como me responsabilizo pela recusa das trocas ou serviços recomendados para a manutenção preventiva ou corretiva do veiculo avaliado
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    @Scripts.Render("~/bundles/checkup")
+
+</body>
+</html>
+

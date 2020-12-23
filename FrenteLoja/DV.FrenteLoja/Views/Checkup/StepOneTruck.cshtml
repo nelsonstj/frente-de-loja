@@ -1,0 +1,126 @@
+﻿@using DV.FrenteLoja.Helpers;
+@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupTruckDto
+
+
+<header>
+    <div>
+        <div class="col-md-4">
+            <h3> CHECK-UP </h3>
+        </div>
+        <div class="col-md-12 text-align-end">
+            @Html.StepControl(1, 3)
+        </div>
+    </div>
+</header>
+
+<main>
+    @using (@Html.BeginForm("StepOneTruck", "Checkup", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Cliente)
+        @Html.HiddenFor(model => model.CPFCNPJ)
+        @Html.HiddenFor(model => model.Phone)
+        @Html.HiddenFor(model => model.License)
+        @Html.HiddenFor(model => model.Car);
+        @Html.HiddenFor(model => model.Year);
+        @Html.HiddenFor(model => model.KM);
+        @Html.HiddenFor(model => model.Marca);
+        @Html.HiddenFor(model => model.Versao);
+        @Html.HiddenFor(model => model.Tecnico);
+        @Html.HiddenFor(model => model.Vendedor);
+        @Html.HiddenFor(model => model.ProdutoServico);
+        @Html.HiddenFor(model => model.IsCheckupCar);
+        @Html.HiddenFor(model => model.OrcamentoId);
+        @Html.HiddenFor(model => model.CheckupId);
+        @Html.HiddenFor(model => model.EmailCliente);
+
+        @Html.HiddenFor(model => model.BracoTensor);
+        @Html.HiddenFor(model => model.BracoTensorExecutado);
+        @Html.HiddenFor(model => model.BalancaPino);
+        @Html.HiddenFor(model => model.BalancaPinoExecutado);
+        @Html.HiddenFor(model => model.LonaPastilhaFreioTraseiro);
+        @Html.HiddenFor(model => model.LonaPastilhaFreioTraseiroExecutado);
+        @Html.HiddenFor(model => model.CatracaFlexivel);
+        @Html.HiddenFor(model => model.CatracaFlexivelExecutado);
+        @Html.HiddenFor(model => model.MolejoSuporte);
+        @Html.HiddenFor(model => model.MolejoSuporteExecutado);
+        @Html.HiddenFor(model => model.SuspensorTruck);
+        @Html.HiddenFor(model => model.SuspensorTruckExecutado);
+        @Html.HiddenFor(model => model.TamborDiscoFreioTraseiro);
+        @Html.HiddenFor(model => model.TamborDiscoFreioTraseiroTruckExecutado);
+        @Html.HiddenFor(model => model.AmortecedorTraseiro);
+        @Html.HiddenFor(model => model.AmortecedorTraseiroExecutado);
+        @Html.HiddenFor(model => model.Id);
+
+        @Html.HiddenFor(model => model.Observacoes)
+
+
+
+        <div>
+            <div class="header">
+                <label> SUSPENSÃO DIANTEIRA </label>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.Embuchamento, model => model.EmbuchamentoExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.TerminalBarraLonga, model => model.TerminalBarraLongaExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.BarraCurtaDireção, model => model.BarraCurtaDireçãoExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.LonaPastilhaFreioDianteiro, model => model.LonaPastilhaFreioDianteiroExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.Amortecedor, model => model.AmortecedorExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.BarraEstabilozadora, model => model.BarraEstabilozadoraExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox">
+            @Html.CheckBoxList(model => model.TamborDiscoFreio, model => model.TamborDiscoFreioExecutado)
+        </div>
+
+        <div class="col-md-12 checkbox last">
+            @Html.CheckBoxList(model => model.MolejoCompleto, model => model.MolejoCompletoExecutado)
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-12 noPadding paddingCampos noMargin">
+                    <button type="reset" class="btn btn-outline-secondary  btn-block" onclick="window.history.back()">Voltar</button>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-12 noPadding paddingCampos noMargin">
+                    <input type="submit" value="Prosseguir" class="btn btn-block blue" />
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+</main>
+@Html.Partial("_Legenda")
+@Scripts.Render("~/bundles/checkup")
+
+@section Scripts
+{
+    <script>
+        buildFakeRadioButtons();
+        buildFakeCheckBox();
+    </script>
+
+}

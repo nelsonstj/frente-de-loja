@@ -1,0 +1,142 @@
+﻿@model  DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoDto
+@{
+    var listSearch = new[]
+    {
+        "Código Orçamento",
+        "Código do Cliente",
+        "CPF",
+        "CNPJ"
+    };
+
+    var selectList = new SelectList(listSearch, "Código Orçamento");
+}
+<main>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3> CHECK-UP </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="header">
+            <label>DADOS DO CLIENTE</label>
+
+
+            @using (Html.BeginForm("Search", "Checkup", null, FormMethod.Get, new { @class = "searchBox" }))
+            {
+
+                <div class="col-3 noPadding">
+                    @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })
+                </div>
+
+                <div class="col-1 noPadding">
+                    @Html.DropDownList("type", selectList, new { @class = "form-control" })
+                </div>
+
+                <div class="containerImgSearch">
+                    <button type="submit"><img src="~/Content/img/ic_search.png" /></button>
+
+                </div>
+            }
+
+        </div>
+    </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <form method="post">
+            <div class="form-group row">
+
+                <div class="col-md-6">
+                    @Html.LabelFor()
+                    <label for="name">Nome</label>
+                    <input type="text" readonly class="form-control" id="name">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="cpf_cnpj">CPF/CNPJ</label>
+                    <input type="text" readonly class="form-control" id="cpf_cnpj">
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3">
+                    <label for="phone">Telefone</label>
+                    <input type="text" readonly class="form-control" id="phone">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="license">Placa</label>
+                    <input type="text" readonly class="form-control" id="license">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="brand">Marca</label>
+                    <input type="text" readonly class="form-control" id="brand">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="name">Modelo</label>
+                    <input type="text" readonly class="form-control" id="name">
+                </div>
+
+                <div class="col-md-1">
+                    <label for="version">Versão</label>
+                    <input type="text" readonly class="form-control" id="version">
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-6 row">
+
+                    <div class="col-md-6">
+                        <label for="year">Ano</label>
+                        <input type="text" readonly class="form-control" id="year">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="km">KM Rodados</label>
+                        <input type="text" readonly class="form-control" id="km">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="km">Técnico Responsável</label>
+                        <input type="text" class="form-control" id="km">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="km">Vendedor Responsável</label>
+                        <input type="text" class="form-control" id="km">
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="col-xl-12">
+                        <label for="requestedService">Serviço/Produto Solicitado</label>
+                        <textarea class="form-control" id="requestedService" rows="6"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-outline-secondary btn-lg btn-block">Cancelar</button>
+                <input type="submit" class="btn btn-primary btn-lg btn-block" />
+            </div>
+
+        </form>
+
+    }
+
+</main>
+
+
+
+@Scripts.Render("~/bundles/checkup")

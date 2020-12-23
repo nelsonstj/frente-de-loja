@@ -1,0 +1,148 @@
+﻿@using DV.FrenteLoja.Core.Contratos.DataObjects
+@model OrcamentoDto
+
+@helper botaoDesconto(long idItem, long qtdeItem)
+    {
+        if (!Convert.ToBoolean(ViewData["readonly"]))
+        {
+            <button class='botao-negociacao' onclick="abrirModalDesconto(@idItem, @Model.Id, @qtdeItem)">Aplicar</button>
+        }
+}
+
+@helper  compoenenteDesconto(decimal desconto, long idItem, long qtdeItem)
+    {
+        if (Model.TrocaPrecoConvenio != DV.FrenteLoja.Core.Contratos.Enums.TrocaPrecoConvenio.Fixo)
+        {
+            if (desconto > 0)
+            {
+                <div class="flex"><a>@(desconto)% &nbsp;</a><i class="fa fa-pencil" style="cursor:pointer" onclick="abrirModalDesconto(@idItem, @Model.Id, @qtdeItem)"></i></div>
+            }
+            else
+            {
+                @botaoDesconto(idItem, qtdeItem)
+            }
+        }
+        else
+        {
+            <a>-</a>
+        }
+}
+
+@helper componenteEquipeMontagem(long idItem, List<ProfissionalMontagemDto> profissionais)
+    {
+        <div class="equipe-montagem">
+            @if (!Convert.ToBoolean(ViewData["readonly"]))
+            {
+                <button class="botao-negociacao fa fa-plus" onclick="abrirModalEquipeMontagem(@Model.Id, @idItem)"></button>
+            }
+            @if (profissionais?.Count > 0)
+            {
+                var equipe = profissionais.Select(item => item.ProfissionalNome).Aggregate((prev, later) => prev + ", " + later);
+                <a title="@equipe">@equipe</a>
+            }
+        </div>
+}
+
+<div class="flex table-header" style="margin-top: 0px;">
+    <div class="flex-size-0-4">Nr.</div>
+    <div class="flex-size-0-4">Cód.</div>
+    <div class="flex-size-2">Descrição</div>
+    <div class="flex-size-0-4">Unit.</div>
+    <div class="flex-size-0-4">Qtde.</div>
+    @if (!Convert.ToBoolean(ViewData["esconde-desconto"]))
+    {
+        <div class="flex-size-0-5">Desconto</div>
+    }
+    <div class="flex-size-0-5 alinha-centro-vertical">Total Item</div>
+    @if (!Convert.ToBoolean(ViewData["esconde-desconto"]))
+    {
+        <div class="flex-size-1">Montagem</div>
+    }
+    @if (!Convert.ToBoolean(ViewData["readonly"]))
+    {
+        <div class="flex-size-0-2"></div>
+    }
+</div>
+@foreach (var item in Model.OrcamentoProduto.Produtos)
+{
+    <div class="flex table-body produto">
+        <div class="flex-size-0-4 alinha-centro-vertical" data-head="Nr.">@item.NumeroItem</div>
+        <div class="flex-size-0-4 alinha-centro-vertical" data-head="Cód.">@item.CampoCodigoProduto</div>
+        <div class="flex-size-2 alinha-esquerda alinha-centro-vertical" data-head="Descrição" style="height:62px"><b>@item.Descricao</b></div>
+        <div class="flex-size-0-4 alinha-direita alinha-centro-vertical" data-head="Unit.">@string.Format("{0:C}", item.Valor)</div>
+        <div class="flex-size-0-4 alinha-direita alinha-centro-vertical" data-head="Qtde.">@item.Quantidade</div>
+        @if (!Convert.ToBoolean(ViewData["esconde-desconto"]))
+        {
+            if (Convert.ToBoolean(ViewData["readonly"]))
+            {
+                <div class="flex-size-0-5 alinha-centro-vertical" data-head="Desconto">@(item.PercentualDesconto > 0 ? item.PercentualDesconto.ToString("0.####") + "%" : string.Empty)</div>
+            }
+            else
+            {
+                <div class="flex-size-0-5 alinha-centro-vertical" data-head="Desconto">@compoenenteDesconto(item.PercentualDesconto, item.IdOrcamentoItem, item.Quantidade)</div>
+            }
+        }
+        <div class="flex-size-0-5 alinha-direita alinha-centro-vertical" data-head="Total item"><b>@string.Format("{0:C}", item.ValorTotal)</b></div>
+        @if (!Convert.ToBoolean(ViewData["esconde-desconto"]))
+        {
+            if (item.TipoItem == DV.FrenteLoja.Core.Contratos.Enums.TipoItemOrcamento.Produto)
+            {
+                <div class="flex-size-1 alinha-centro-vertical" data-head="Montagem"></div>
+            }
+            else
+            {
+                <div class="flex-size-1" data-head="Montagem">@componenteEquipeMontagem(item.IdOrcamentoItem, item.ProfissionaisMontagem)</div>
+            }
+        }
+        @if (!Convert.ToBoolean(ViewData["readonly"]))
+        {
+            <div class="flex-size-0-2 flex-center alinha-centro-vertical">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removerOrcamentoItem('1', @Model.Id, @item.IdOrcamentoItem)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+    </div>
+
+    foreach (var servico in item.Servicos)
+    {
+        <div class="flex table-body">
+            <div class="flex-size-0-4 alinha-centro-vertical" data-head="Nr.">@servico.NumeroItem</div>
+            <div class="flex-size-0-4 alinha-centro-vertical" data-head="Cód.">@servico.CampoCodigoProduto</div>
+            <div class="flex-size-2 alinha-esquerda alinha-centro-vertical" data-head="Descrição" style="height:62px">@servico.Descricao</div>
+            <div class="flex-size-0-4 alinha-direita alinha-centro-vertical" data-head="Unit.">@string.Format("{0:C}", servico.Valor)</div>
+            <div class="flex-size-0-4 alinha-direita alinha-centro-vertical" data-head="Qtde.">@servico.Quantidade</div>
+            @if (!Convert.ToBoolean(ViewData["esconde-desconto"]))
+            {
+                if (Convert.ToBoolean(ViewData["readonly"]))
+                {
+                    <div class="flex-size-0-5 alinha-centro-vertical" data-head="Desconto">@(servico.PercentualDesconto > 0 ? servico.PercentualDesconto.ToString("0.####") + "%" : string.Empty)</div>
+                }
+                else
+                {
+                    <div class="flex-size-0-5 alinha-centro-vertical" data-head="Desconto">@compoenenteDesconto(servico.PercentualDesconto, servico.IdOrcamentoItem, servico.Quantidade)</div>
+                }
+            }
+            <div class="flex-size-0-5 alinha-direita alinha-centro-vertical" data-head="Total item"><b>@string.Format("{0:C}", servico.ValorTotal)</b></div>
+            @if (!Convert.ToBoolean(ViewData["esconde-desconto"]))
+            {
+                if (servico.TipoItem == DV.FrenteLoja.Core.Contratos.Enums.TipoItemOrcamento.Produto)
+                {
+                    <div class="flex-size-1 alinha-centro-vertical" data-head="Montagem"></div>
+                }
+                else
+                {
+                    <div class="flex-size-1" data-head="Montagem">@componenteEquipeMontagem(servico.IdOrcamentoItem, servico.ProfissionaisMontagem)</div>
+                }
+            }
+            @if (!Convert.ToBoolean(ViewData["readonly"]))
+            {
+                <div class="flex-size-0-2 flex-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removerOrcamentoItem('2', @Model.Id, @servico.IdOrcamentoItem)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        </div>
+    }
+}

@@ -1,0 +1,51 @@
+﻿@model DV.FrenteLoja.Models.LoginViewModel
+@{
+    ViewBag.Title = "Dellavia - Frente de Loja";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link href="~/Content/login.css" rel="stylesheet" />
+        <script src="~/Scripts/app/account/login.js"></script>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/app")
+        @Scripts.Render("~/bundles/inputmask")
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="form">
+                <div class="text-align-center">
+                    <br />
+                    <img class="logo" src="/Content/img/logo.svg">
+                    <br />
+                    <br />
+                    <br />
+                    <p class="logo-text-color">Frente de Loja</p>
+                </div>
+                @using (Html.BeginForm("Login", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "validationOfLogin()" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <br />
+                    <label> Usuário </label>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Usuário Protheus" })
+                    <label> Senha </label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Senha Protheus" })
+                    <div class="aitssendbuttonw3ls">
+                        <input type="submit" id="entrar" value="Entrar">
+                    </div>
+                    if (Html.ValidationSummary(true) != null)
+                    {
+                        <br />
+                        <div class="text-danger">@Html.ValidationSummary()</div>
+                    }
+                }
+            </div>
+        </div>
+    </body>
+</html>

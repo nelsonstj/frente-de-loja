@@ -1,0 +1,207 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    width: 20em;
+    border-radius: 0;
+    box-shadow: 0px 0px 11px 1px #888888;
+    flex-wrap: wrap;
+    min-height: 200px;
+    min-width: 300px
+}
+
+.containerHome header.msg {
+    font-size: 2rem;
+}
+
+.containerHome {
+    display: flex;
+    margin: 0;
+    background: url('/Content/img/webDashboardBg.jpg');
+    background-repeat: round;
+    height: calc(100% - 82px);
+    flex-direction: column;
+}
+
+.containerHome main {
+    flex: 1 1 auto;
+}
+
+.msg {
+    color: #F5F5F5;
+    background-color: transparent;
+    color: #F5F5F5;
+    text-align: center;
+}
+
+.containerbttNovos a:hover {
+    color: transparent;
+}
+
+.containerCards {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card header {
+    background: #bdc3c7;
+    text-align: start;
+    color: #60646D;
+    padding: .5em;
+    flex: 1 1 auto;
+    font-size: 10px;
+}
+
+.card.red header {
+    color: #ecf0f1;
+    background: #c0392b;
+}
+
+.card main {
+    flex: 1 1 100%;
+    color: #7f8c8d;
+    font-size: 4em;
+    text-align: center;
+}
+
+.card.red main {
+    color: #ecf0f1;
+}
+
+.card.red {
+    color: #ecf0f1;
+    background: #e74c3c;
+}
+
+.card footer {
+    background: #bdc3c7;
+    display: inline-flex;
+    color: #60646D;
+    font-weight: bold;
+    height: 2.5em;
+    max-height: 2.5em;
+}
+
+.card.red footer {
+    background-color: transparent;
+}
+
+.card header label {
+    font-weight: bold;
+    display: block;
+    font-size: 15px;
+}
+
+.card footer {
+    flex: 1 0 3em;
+}
+
+.labelDetalhes {
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cardIco {
+    font-size: 2em;
+    padding-right: .6em;
+}
+
+#bttsFooter {
+    display: inline-flex;
+    width: 100%;
+    text-align: center;
+    padding: .7em;
+    justify-content: space-around;
+}
+
+.bttNovo {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: -8px;
+}
+
+.containerbttNovos .bttNovo {
+    background: #343a40 !important;
+    color: #fff;
+    justify-content: center;
+    width: 9em;
+}
+
+.separatorBtt {
+    border: #2a2d37;
+    border: 0;
+    border-right-width: 1px;
+    border-style: solid;
+}
+
+.containerbttNovos {
+    float: right;
+}
+
+.containerSteps {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    color: #2c3e50;
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (max-width: 768px) {
+    .icon-grid {
+        font-size: 1.7em;
+        padding: 3px;
+    }
+    .icon-icon-car-structure {
+        margin-left: -51px;
+    }
+    .containerHome header.msg h2 {
+        font-size: .9em;
+    }
+    .containerCards {
+        flex-direction: column;
+    }
+}
+
+
+/* IPad Pro*/
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+    .divCarStructure {
+        padding-left: 52px;
+    }
+
+    .icon-grid {
+        font-size: 1.7em;
+        padding: 3px;
+    }
+    
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape){
+    .card{
+        width: 15em;
+      }
+
+      .containerCards {
+        flex-direction: row;
+    }
+    .icon-grid {
+        font-size: 1.7em;
+        padding: 3px;
+    }
+}
+
+
+/* IPad */
+
+@media only screen and (max-width: 768px) {
+    .divCarStructure {
+        padding-left: 10px;
+    }
+}

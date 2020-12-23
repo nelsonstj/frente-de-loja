@@ -1,0 +1,184 @@
+﻿@model  DV.FrenteLoja.Core.Contratos.DataObjects.CheckupTruckDto
+@{
+
+}
+@if (TempData["sucesso"] != null)
+{
+    <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert" style="margin: 0;margin-top:90px;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            @TempData["sucesso"]
+        </div>
+    </div>
+    <script>
+        $('#alert-placeholder').fadeTo(3000, 500).slideUp(500, function () {
+            $("#success-alert").alert('close');
+        });
+    </script>
+}
+@if (TempData["erro"] != null)
+{
+    <div id="alert-placeholder" style="width: 50%; left: 25%;position: fixed; z-index: 9999;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 0;margin-top:90px;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            @TempData["erro"]
+        </div>
+    </div>
+    <script>
+        $('#alert-placeholder').fadeTo(3000, 500).slideUp(500, function () {
+            $("#success-alert").alert('close');
+        });
+    </script>
+}
+
+<header class="report">
+    <div class="col-md-12">
+        <h3> CHECK-UP - RELATÓRIO TRUCK </h3>
+    </div>
+</header>
+
+<main class="row col-md-12">
+    <div class="col-md-4 text-align-center">
+        <label> CLIENTE: </label>
+        @Html.DisplayTextFor(model => model.Cliente)
+    </div>
+    <div class="col-md-4 text-align-center">
+        <label> VEÍCULO: </label>
+        @Html.DisplayTextFor(model => model.Car)
+    </div>
+    <div class="col-md-4 text-align-center">
+        <label> ID: </label>
+        @Html.DisplayTextFor(model => model.CheckupId)
+    </div>
+    <div class="col-md-12 text-align-center">
+        @Html.Partial("_Legenda")
+    </div>
+
+    <div class="col-md-6">
+        <label> SISTEMA DE RODAGEM </label>
+        @Html.CheckBoxSimple(model => model.Embuchamento, model => model.EmbuchamentoExecutado)
+        @Html.CheckBoxSimple(model => model.TerminalBarraLonga, model => model.TerminalBarraLongaExecutado)
+        @Html.CheckBoxSimple(model => model.BarraCurtaDireção, model => model.BarraCurtaDireçãoExecutado)
+        @Html.CheckBoxSimple(model => model.LonaPastilhaFreioDianteiro, model => model.LonaPastilhaFreioDianteiroExecutado)
+        @Html.CheckBoxSimple(model => model.Amortecedor, model => model.AmortecedorExecutado)
+        @Html.CheckBoxSimple(model => model.BarraEstabilozadora, model => model.BarraEstabilozadoraExecutado)
+        @Html.CheckBoxSimple(model => model.TamborDiscoFreio, model => model.TamborDiscoFreioExecutado)
+        @Html.CheckBoxSimple(model => model.MolejoCompleto, model => model.MolejoCompletoExecutado, true)
+    </div>
+
+    <div class="col-md-6">
+        <label> SUSPENSÃO TRASEIRA </label>
+        @Html.CheckBoxSimple(model => model.BracoTensor, model => model.BracoTensorExecutado)
+        @Html.CheckBoxSimple(model => model.BalancaPino, model => model.BalancaPinoExecutado)
+        @Html.CheckBoxSimple(model => model.LonaPastilhaFreioTraseiro, model => model.LonaPastilhaFreioTraseiroExecutado)
+        @Html.CheckBoxSimple(model => model.CatracaFlexivel, model => model.CatracaFlexivelExecutado)
+        @Html.CheckBoxSimple(model => model.MolejoSuporte, model => model.MolejoSuporteExecutado)
+        @Html.CheckBoxSimple(model => model.SuspensorTruck, model => model.SuspensorTruckExecutado)
+        @Html.CheckBoxSimple(model => model.TamborDiscoFreioTraseiro, model => model.TamborDiscoFreioTraseiroTruckExecutado)
+        @Html.CheckBoxSimple(model => model.AmortecedorTraseiro, model => model.AmortecedorTraseiroExecutado, true)
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-12">@Html.LabelFor(model => model.Observacoes)</div>
+        <p class="textObs">@Html.DisplayTextFor(model => model.Observacoes)</p>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            @Html.LabelFor(model => model.Tecnico)
+        </div>
+        <div class="col-md-12">
+            <p class="textObs"> @Html.DisplayTextFor(model => model.TecnicoNome) </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            @Html.LabelFor(model => model.Vendedor)
+        </div>
+        <div class="col-md-12">
+            <p class="textObs"> @Html.DisplayTextFor(model => model.VendedorNome) </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            @Html.Label("Data")
+        </div>
+        <div class="col-md-3">
+            <p class="textObs"> __/__/__ </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-9">
+            <label class="assinatura"> ASSINATURA DO CLIENTE </label>
+        </div>
+        <div class="col-md-12">
+            <p class="textObs">
+                Declaro estar ciente das indicações relacionadas neste Check-up, a título de orientação,
+                bem como me responsabilizo pela recusa das trocas ou serviços recomendados para a manutenção preventiva ou corretiva do veiculo avaliado
+            </p>
+        </div>
+    </div>
+
+</main>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-12 noPadding paddingCampos noMargin">
+                <button type="reset" class="btn btn-outline-secondary  btn-block" onclick="window.history.back()">Voltar</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-12 noPadding paddingCampos noMargin">
+                <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#emailModal" data-whatever="mdo">Enviar por E-mail</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-12 noPadding paddingCampos noMargin">
+                @using (@Html.BeginForm("Imprimir", "Checkup", FormMethod.Post))
+                {
+                    @Html.HiddenFor(model => model.Id)
+                    <input type="submit" value="Imprimir" class="btn btn-primary btn-block blue" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@using (@Html.BeginForm("EnviarPorEmail", "Checkup", FormMethod.Post, new { id = "EnviarPorEmail" }))
+{
+    <div id="emailModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmação de e-mail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row col-md-12">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.LabelFor(model => model.EmailCliente):
+                        @Html.TextBoxFor(model => model.EmailCliente, new { @class = "input-lg" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="EnviarEmail()" class="btn btn-secondary">Enviar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+@Scripts.Render("~/bundles/checkup")

@@ -1,0 +1,124 @@
+﻿@model IList<DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoDto>
+
+@if (TempData["Erro"] != null)
+{
+  <script>
+    criaAlertaMensagem('@TempData["Erro"]')    
+  </script>
+}
+
+
+<div style="margin-top:20px">
+  <div class="col-md-12">
+    <h4>PESQUISAR ORÇAMENTOS</h4>
+  </div>
+  <div class="col-md-12 row">
+    <div class="col-md-2">
+      <select id="tipo-filtro">
+        <option value="null">Selecione</option>
+        <option value="0">ID Orçamento</option>
+        <option value="1">Nº Protheus</option>
+        <option value="2">Placa</option>
+        <option value="3">CPF do Cliente</option>
+        <option value="4">CNPJ Cliente</option>
+        <option value="5">Código do Cliente</option>
+        <option value="6">Vendedor</option>
+        <option value="7">Loja Destino</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" id="termo-busca" placeholder="" />
+    </div>
+    <div class="col-md-2">
+      <select id="status">
+        <option value="999">Todos</option>
+        <option value="0">Em Aberto</option>
+        <option value="1">Vendas efetuadas</option>
+        <option value="2">Reservas</option>
+        <option value="3">Em aberto vencidos</option>
+        <option value="4">Cancelados</option>
+        <option value="5">Encerrados</option>
+        <option value="6">Devoluções pendentes</option>
+        <option value="7">Transação TEF desfeita</option>
+        <option value="8">Orçamentos com pedidos de venda</option>
+        <option value="9">Orçamentos pagos no FrontLoja</option>
+        <option value="10">Venda Estornada</option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="botao" onclick="filtrarOrcamentos()">Filtrar</button>
+    </div>
+    <div class="col-md-2">
+      @using (Html.BeginForm("VeiculoCliente", "Orcamento"))
+      {
+        <button class="botao btn-black" type="submit">Novo</button>
+      }
+    </div>
+  </div>
+  <div class="col-md-12">
+    <h4 style="margin-top: 15px;">Orçamentos Frente Loja</h4>
+  </div>
+
+  <div class="col-md-12">
+    <div id="grid-orcamento">
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <h4 style="margin-top: 15px;">Orçamentos Histórico Protheus</h4>
+  </div>
+  <div class="col-md-12">
+    <div id="grid-orcamento-protheus">
+    </div>
+  </div>
+</div>
+
+<script id="template-detalhes" type="text/x-kendo-template">
+  <div class="flex">
+    <button class='botao-negociacao' onclick="sincronizaOrcamento('#:CampoCodigo#','#:Id#')">Detalhes</button>
+    <form action="/Orcamento/Relatorio" method="post" style="margin-left:3px">
+      <input type="hidden" name="id" value="#:Id#" />
+      <button class='botao-negociacao' type="submit">Relatório</button>
+    </form>
+  </div>
+</script>
+
+<script id="template-detalhes-hist" type="text/x-kendo-template">
+  <div class="flex">
+    <form action="/Orcamento/RelatorioProtheus" method="post" style="margin-left:3px">
+      <input type="hidden" name="codOrcamento" value="#:CampoCodigo##:LojaDestino#" />
+      <button class='botao-negociacao' type="submit">Relatório</button>
+    </form>
+  </div>
+</script>
+
+<script id="template-data-emissao" type="text/x-kendo-template">
+  <span>#=formataDataProtheus(data.DataCriacao)#</span>
+</script>
+
+<script id="template-data-validade-protheus" type="text/x-kendo-template">
+  <span class="#=orcamentoVencido(data.Status)#">#=formataDataProtheus(data.DataCriacao)#</span>
+</script>
+
+<script id="template-data" type="text/x-kendo-template">
+  <span class="#=orcamentoVencido(data.Status)#">#:DataValidade#</span>
+</script>
+
+<script id="template-status" type="text/x-kendo-template">
+  <span class="#=orcamentoVencido(data.Status)#">#:Status#</span>
+</script>
+
+<div class="modal" id="aviso-sync" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div>
+    <h3 style="color: white;">Aguarde, sincronizando Protheus...</h3>
+    <div class="loading-container">
+      <div class="loading"></div>
+      <div id="loading-text">carregando</div>
+    </div>
+  </div>
+</div>
+@Scripts.Render("~/bundles/orcamento")
+<script>
+  init();
+</script>
+

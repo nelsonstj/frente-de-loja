@@ -1,0 +1,124 @@
+﻿@model DV.FrenteLoja.Core.Contratos.DataObjects.ModalDetalhesProdutoDto
+@using DV.FrenteLoja.Core.Util
+    <div class="modal-content container modal-servico-correlacionado">
+        <div class="modal-header">
+            <h5 class="modal-title">@Model.ProdutoPaiDto.Descricao</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @using (Ajax.BeginForm("CriaSacolaCompras", "Orcamento", new AjaxOptions() { OnFailure = "criaSacolaFail", OnBegin = "criaSacolaSubmit", OnSuccess = "criaSacolaSuccess" }, new { id = "produto-detalhes", @class = "flex-coluna" }))
+        {
+            @Html.HiddenFor(model => model.IdOrcamento)
+            <div id="modal-warning"></div>
+            <div>
+                @Html.HiddenFor(model => model.PrecoUnitarioPai)
+                @Html.HiddenFor(model => model.ProdutoPaiDto.Id)
+            </div>
+            <div class="modal-body">
+                <div class="flex">
+                    <div class="flex">
+                        <object data="@string.Format("{0}{1}.jpg", FiltroHelper.UrlImagemDellaVia(), Model.ProdutoPaiDto.CampoCodigo)" type="image/png" style="max-height:400px; max-width: 500px;">
+                            <img className="imagem-detalhe" src="@string.Format("{0}{1}.jpg", FiltroHelper.UrlImagemDellaVia(), Model.ProdutoPaiDto.IdSubGrupoProduto)" style="max-height:400px; max-width: 500px;"
+                                 onError="this.onerror=null; this.src = '/Content/img/produto-sem-imagem.gif';" />
+                        </object>
+                    </div>
+                    <div class="" style="margin-left:15px">
+                        <div>
+                            <div>
+                                <b>@Html.LabelFor(model => model.ProdutoPaiDto.CampoCodigo)</b>
+                                <span class="codigo">@Model.ProdutoPaiDto.CampoCodigo</span>
+                            </div>
+                            <div>
+                                <b>@Html.LabelFor(model => model.ProdutoPaiDto.Fabricante)</b>
+                                <span class="codigo">@Model.ProdutoPaiDto.Fabricante</span>
+                            </div>
+                        </div>
+                        <p class="descricao">
+                            @Model.InformacaoComplementarPai
+                        </p>
+                        <div class="produtos">
+                            <div class="modal-produto-servico">
+                                <div class="">
+                                    <span>Quantidade</span>
+                                </div>
+                                <div>
+                                    <input class="quantidade" data-target="quantidade-pai" @(Model.PrecoUnitarioPai > 0 ? "" : "disabled") id="QuantidadePai" name="QuantidadePai" type="number" min="0" valor-total="PrecoUnitarioPai" value="@Model.QuantidadePai" onfocus="this.select()">
+                                </div>
+                                <div>
+                                    <span class="valor">x @string.Format("{0:C}", Model.PrecoUnitarioPai)</span>
+                                </div>
+                                <div>
+                                    <span id="quantidade-pai">@string.Format("{0:C}", Model.PrecoUnitarioPai * Model.QuantidadePai)</span>
+                                </div>
+                            </div>
+                            <div class="modal-produto-container">
+                                @foreach (var item in Model.ProdutosAgregadosModalList.Select((servico, index) => new { index, servico }))
+                                {
+                                    <div>
+                                        @Html.HiddenFor(model => model.ProdutosAgregadosModalList[item.index].PrecoUnitario)
+                                        @Html.HiddenFor(model => model.ProdutosAgregadosModalList[item.index].IdProduto)
+                                    </div>
+                                    <div class="modal-produto-servico">
+                                        <div class="col-md-7 modal-servico-descricao">
+                                            <span class="descricao"> @item.servico.Descricao</span>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="quantidade" data-target="@string.Format("servico-quantidade-{0}", item.index)"
+                                                   id="@string.Format("ProdutosAgregadosModalList_{0}__Quantidade", item.index)"
+                                                   @(Model.ProdutosAgregadosModalList[item.index].PrecoUnitario > 0 ? "" : "disabled")
+                                                   name="@string.Format("ProdutosAgregadosModalList[{0}].Quantidade",item.index)" type="number" min="0"
+                                                   valor-total="@string.Format("ProdutosAgregadosModalList_{0}__PrecoUnitario", item.index)"
+                                                   value="@Model.ProdutosAgregadosModalList[item.index].Quantidade" onfocus="this.select()">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor">x @string.Format("{0:C}", item.servico.PrecoUnitario)</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span id="servico-quantidade-@item.index">@string.Format("{0:C}", (item.servico.PrecoUnitario * item.servico.Quantidade))</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="botoes">
+                            <button type="submit" id="inserir-orcamento" class="botao btn-black">Inserir no orçamento</button>
+                            <button type="button" class="botao btn-secondary" onclick="abrirModalComplemento()" style="margin-left:5px; display: @(Model.ProdutoComplementoPaiDto.hasCampoHTML ? "block": "none") ">Mais informações</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+<script>
+    //function abrirModalComplemento() { }
+    const abrirModalComplemento = () => {
+        var produtoPaiId = '@Model.ProdutoPaiDto.CampoCodigo'
+        if (produtoPaiId) {
+            //setVisibilidadeLoading(true);
+            $.ajax({
+                type: "POST",
+                url: "/Orcamento/DetalheProduto/",
+                data: { ProdutoPaiId: produtoPaiId }
+            }).done(function (response) {
+                $("#complemento").modal();
+                $("#complemento").html(response);
+                //setVisibilidadeLoading(false);
+            }).fail(function (response) {
+                criaAlertaMensagem(response.responseJSON);
+                //setVisibilidadeLoading(false);
+            });
+        }
+    };
+
+    //function abreMaisInformacoes() {
+    //    window.open('@Url.Action("DetalheProduto", "Orcamento", new { Id = Model.ProdutoPaiDto.Id })', '_blank');
+    //}
+
+    function criaMultiplicadores() {
+        $("#produto-detalhes").find("input[type=number]").each(function (index, item) {
+            jQuery(item).Multiplier("produto-detalhes");
+        });
+    }
+</script>

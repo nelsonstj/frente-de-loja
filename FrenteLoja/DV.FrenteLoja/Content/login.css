@@ -1,0 +1,80 @@
+﻿@font-face {
+    font-family: GothamMedium;
+    src: url(./libs/fonts/GOTHAM-MEDIUM.TTF);
+}
+
+.text-danger {
+    text-align: left;
+}
+
+body {
+    height: 100vh;
+	width: 100vw;
+	min-height: 100vh;
+	margin: 0;
+	background: url('img/webLoginBg.jpg');
+	background-repeat: round;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+    color: #FFF;
+    font-family: GothamMedium;
+}
+
+.form {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1em;
+    width: 20em;
+    margin: auto;
+    color: #C0C0C0;
+}
+
+.form label{
+	text-align: start;
+}
+
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"] {
+    -webkit-appearance: none;
+}
+
+input[type="submit"] {
+    font-size: 16px;
+    padding: 10px 65px;
+    background-color: #c0392b;
+    width: 100%;
+    color: #FFF;
+    border: none;
+    border-radius: 0px;
+    outline: none;
+    float: none;
+    cursor: pointer;
+    font-family: GothamMedium;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    height: 2.5em;
+    border-width: 0;
+    font-size: 14px;
+    padding: 0;
+    outline: none;
+    margin-bottom: 26px;
+    color: #000;
+    font-family: GothamMedium;
+}
+
+.text-align-center{
+	 text-align: center;
+}
+
+.logo-text-color {
+    color: #F5F5F5;
+    font-size: 24px;
+    text-shadow: 3px 0 black, 0 2px black !important;
+}

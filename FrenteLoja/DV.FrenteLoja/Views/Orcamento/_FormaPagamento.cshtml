@@ -1,0 +1,84 @@
+﻿@using DV.FrenteLoja.Core.Contratos.DataObjects
+@model DV.FrenteLoja.Core.Contratos.DataObjects.OrcamentoPagamentoDto
+
+@helper formaPagamento(OrcamentoFormaPagamentoDto pagamento)
+{
+  <div style="display:flex; padding: 10px;">
+    <div style="flex:0.5;flex-direction: column;display: flex;">
+      <b>@string.Format("{0:C}", pagamento.ValorTotal)</b>
+      @if (pagamento.QtdParcelas > 1)
+      {
+          <b><small>@pagamento.QtdParcelas x @string.Format("{0:C}",pagamento.ValorParcela) </small></b>
+      }
+            
+    </div>
+    <div style="flex:1;display: flex;flex-direction: column;">
+      <a>@pagamento.CondicaoPagamento</a>
+        @if (pagamento.QtdParcelas > 1)
+        {
+            var acrescimo = pagamento.TemAcrescimo ? "com" : "sem";
+            <p> <smal> @acrescimo acréscimo  <ins><a onclick="abrirModalParcelamento(@pagamento.Id)">ver parcelas</a></ins></smal> </p>
+        }
+    </div>
+    <div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Remover pagamento" onclick="removePagamento(@pagamento.Id)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>  
+}
+
+<div class="flex table-body">
+<div class="flex-size-1">
+    <div class="condicao-pagamento ">
+        <h3>FORMAS DE PAGAMENTO</h3>
+        <div class="flex">
+            <div class="form-group col-md-4">
+                <label class="orcamento-label">Cond. Pagto.</label>
+                <input type="text" id="condicao-pagamento" />
+            </div>
+            <div class="form-group col-md-3" id="div-banco" style="display:none">
+                <label class="orcamento-label">Banco</label>
+                <input type="text" id="condicao-banco" />
+            </div>
+            <div class="form-group col-md-3" id="div-bandeira" style="display:none">
+                <label class="orcamento-label">Bandeira</label>
+                <input type="text" id="condicao-bandeira" />
+            </div>
+            <div class="form-group col-md-3" id="div-acrescimo" style="display:none">
+                <label class="orcamento-label">Acréscimo</label>
+                <input type="text" id="condicao-acrescimo" class="form-control" data-target="acrescimo" readonly />
+            </div>
+            <div class="form-group col-md-4">
+                <label class="orcamento-label">Valor</label>
+                <input id="valor-forma-pagamento" class="form-control" onfocus="this.select()" />
+            </div>
+        </div>
+        <div>
+            <input type="hidden" id="tipo-condicao" />
+            <button id="adiciona-forma-pagamento" class="botao btn-black" onclick="adicionaPagamento()">Adicionar</button>
+        </div>
+    </div>
+</div>
+  <div class="flex-size-0-5 flex-column">
+
+      @foreach (var item in Model.FormasPagamentos)
+      {
+          @formaPagamento(item);
+      }
+
+      @if (Model.ValorRestante != 0)
+      {
+          <div style="display:flex; color:red; padding: 10px;">
+              <div style="flex:0.5">
+                  <b id="valor-restante">@string.Format("{0:C}", Model.ValorRestante)</b>
+              </div>
+              <div style="flex:1">
+                  <a><small>Valor restante para pagamento</small></a>
+              </div>
+          </div>
+      }
+      @Html.HiddenFor(model => model.ValorRestante)
+  </div>  
+
+</div>
